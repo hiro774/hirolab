@@ -4,16 +4,16 @@ export default function Home() {
       {/* ヒーローセクション */}
       <section className="py-16 text-center">
         <div className="avatar mb-6 inline-block">
-          <div className="w-32 h-32 rounded-full ring ring-primary ring-offset-4 ring-offset-base-100 overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-            <span className="text-4xl font-bold">PL</span>
+          <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary/80 to-accent/80 flex items-center justify-center">
+            <span className="text-white text-4xl font-bold">PL</span>
           </div>
         </div>
         <h1 className="text-4xl font-bold mb-4">
           <span className="text-primary">Portfolio</span>
-          <span className="text-accent">Lab</span>
+          <span className="text-accent ml-2">Lab</span>
         </h1>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
-          Web開発、デザイン、クリエイティブプロジェクトのポートフォリオサイト
+          Web開発、クリエイティブプロジェクトのポートフォリオサイト
         </p>
         <div className="flex justify-center gap-4 mb-8">
           <a href="" className="btn btn-circle btn-ghost">
