@@ -1,0 +1,335 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+:root {
+  --color-primary: #5b5ef4; /* より鮮やかなインディゴ */
+  --color-primary-dark: #4240e0; /* 濃いインディゴ（ホバー用） */
+  --color-accent: #ff3366; /* より鮮やかなローズ */
+  --color-accent-dark: #e02e5c; /* 濃いローズ（ホバー用） */
+  --color-bg-gradient-from: #f9fafb; /* より明るい背景開始色 */
+  --color-bg-gradient-to: #e5e7eb; /* より明るい背景終了色 */
+  --color-hover-bg: rgba(
+    91,
+    94,
+    244,
+    0.08
+  ); /* より繊細な半透明プライマリカラー */
+  --color-hover-text: #3730c2; /* より深みのあるホバー時の文字色 */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 6px 12px -2px rgba(0, 0, 0, 0.08),
+    0 3px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 15px 25px -5px rgba(0, 0, 0, 0.08),
+    0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  --shadow-glow: 0 0 20px rgba(91, 94, 244, 0.4);
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --border-radius-sm: 0.25rem;
+  --border-radius-md: 0.5rem;
+  --border-radius-lg: 1rem;
+  --border-radius-full: 9999px;
+}
+
+/* 背景スタイル */
+body {
+  background-image: radial-gradient(
+      circle at 5% 10%,
+      rgba(91, 94, 244, 0.06) 0%,
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 95% 85%,
+      rgba(255, 51, 102, 0.06) 0%,
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(255, 255, 255, 0.9) 0%,
+      transparent 80%
+    ),
+    linear-gradient(
+      135deg,
+      var(--color-bg-gradient-from),
+      var(--color-bg-gradient-to)
+    );
+  background-attachment: fixed;
+  background-size: 200% 200%, 200% 200%, 100% 100%, 100% 100%;
+  animation: gradientMovement 30s ease infinite;
+}
+
+@keyframes gradientMovement {
+  0% {
+    background-position: 0% 0%, 100% 100%, center center, 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%, 0% 0%, center center, 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%, 100% 100%, center center, 0% 0%;
+  }
+}
+
+/* ナビメニューのスタイル */
+.menu a {
+  color: #1e293b; /* slate-800 - より濃いグレー */
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.menu a:hover {
+  background-color: var(--color-hover-bg) !important;
+  color: var(--color-hover-text) !important;
+  transform: translateY(-2px);
+}
+
+.menu a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-primary);
+  transition: all var(--transition-normal);
+  transform: translateX(-50%);
+}
+
+.menu a:hover::after {
+  width: 80%;
+}
+
+/* ナビゲーションメニュー（Top〜about）のスタイル */
+.navbar ul.menu li .btn {
+  color: #333333 !important; /* 少しグレーがかった黒 */
+}
+
+.navbar ul.menu li .btn:hover {
+  color: var(--color-hover-text) !important;
+}
+
+/* ボタンスタイル */
+.btn {
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  color: var(--color-primary) !important;
+  padding: 0.5rem 1rem !important;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md) !important;
+}
+
+.btn-primary {
+  background: transparent !important;
+  color: var(--color-primary) !important;
+  border-bottom: 1px solid transparent !important;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-primary-dark)
+  ) !important;
+  color: white !important;
+  box-shadow: var(--shadow-glow) !important;
+  border-bottom: 1px solid transparent !important;
+}
+
+.btn-ghost:hover {
+  background-color: var(--color-hover-bg) !important;
+}
+
+/* ナビゲーションボタン特別スタイル */
+.navbar .btn,
+.drawer-side .btn {
+  border-radius: var(--border-radius-full) !important;
+}
+
+/* AIとお問い合わせボタンのスタイル */
+.navbar-end .btn-primary {
+  border-bottom: none !important;
+  color: var(
+    --color-primary
+  ) !important; /* プライマリカラー（インディゴ）を使用 */
+  font-weight: 600;
+  font-size: 1.05rem !important; /* 少し大きめのフォントサイズ */
+  padding: 0.6rem 1.2rem !important; /* 少し大きめのパディング */
+}
+
+.navbar-end .btn-primary:hover {
+  background-color: var(--color-hover-bg) !important;
+  /* ホバー時も同じ色を維持 */
+  color: var(--color-primary) !important;
+}
+
+/* モバイルメニューのお問い合わせボタン */
+.drawer-side .btn-primary {
+  color: var(--color-primary) !important;
+  font-size: 1.05rem !important;
+}
+
+.drawer-side .btn-primary:hover {
+  background-color: var(--color-hover-bg) !important;
+  /* ホバー時も同じ色を維持 */
+  color: var(--color-primary) !important;
+}
+
+/* タイトル色の調整 */
+.text-primary {
+  color: var(--color-primary) !important;
+  font-weight: 700;
+}
+
+.text-accent {
+  color: var(--color-accent) !important;
+  font-weight: 700;
+}
+
+/* ガラスモーフィズム効果 */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+/* アニメーション */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(99, 102, 241, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* フッタースタイル */
+.footer {
+  background: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(5px) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+/* サイドバースタイル */
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  animation: slideInRight 0.3s ease-out;
+  background-image: radial-gradient(
+      circle at 90% 10%,
+      rgba(99, 102, 241, 0.07) 0%,
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 10% 90%,
+      rgba(244, 63, 94, 0.05) 0%,
+      transparent 30%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.7),
+      rgba(255, 255, 255, 0.7)
+    ) !important;
+}
+
+.sidebar-header .avatar div {
+  transition: all 0.3s ease;
+}
+
+.sidebar-header .avatar div:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
+  animation: pulse 2s infinite;
+}
+
+.sidebar-link {
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+.sidebar-link:hover {
+  background-color: rgba(99, 102, 241, 0.1) !important;
+  border-left: 3px solid var(--color-primary) !important;
+  transform: translateX(5px);
+}
+
+.sidebar-link-accent {
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+.sidebar-link-accent:hover {
+  background-color: rgba(244, 63, 94, 0.1) !important;
+  border-left: 3px solid var(--color-accent) !important;
+  transform: translateX(5px);
+}
+
+.menu-category {
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-category::after {
+  content: "";
+  position: absolute;
+  bottom: 0.5rem;
+  left: 2.5rem;
+  width: 70%;
+  height: 1px;
+  background: linear-gradient(to right, rgba(99, 102, 241, 0.3), transparent);
+}
+
+/* Drawer アニメーション修正 */
+.drawer-side {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.drawer-toggle:not(:checked) ~ .drawer-side {
+  transform: translateX(-100%);
+}
+
+.drawer-toggle:checked ~ .drawer-side {
+  transform: translateX(0);
+}
+
+.drawer-overlay {
+  transition: background-color 0.3s ease;
+}
