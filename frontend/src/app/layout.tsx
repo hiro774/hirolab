@@ -15,25 +15,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // サイドバーを表示した時のスクロールバー対策のスタイル
-  const drawerStyle = `
-    .drawer-toggle:checked ~ .drawer-content {
-      margin-right: 0 !important;
-    }
-    .drawer-toggle:checked ~ .drawer-side .drawer-overlay {
-      margin-right: 0 !important;
-    }
-  `;
-
   return (
     <html lang="ja" data-theme="light" className="scroll-smooth">
-      <head>
-        <style>{drawerStyle}</style>
-      </head>
       <body className="min-h-screen">
-        <div className="drawer">
-          <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
-          <div className="drawer-content flex flex-col min-h-screen">
+        <div>
+          <input
+            id="my-drawer-3"
+            type="checkbox"
+            className="drawer-toggle hidden"
+          />
+          <div className="flex flex-col min-h-screen">
             {/* ヘッダー */}
             <Header />
             {/* メインコンテンツ */}

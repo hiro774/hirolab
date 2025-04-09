@@ -1,6 +1,8 @@
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
 
+// top~aiが真ん中に来るように
 const Header = () => {
   return (
     <header className="navbar glass-effect fixed top-0 z-50 px-6 animate-fadeIn">
@@ -26,21 +28,34 @@ const Header = () => {
           </label>
         </div>
         <Link
-          href=""
-          className="btn btn-ghost normal-case text-2xl font-bold flex items-center gap-2"
+          href="/"
+          className="btn btn-ghost normal-case text-2xl font-bold flex items-center"
         >
-          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary/80 to-accent/80 flex items-center justify-center">
-            <span className="text-white text-sm font-bold">PL</span>
+          <div className="w-12 h-12 rounded-full from-primary/80 to-accent/80 flex items-center justify-center">
+            <Image
+              src="/images/lulu_robot.png"
+              alt="アイコン画像"
+              width={1000}
+              height={1000}
+              className="rounded-full"
+            />
           </div>
-          <span className="text-primary">Portfolio</span>
-          <span className="text-accent">Lab</span>
+          <div className="mt-2 w-40 h-20 flex items-center justify-center">
+            <Image
+              src="/images/hirolab.png"
+              alt="アイコン画像"
+              width={1000}
+              height={1000}
+              className="rounded-full"
+            />
+          </div>
         </Link>
-        <div className="hidden xl:flex ml-6">
+        <div className="hidden xl:flex ml-80">
           <ul className="menu menu-horizontal px-1 gap-1 flex-nowrap">
             <li>
               <Link
-                href=""
-                className="btn btn-ghost btn-sm rounded-full text-base flex items-center gap-2 px-3"
+                href="/"
+                className="btn btn-ghost btn-sm rounded-full text-lg flex items-center gap-2 px-3"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -58,8 +73,8 @@ const Header = () => {
             </li>
             <li>
               <Link
-                href=""
-                className="btn btn-ghost btn-sm rounded-full text-base flex items-center gap-2 px-3"
+                href="/about"
+                className="btn btn-ghost btn-sm rounded-full text-lg flex items-center gap-2 px-3"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -77,8 +92,8 @@ const Header = () => {
             </li>
             <li>
               <Link
-                href=""
-                className="btn btn-ghost btn-sm rounded-full text-base flex items-center gap-2 px-3"
+                href="/lang"
+                className="btn btn-ghost btn-sm rounded-full text-lg flex items-center gap-2 px-3"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -95,8 +110,8 @@ const Header = () => {
             </li>
             <li>
               <Link
-                href=""
-                className="btn btn-ghost btn-sm rounded-full text-base flex items-center gap-2 px-2"
+                href="/works"
+                className="btn btn-ghost btn-sm rounded-full text-lg flex items-center gap-2 px-2"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -111,27 +126,29 @@ const Header = () => {
                 <span>Works</span>
               </Link>
             </li>
+            <li>
+              <Link
+                href="/works"
+                className="btn btn-ghost btn-sm rounded-full text-lg flex items-center gap-2 px-2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  fill="currentColor"
+                  viewBox="0 0 16 16"
+                  className="text-primary"
+                >
+                  <path d="M6 12.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5ZM3 8.062C3 6.76 4.235 5.765 5.53 5.886a26.58 26.58 0 0 0 4.94 0C11.765 5.765 13 6.76 13 8.062v1.157a.933.933 0 0 1-.765.935c-.845.147-2.34.346-4.235.346-1.895 0-3.39-.2-4.235-.346A.933.933 0 0 1 3 9.219V8.062Zm4.542-.827a.25.25 0 0 0-.217.068l-.92.9a24.767 24.767 0 0 1-1.871-.183.25.25 0 0 0-.068.495c.55.076 1.232.149 2.02.193a.25.25 0 0 0 .189-.071l.754-.736.847 1.71a.25.25 0 0 0 .404.062l.932-.97a25.286 25.286 0 0 0 1.922-.188.25.25 0 0 0-.068-.495c-.538.074-1.207.145-1.98.189a.25.25 0 0 0-.166.076l-.754.785-.842-1.7a.25.25 0 0 0-.182-.135Z" />
+                  <path d="M8.5 1.866a1 1 0 1 0-1 0V3h-2A4.5 4.5 0 0 0 1 7.5V8a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1v1a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1v-.5A4.5 4.5 0 0 0 10.5 3h-2V1.866ZM14 7.5V13a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7.5A3.5 3.5 0 0 1 5.5 4h5A3.5 3.5 0 0 1 14 7.5Z" />
+                </svg>
+                <span>AI</span>
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
       <div className="navbar-end hidden xl:flex gap-4 mr-5">
-        <Link
-          href=""
-          className="btn btn-ghost btn-sm rounded-full flex items-center gap-2 px-4 py-2 hover:bg-primary/10"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="18"
-            fill="currentColor"
-            viewBox="0 0 16 16"
-            className="text-primary"
-          >
-            <path d="M6 12.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5ZM3 8.062C3 6.76 4.235 5.765 5.53 5.886a26.58 26.58 0 0 0 4.94 0C11.765 5.765 13 6.76 13 8.062v1.157a.933.933 0 0 1-.765.935c-.845.147-2.34.346-4.235.346-1.895 0-3.39-.2-4.235-.346A.933.933 0 0 1 3 9.219V8.062Zm4.542-.827a.25.25 0 0 0-.217.068l-.92.9a24.767 24.767 0 0 1-1.871-.183.25.25 0 0 0-.068.495c.55.076 1.232.149 2.02.193a.25.25 0 0 0 .189-.071l.754-.736.847 1.71a.25.25 0 0 0 .404.062l.932-.97a25.286 25.286 0 0 0 1.922-.188.25.25 0 0 0-.068-.495c-.538.074-1.207.145-1.98.189a.25.25 0 0 0-.166.076l-.754.785-.842-1.7a.25.25 0 0 0-.182-.135Z" />
-            <path d="M8.5 1.866a1 1 0 1 0-1 0V3h-2A4.5 4.5 0 0 0 1 7.5V8a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1v1a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1v-.5A4.5 4.5 0 0 0 10.5 3h-2V1.866ZM14 7.5V13a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7.5A3.5 3.5 0 0 1 5.5 4h5A3.5 3.5 0 0 1 14 7.5Z" />
-          </svg>
-          <span className="text-black text-base font-medium">AI</span>
-        </Link>
         <Link
           href=""
           className="btn btn-ghost btn-sm rounded-full flex items-center gap-2 px-4 py-2 hover:bg-accent/10"

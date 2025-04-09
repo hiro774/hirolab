@@ -1,5 +1,17 @@
 @import "tailwindcss";
 @plugin "daisyui";
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap");
+
+h1.logo-title {
+  font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: linear-gradient(90deg, #111111, #444444); /* 黒〜ダークグレー */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: opacity 1s ease;
+}
 
 :root {
   --color-primary: #5b5ef4; /* より鮮やかなインディゴ */
@@ -150,8 +162,7 @@ body {
 }
 
 /* ナビゲーションボタン特別スタイル */
-.navbar .btn,
-.drawer-side .btn {
+.navbar .btn {
   border-radius: var(--border-radius-full) !important;
 }
 
@@ -172,15 +183,18 @@ body {
   color: var(--color-primary) !important;
 }
 
-/* モバイルメニューのお問い合わせボタン */
-.drawer-side .btn-primary {
+/* カスタムサイドバーのボタンスタイル */
+.sidebar-container .btn {
+  border-radius: var(--border-radius-full) !important;
+}
+
+.sidebar-container .btn-primary {
   color: var(--color-primary) !important;
   font-size: 1.05rem !important;
 }
 
-.drawer-side .btn-primary:hover {
+.sidebar-container .btn-primary:hover {
   background-color: var(--color-hover-bg) !important;
-  /* ホバー時も同じ色を維持 */
   color: var(--color-primary) !important;
 }
 
@@ -215,14 +229,7 @@ body {
   }
 }
 
-@keyframes slideInRight {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
+/* 新しいサイドバーでは使用しないため削除 */
 
 @keyframes pulse {
   0% {
@@ -252,7 +259,6 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
-  animation: slideInRight 0.3s ease-out;
   background-image: radial-gradient(
       circle at 90% 10%,
       rgba(99, 102, 241, 0.07) 0%,
@@ -317,19 +323,4 @@ body {
   background: linear-gradient(to right, rgba(99, 102, 241, 0.3), transparent);
 }
 
-/* Drawer アニメーション修正 */
-.drawer-side {
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.drawer-toggle:not(:checked) ~ .drawer-side {
-  transform: translateX(-100%);
-}
-
-.drawer-toggle:checked ~ .drawer-side {
-  transform: translateX(0);
-}
-
-.drawer-overlay {
-  transition: background-color 0.3s ease;
-}
+/* 注意: DaisyUIのdrawerコンポーネントは使用せず、ReactのuseStateとuseEffectを使用したカスタムサイドバーを実装しています */
