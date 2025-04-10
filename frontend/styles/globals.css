@@ -1,0 +1,121 @@
+@import "tailwindcss";
+@plugin "daisyui";
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap");
+
+:root {
+  --color-primary: #5b5ef4; /* より鮮やかなインディゴ */
+  --color-primary-dark: #4240e0; /* 濃いインディゴ（ホバー用） */
+  --color-accent: #ff3366; /* より鮮やかなローズ */
+  --color-accent-dark: #e02e5c; /* 濃いローズ（ホバー用） */
+  --color-bg-gradient-from: #f9fafb; /* より明るい背景開始色 */
+  --color-bg-gradient-to: #e5e7eb; /* より明るい背景終了色 */
+  --color-hover-bg: rgba(
+    91,
+    94,
+    244,
+    0.08
+  ); /* より繊細な半透明プライマリカラー */
+  --color-hover-text: #3730c2; /* より深みのあるホバー時の文字色 */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 6px 12px -2px rgba(0, 0, 0, 0.08),
+    0 3px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 15px 25px -5px rgba(0, 0, 0, 0.08),
+    0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  --shadow-glow: 0 0 20px rgba(91, 94, 244, 0.4);
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --border-radius-sm: 0.25rem;
+  --border-radius-md: 0.5rem;
+  --border-radius-lg: 1rem;
+  --border-radius-full: 9999px;
+}
+
+/* 背景スタイル */
+body {
+  background-image: radial-gradient(
+      circle at 5% 10%,
+      rgba(91, 94, 244, 0.06) 0%,
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 95% 85%,
+      rgba(255, 51, 102, 0.06) 0%,
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(255, 255, 255, 0.9) 0%,
+      transparent 80%
+    ),
+    linear-gradient(
+      135deg,
+      var(--color-bg-gradient-from),
+      var(--color-bg-gradient-to)
+    );
+  background-attachment: fixed;
+  background-size: 200% 200%, 200% 200%, 100% 100%, 100% 100%;
+  animation: gradientMovement 30s ease infinite;
+}
+
+@keyframes gradientMovement {
+  0% {
+    background-position: 0% 0%, 100% 100%, center center, 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%, 0% 0%, center center, 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%, 100% 100%, center center, 0% 0%;
+  }
+}
+
+/* ボタンスタイル */
+.btn {
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  color: var(--color-primary) !important;
+  padding: 0.5rem 1.2rem !important;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md) !important;
+}
+
+.btn-primary {
+  background: transparent !important;
+  color: var(--color-primary) !important;
+  border-bottom: 1px solid transparent !important;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-primary-dark)
+  ) !important;
+  color: white !important;
+  box-shadow: var(--shadow-glow) !important;
+  border-bottom: 1px solid transparent !important;
+}
+
+.btn-ghost:hover {
+  background-color: var(--color-hover-bg) !important;
+}
+
+/* タイトル色の調整 */
+.text-primary {
+  color: var(--color-primary) !important;
+  font-weight: 700;
+}
+
+.text-accent {
+  color: var(--color-accent) !important;
+  font-weight: 700;
+}

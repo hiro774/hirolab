@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import "./globals.css";
-import Footer from "./components/Footer";
-import Sidebar from "./components/Sidebar";
-import Header from "./components/Header";
+import "../../styles/globals.css";
+import "../../styles/custom.css";
+import Sidebar from "../../components/Sidebar";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 export const metadata: Metadata = {
-  title: "Portfolio Lab",
-  description:
-    "Web開発、デザイン、クリエイティブプロジェクトのポートフォリオサイト",
+  title: "HiroLab",
+  description: "Web開発・技術記事のポートフォリオサイト",
 };
 
 export default function RootLayout({
@@ -28,7 +28,7 @@ export default function RootLayout({
             {/* ヘッダー */}
             <Header />
             {/* メインコンテンツ */}
-            <main className="container mx-auto px-4 pt-24 pb-16 flex-grow animate-fadeIn">
+            <main className="container mx-auto flex-grow animate-fadeIn">
               {children}
             </main>
             {/* フッター */}
