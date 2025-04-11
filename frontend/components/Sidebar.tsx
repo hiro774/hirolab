@@ -75,7 +75,7 @@ const Sidebar = () => {
             <div className="mt-4">
               <div className="w-35 h-25">
                 <Image
-                  src="/images/lulu_robot.png"
+                  src="/images/icon/lulu_robot.png"
                   alt="アイコン画像"
                   width={1000}
                   height={1000}
@@ -84,7 +84,7 @@ const Sidebar = () => {
               </div>
               <div className="w-35 h-35">
                 <Image
-                  src="/images/hirolab.png"
+                  src="/images/text/hirolab.png"
                   alt="アイコン画像"
                   width={1000}
                   height={1000}

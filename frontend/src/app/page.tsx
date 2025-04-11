@@ -9,7 +9,7 @@ export default function Home() {
         <div className="avatar inline-block">
           <div className="w-100 h-100 flex items-center justify-center">
             <Image
-              src="/images/lulu_robot.png"
+              src="/images/icon/lulu_robot.png"
               alt="アイコン画像"
               width={1000}
               height={1000}
@@ -18,7 +18,7 @@ export default function Home() {
           </div>
           <div className="w-100 h-35 flex items-center justify-center">
             <Image
-              src="/images/hirolab.png"
+              src="/images/text/hirolab.png"
               alt="アイコン画像"
               width={1000}
               height={1000}
