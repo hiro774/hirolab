@@ -14,7 +14,7 @@ export default function About() {
 
       <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-16 xl:px-24 py-2 sm:py-4 md:py-9 relative z-10">
         {/* 上部セクション：アイコンとプロフィール - 影とアニメーションを追加 */}
-        <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] gap-8 mb-10 backdrop-blur-sm rounded-xl p-4">
+        <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] gap-8 mb-10 backdrop-blur-sm rounded-xl">
           {/* 左側：アイコン */}
           <div className="flex justify-center lg:justify-start">
             <Icon />
