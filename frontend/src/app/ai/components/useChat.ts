@@ -209,28 +209,28 @@ export const useChat = () => {
     try {
       // APIリクエスト（サンプル）
       // 実際のAPIエンドポイントに置き換える
-      // const response = await fetch("/api/chat", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({ message: inputText }),
-      // });
+      const response = await fetch("http://localhost:8000/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ content: inputText }),
+      });
 
       // サンプルレスポンス（実際のAPIが実装されるまでのモック）
-      // const data = await response.json();
+      const data = await response.json();
 
       // モックレスポンス（実際のAPIが実装されるまで）
-      const mockResponses = [
-        "なるほど、興味深い質問ですね。もう少し詳しく教えていただけますか？",
-        "それについては、いくつかの観点から考えることができます。まず...",
-        "ご質問ありがとうございます。それについては次のように考えられます。",
-        "面白いトピックですね！私の見解をお伝えします。",
-        "その問題については、最新の研究によると...",
-      ];
+      // const mockResponses = [
+      //   "なるほど、興味深い質問ですね。もう少し詳しく教えていただけますか？",
+      //   "それについては、いくつかの観点から考えることができます。まず...",
+      //   "ご質問ありがとうございます。それについては次のように考えられます。",
+      //   "面白いトピックですね！私の見解をお伝えします。",
+      //   "その問題については、最新の研究によると...",
+      // ];
 
-      const randomResponse =
-        mockResponses[Math.floor(Math.random() * mockResponses.length)];
+      // const randomResponse =
+      //   mockResponses[Math.floor(Math.random() * mockResponses.length)];
 
       // AIの応答をUIに追加（タイピングアニメーション付き）
       setTimeout(() => {
@@ -238,7 +238,7 @@ export const useChat = () => {
         const aiMessage: MessageType = {
           id: messageId,
           content: "", // 最初は空
-          fullContent: randomResponse, // 完全なテキスト
+          fullContent: data.content, // 完全なテキスト
           sender: "ai",
           timestamp: now,
           isTyping: true, // タイピング中フラグ
