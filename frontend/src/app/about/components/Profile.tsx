@@ -10,7 +10,7 @@ const Profile = () => {
           {/* aboutme.png画像 */}
           <div className="w-full sm:w-36 md:w-44 h-auto">
             <Image
-              src="/images/aboutme.png"
+              src="/images/text/aboutme.png"
               alt="About Me"
               width={1000}
               height={500}
@@ -20,7 +20,7 @@ const Profile = () => {
 
           <div className="w-full sm:w-36 md:w-44 h-auto">
             <Image
-              src="/images/lulu_walk.png"
+              src="/images/icon/lulu_walk.png"
               alt="About Me"
               width={1000}
               height={500}

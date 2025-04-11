@@ -21,7 +21,7 @@ const Icon = () => {
           <div className="absolute inset-6 overflow-hidden rounded-full border-2 border-white shadow-md">
             {/* 画像 */}
             <Image
-              src="/images/hiro_robot.png"
+              src="/images/icon/hiro_robot.png"
               alt="プロフィール画像"
               width={300}
               height={300}
