@@ -11,6 +11,8 @@ export const useChat = () => {
   // 送信中の状態管理
   const [isSending, setIsSending] = useState(false);
 
+  const [history, setHistory] = useState<string[]>([]);
+
   // メッセージ表示領域のref
   const messagesEndRef = useRef<HTMLDivElement>(null);
   // メッセージコンテナのref
@@ -214,7 +216,7 @@ export const useChat = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ content: inputText }),
+        body: JSON.stringify({ content: inputText, history: history }),
       });
 
       // サンプルレスポンス（実際のAPIが実装されるまでのモック）
@@ -246,6 +248,7 @@ export const useChat = () => {
 
         setMessages((prev) => [...prev, aiMessage]);
         setTypingMessageId(messageId); // タイピングアニメーションを開始
+        setHistory((prev) => [...prev, inputText, data.content]);
         setIsSending(false);
       }, 1000); // 1秒の遅延を追加してAIが「考えている」ように見せる
     } catch (error) {

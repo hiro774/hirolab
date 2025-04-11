@@ -7,8 +7,3 @@ export type MessageType = {
   timestamp: string;
   isTyping?: boolean; // タイピング中かどうか
 };
-
-// APIレスポンスの型定義（将来的に使用予定）
-// export type ApiResponse = {
-//   message: string;
-// };
