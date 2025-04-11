@@ -1,13 +1,22 @@
+import Image from "next/image";
 import React from "react";
 
 const Header = () => {
   return (
-    <div className="text-center mb-12">
-      <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-        作品一覧
-      </h1>
+    <div className="text-center mb-15">
+      {/* アイコン部分 */}
+      <div className="w-40 h-20 mx-auto relative flex items-center justify-center mt-10">
+        <Image
+          src="/images/works.png"
+          alt="アイコン画像"
+          width={256}
+          height={128}
+        />
+      </div>
+
+      {/* テキスト（画像の下） */}
       <p className="text-gray-600 max-w-2xl mx-auto">
-        これまでに手がけたプロジェクトをご紹介します。各プロジェクトをクリックすると詳細をご覧いただけます。
+        Here are some of the projects I've worked on. details.
       </p>
     </div>
   );

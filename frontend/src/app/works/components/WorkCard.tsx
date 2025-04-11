@@ -13,12 +13,12 @@ export default function WorkCard({ work, onClick }: Props) {
       className="bg-white/70 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 cursor-pointer"
       onClick={() => onClick(work)}
     >
-      <div className="h-48 bg-gradient-to-r from-blue-100 to-purple-100 flex items-center justify-center overflow-hidden">
+      <div className="h-60 bg-gradient-to-r from-blue-100 to-purple-100 flex items-center justify-center overflow-hidden">
         <Image
           src={work.thumbnail}
           alt={work.title}
-          width={200}
-          height={200}
+          width={1000}
+          height={1000}
           className="object-cover w-full h-full"
         />
       </div>

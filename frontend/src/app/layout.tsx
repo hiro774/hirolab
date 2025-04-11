@@ -28,9 +28,7 @@ export default function RootLayout({
             {/* ヘッダー */}
             <Header />
             {/* メインコンテンツ */}
-            <main className="container mx-auto flex-grow animate-fadeIn">
-              {children}
-            </main>
+            <main className="w-full flex-grow animate-fadeIn">{children}</main>
             {/* フッター */}
             <Footer />
           </div>

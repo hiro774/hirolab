@@ -4,6 +4,7 @@
 import Image from "next/image";
 import { WorkType } from "./types";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 interface Props {
   work: WorkType;
@@ -12,71 +13,138 @@ interface Props {
 }
 
 export default function WorkModal({ work, isClosing, onClose }: Props) {
+  // 画像スライダー用の状態
+  const [images, setImages] = useState<string[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // 初期化時に利用可能な画像を設定
+  useEffect(() => {
+    // 現在利用可能な画像を配列に格納
+    const availableImages = work.previewImage;
+
+    // previewImageがあれば追加
+    // if (work.previewImage && work.previewImage !== "") {
+    //   availableImages.push(work.previewImage);
+    // }
+
+    // テスト用に同じ画像を追加（実際のプロジェクトでは削除）
+    // availableImages.push(work.thumbnail);
+
+    setImages(availableImages);
+  }, [work]);
+
+  // 次の画像に移動
+  const goToNextImage = () => {
+    if (images.length <= 1) return;
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
+
+  // 前の画像に移動
+  const goToPrevImage = () => {
+    if (images.length <= 1) return;
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
   return (
     <div
-      className={`fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 ${
+      className={`fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 ${
         isClosing ? "animate-fadeOut" : "animate-fadeIn"
       }`}
       onClick={onClose}
     >
       <div
-        className={`bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto ${
+        className={`bg-white rounded-xl max-w-5xl w-full max-h-[90vh] overflow-y-auto shadow-xl ${
           isClosing ? "animate-scaleOut" : "animate-scaleIn"
         }`}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="sticky top-0 bg-white p-4 border-b flex justify-between items-center">
-          <h2 className="text-2xl font-bold text-gray-800">{work.title}</h2>
+        {/* ヘッダー */}
+        <div className="sticky top-0 bg-gray-50 p-5 border-b border-gray-200 flex justify-between items-center rounded-t-xl">
+          <h2 className="text-2xl font-bold text-gray-800 tracking-tight">
+            {work.title}
+          </h2>
           <button
             onClick={onClose}
-            className="text-gray-500 hover:text-gray-700"
+            className="w-8 h-8 flex items-center justify-center rounded-full bg-white text-gray-500 hover:bg-gray-100 hover:text-gray-700 transition-colors duration-200 border border-gray-200"
           >
             ✕
           </button>
         </div>
 
-        <div className="p-6">
-          {/* thumbnail */}
-          <div className="mb-6 flex justify-center">
-            <div className="w-full max-w-md h-64 bg-gradient-to-r from-blue-100 to-purple-100 rounded-lg overflow-hidden">
-              <Image
-                src={work.thumbnail}
-                alt={work.title}
-                width={400}
-                height={300}
-                className="object-cover w-full h-full"
-              />
+        <div className="py-10 px-8 md:px-16 lg:px-20">
+          {/* 画像スライダー */}
+          <div className="mb-10 relative">
+            <div className="relative w-full h-[300px] md:h-[400px] overflow-hidden rounded-lg shadow-md">
+              {images.length > 0 && (
+                <Image
+                  src={images[currentIndex]}
+                  alt={work.title}
+                  fill
+                  className="object-contain"
+                />
+              )}
             </div>
+
+            {/* 矢印ボタン */}
+            {images.length > 1 && (
+              <>
+                <button
+                  onClick={goToPrevImage}
+                  className="absolute left-2 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 shadow-md flex items-center justify-center text-gray-700 hover:bg-white transition-colors z-10 cursor-pointer"
+                  aria-label="前の画像"
+                >
+                  ←
+                </button>
+                <button
+                  onClick={goToNextImage}
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 shadow-md flex items-center justify-center text-gray-700 hover:bg-white transition-colors z-10 cursor-pointer"
+                  aria-label="次の画像"
+                >
+                  →
+                </button>
+              </>
+            )}
+
+            {/* 画像カウンター */}
+            {images.length > 1 && (
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+                {currentIndex + 1} / {images.length}
+              </div>
+            )}
           </div>
 
           {/* 概要 */}
-          <div className="mb-6">
-            <h3 className="text-xl font-semibold mb-2 text-gray-800">概要</h3>
-            <p className="text-gray-600">{work.details.overview}</p>
+          <div className="mb-10 pb-8 border-b border-gray-200">
+            <h3 className="text-xl font-semibold mb-4 text-gray-800">概要</h3>
+            <p className="text-gray-700 leading-relaxed">
+              {work.details.overview}
+            </p>
           </div>
 
           {/* 機能 */}
-          <div className="mb-6">
-            <h3 className="text-xl font-semibold mb-2 text-gray-800">
+          <div className="mb-10 pb-8 border-b border-gray-200">
+            <h3 className="text-xl font-semibold mb-4 text-gray-800">
               主な機能
             </h3>
-            <ul className="list-disc pl-5 text-gray-600">
+            <ul className="list-disc pl-5 text-gray-700 space-y-1">
               {work.details.features.map((feature: string, index: number) => (
-                <li key={index}>{feature}</li>
+                <li key={index} className="leading-relaxed">
+                  {feature}
+                </li>
               ))}
             </ul>
           </div>
 
           {/* 使用技術 */}
-          <div className="mb-6">
-            <h3 className="text-xl font-semibold mb-2 text-gray-800">
+          <div className="mb-10 pb-8 border-b border-gray-200">
+            <h3 className="text-xl font-semibold mb-4 text-gray-800">
               使用技術
             </h3>
             <div className="flex flex-wrap gap-2">
               {work.details.technologies.map((tech: string, index: number) => (
                 <span
                   key={index}
-                  className="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm"
+                  className="px-4 py-1.5 bg-gray-100 text-gray-700 border border-gray-200 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors duration-200"
                 >
                   {tech}
                 </span>
@@ -85,51 +153,33 @@ export default function WorkModal({ work, isClosing, onClose }: Props) {
           </div>
 
           {/* 課題と解決策 */}
-          <div className="mb-6">
-            <h3 className="text-xl font-semibold mb-2 text-gray-800">
+          {/* <div className="mb-10 pb-8">
+            <h3 className="text-xl font-semibold mb-4 text-gray-800">
               課題と解決策
             </h3>
-            <p className="text-gray-600">{work.details.challenges}</p>
+            <p className="text-gray-700 leading-relaxed">
+              {work.details.challenges}
+            </p>
           </div>
-
+ */}
           {/* リンク */}
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-4 justify-center mt-12">
             <Link
               href={work.details.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-outline btn-primary"
+              className="px-6 py-3 bg-white border border-gray-300 text-gray-700 rounded-lg shadow-sm hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 flex items-center font-medium"
               onClick={(e) => e.stopPropagation()}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                fill="currentColor"
-                viewBox="0 0 16 16"
-                className="mr-2"
-              >
-                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
-              </svg>
               GitHub
             </Link>
             <Link
               href={work.details.website}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-primary"
+              className="px-6 py-3 bg-gray-800 text-white rounded-lg shadow-sm hover:bg-gray-700 transition-colors duration-200 flex items-center font-medium"
               onClick={(e) => e.stopPropagation()}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                fill="currentColor"
-                viewBox="0 0 16 16"
-                className="mr-2"
-              >
-                <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855-.143.268-.276.56-.395.872.705.157 1.472.257 2.282.287V1.077zM4.249 3.539c.142-.384.304-.744.481-1.078a6.7 6.7 0 0 1 .597-.933A7.01 7.01 0 0 0 3.051 3.05c.362.184.763.349 1.198.49zM3.509 7.5c.036-1.07.188-2.087.436-3.008a9.124 9.124 0 0 1-1.565-.667A6.964 6.964 0 0 0 1.018 7.5h2.49zm1.4-2.741a12.344 12.344 0 0 0-.4 2.741H7.5V5.091c-.91-.03-1.783-.145-2.591-.332zM8.5 5.09V7.5h2.99a12.342 12.342 0 0 0-.399-2.741c-.808.187-1.681.301-2.591.332zM4.51 8.5c.035.987.176 1.914.399 2.741A13.612 13.612 0 0 1 7.5 10.91V8.5H4.51zm3.99 0v2.409c.91.03 1.783.145 2.591.332.223-.827.364-1.754.4-2.741H8.5zm-3.282 3.696c.12.312.252.604.395.872.552 1.035 1.218 1.65 1.887 1.855V11.91c-.81.03-1.577.13-2.282.287zm.11 2.276a6.696 6.696 0 0 1-.598-.933 8.853 8.853 0 0 1-.481-1.079 8.38 8.38 0 0 0-1.198.49 7.01 7.01 0 0 0 2.276 1.522zm-1.383-2.964A13.36 13.36 0 0 1 3.508 8.5h-2.49a6.963 6.963 0 0 0 1.362 3.675c.47-.258.995-.482 1.565-.667zm6.728 2.964a7.009 7.009 0 0 0 2.275-1.521 8.376 8.376 0 0 0-1.197-.49 8.853 8.853 0 0 1-.481 1.078 6.688 6.688 0 0 1-.597.933zM8.5 11.909v3.014c.67-.204 1.335-.82 1.887-1.855.143-.268.276-.56.395-.872A12.63 12.63 0 0 0 8.5 11.91zm3.555-.401c.57.185 1.095.409 1.565.667A6.963 6.963 0 0 0 14.982 8.5h-2.49a13.36 13.36 0 0 1-.437 3.008zM14.982 7.5a6.963 6.963 0 0 0-1.362-3.675c-.47.258-.995.482-1.565.667.248.92.4 1.938.437 3.008h2.49zM11.27 2.461c.177.334.339.694.482 1.078a8.368 8.368 0 0 0 1.196-.49 7.01 7.01 0 0 0-2.275-1.52c.218.283.418.597.597.932zm-.488 1.343a7.765 7.765 0 0 0-.395-.872C9.835 1.897 9.17 1.282 8.5 1.077V4.09c.81-.03 1.577-.13 2.282-.287z" />
-              </svg>
               サイトを見る
             </Link>
           </div>

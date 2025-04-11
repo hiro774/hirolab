@@ -14,6 +14,7 @@ export interface WorkType {
   title: string;
   description: string;
   thumbnail: string;
+  previewImage: string[];
   tags: string[];
   details: WorkDetail;
 }
