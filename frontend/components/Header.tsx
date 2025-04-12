@@ -52,7 +52,7 @@ const Header = () => {
         </Link>
         {/* リンクセクション */}
         <div className="hidden xl:flex absolute left-1/2 -translate-x-1/2">
-          <ul className="menu menu-horizontal px-1 gap-5 flex-nowrap">
+          <ul className="menu menu-horizontal px-1 gap-4 flex-nowrap">
             <li>
               <Link
                 href="/"
@@ -113,7 +113,7 @@ const Header = () => {
                 </span>
               </Link>
             </li>
-            {/* <li>
+            <li>
               <Link
                 href="/articles"
                 className="btn btn-ghost btn-sm rounded-full text-lg flex items-center gap-3 px-3"
@@ -132,7 +132,7 @@ const Header = () => {
                   Articles
                 </span>
               </Link>
-            </li> */}
+            </li>
 
             <li>
               <Link
@@ -180,7 +180,7 @@ const Header = () => {
       {/* お問合せセクション */}
       <div className="navbar-end hidden xl:flex gap-4 mr-5 menu menu-horizontal menu-accent">
         <Link
-          href=""
+          href="/contact"
           className="btn btn-ghost btn-sm rounded-full flex items-center gap-3 px-4 py-2 hover:bg-accent/10"
         >
           <svg

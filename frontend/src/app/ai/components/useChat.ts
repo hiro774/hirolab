@@ -10,7 +10,7 @@ export const useChat = () => {
   const [inputText, setInputText] = useState("");
   // 送信中の状態管理
   const [isSending, setIsSending] = useState(false);
-
+  // 履歴の管理
   const [history, setHistory] = useState<string[]>([]);
 
   // メッセージ表示領域のref
@@ -30,7 +30,7 @@ export const useChat = () => {
     const welcomeMessage: MessageType = {
       id: "welcome",
       content:
-        "こんにちは！HIROのAIアシスタントです。何かお手伝いできることはありますか？",
+        "こんにちは！このサイトの管理人HIROです。何かお手伝いできることはありますか？",
       sender: "ai",
       timestamp: new Date().toLocaleTimeString("ja-JP", {
         hour: "2-digit",

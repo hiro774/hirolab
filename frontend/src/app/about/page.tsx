@@ -1,6 +1,6 @@
 import Icon from "./components/Icon";
-import Profile from "./components/Profile";
 import Skills from "./components/Skills";
+import Profile from "./components/Profile";
 
 export default function About() {
   return (
@@ -20,11 +20,12 @@ export default function About() {
             <Icon />
           </div>
           {/* 右側：プロフィール */}
-          <Profile />
+          <Skills />
         </div>
+        <div className="relative mt-8"></div>
 
         {/* 下部セクション：スキル - デザイン改善 */}
-        <div className="relative mt-8">
+        <div className="relative mt-12">
           {/* 装飾ライン - より洗練されたデザイン */}
           <div className="absolute -left-4 top-0 bottom-0 w-[2px] bg-gradient-to-b from-cyan-400 via-purple-400 to-blue-400 hidden md:block rounded-full"></div>
 
@@ -33,7 +34,7 @@ export default function About() {
           <div className="absolute -left-[10px] bottom-0 w-4 h-4 rounded-full bg-blue-400 hidden md:block z-10"></div>
 
           <div className="bg-white/60 backdrop-blur-sm rounded-xl p-6 shadow-lg transition-all duration-500 hover:shadow-xl">
-            <Skills />
+            <Profile />
           </div>
         </div>
       </div>
