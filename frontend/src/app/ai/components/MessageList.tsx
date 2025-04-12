@@ -37,7 +37,7 @@ const MessageList: React.FC<MessageListProps> = ({
             >
               {message.sender === "ai" && (
                 <div className="flex items-center mb-1">
-                  <div className="w-6 h-6 rounded-full overflow-hidden mr-2">
+                  {/* <div className="w-6 h-6 rounded-full overflow-hidden mr-2">
                     <Image
                       src="/images/icon/hiro_robot.png"
                       alt="HIRO AI"
@@ -45,8 +45,8 @@ const MessageList: React.FC<MessageListProps> = ({
                       height={24}
                       className="object-cover"
                     />
-                  </div>
-                  <span className="text-xs font-medium text-primary">
+                  </div> */}
+                  <span className="text-sm font-medium text-primary ml-1">
                     HIRO AI
                   </span>
                 </div>

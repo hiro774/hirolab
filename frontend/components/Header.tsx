@@ -113,7 +113,7 @@ const Header = () => {
                 </span>
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link
                 href="/articles"
                 className="btn btn-ghost btn-sm rounded-full text-lg flex items-center gap-3 px-3"
@@ -132,7 +132,7 @@ const Header = () => {
                   Articles
                 </span>
               </Link>
-            </li>
+            </li> */}
 
             <li>
               <Link

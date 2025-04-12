@@ -65,11 +65,11 @@ export default function Contact() {
       {/* 背景装飾 */}
       <div className="absolute inset-0"></div>
 
-      <div className="container mx-auto max-w-3xl relative z-10">
+      <div className="container mt-5 mx-auto max-w-3xl relative z-10">
         {/* ヘッダーセクション */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">
-            お問い合わせ
+        <div className="text-center mb-15">
+          <h1 className="text-3xl font-medium tracking-wide mb-6 text-gray-700 border-b border-gray-300 pb-1 inline-block">
+            Contact
           </h1>
           <p className="text-base text-gray-600">
             ご興味を持っていただきまして、誠にありがとうございます。

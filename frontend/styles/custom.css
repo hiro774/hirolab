@@ -44,8 +44,8 @@
   content: "";
   position: absolute;
   bottom: 0.6rem;
-  left: 7.2rem;
-  width: 50%;
+  left: 6.4rem;
+  width: 60%;
   height: 1px;
   background: linear-gradient(to right, rgba(99, 102, 241, 0.3), transparent);
 }
