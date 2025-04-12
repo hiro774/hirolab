@@ -221,7 +221,7 @@ export const useChat = () => {
     try {
       // APIリクエスト（サンプル）
       // 実際のAPIエンドポイントに置き換える
-      const response = await fetch("http://localhost:8000/", {
+      const response = await fetch("http://localhost:8000/api/ai", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

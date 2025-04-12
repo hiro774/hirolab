@@ -35,19 +35,18 @@ class Query(BaseModel):
 class Response(BaseModel):
     content: str
 
-
 # --- アプリ本体 ---
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["http://0.0.0.0:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 
-@app.post("/", response_model=Response)
+@app.post("/api/ai", response_model=Response)
 async def submit_query(
     query: Query,
     model: ChatOpenAI = Depends(get_chat_model),
