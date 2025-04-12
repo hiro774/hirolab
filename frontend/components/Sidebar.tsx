@@ -27,6 +27,12 @@ const Sidebar = () => {
     };
   }, []);
 
+  const closeDrawer = () => {
+    const checkbox = document.getElementById("my-drawer-3") as HTMLInputElement;
+    if (checkbox) checkbox.checked = false;
+    setIsOpen(false);
+  };
+
   return (
     <>
       {/* オーバーレイ */}
@@ -102,6 +108,7 @@ const Sidebar = () => {
             <li className="menu-item mb-2">
               <Link
                 href="/"
+                onClick={closeDrawer}
                 className="flex items-center p-3 rounded-lg text-base transition-all duration-200 border-l-3 border-transparent hover:bg-indigo-500/10 hover:border-l-3 hover:border-indigo-500 hover:translate-x-1.5"
               >
                 <svg
@@ -121,6 +128,7 @@ const Sidebar = () => {
             <li className="menu-item mb-2">
               <Link
                 href="/about"
+                onClick={closeDrawer}
                 className="flex items-center p-3 rounded-lg text-base transition-all duration-200 border-l-3 border-transparent hover:bg-indigo-500/10 hover:border-l-3 hover:border-indigo-500 hover:translate-x-1.5"
               >
                 <svg
@@ -158,6 +166,7 @@ const Sidebar = () => {
             <li className="menu-item mb-2">
               <Link
                 href="/works"
+                onClick={closeDrawer}
                 className="flex items-center p-3 rounded-lg text-base transition-all duration-200 border-l-3 border-transparent hover:bg-indigo-500/10 hover:border-l-3 hover:border-indigo-500 hover:translate-x-1.5"
               >
                 <svg
@@ -176,6 +185,7 @@ const Sidebar = () => {
             <li className="menu-item mb-2">
               <Link
                 href="/ai"
+                onClick={closeDrawer}
                 className="flex items-center p-3 rounded-lg text-base transition-all duration-200 border-l-3 border-transparent hover:bg-indigo-500/10 hover:border-l-3 hover:border-indigo-500 hover:translate-x-1.5"
               >
                 <svg
@@ -193,12 +203,13 @@ const Sidebar = () => {
               </Link>
             </li>
             {/* お問い合わせセクション */}
-            <li className="contact-category mt-10 mb-2 text-base font-semibold text-gray-500 uppercase tracking-wider pl-2">
+            <li className="contact-category mt-10 mb-2 text-sm font-semibold text-gray-500 uppercase tracking-wider pl-2">
               お問い合わせ
             </li>
             <li className="menu-item menu-accent mt-2">
               <Link
-                href=""
+                href="/contact"
+                onClick={closeDrawer}
                 className="flex items-center p-3 rounded-lg text-base transition-all duration-200 border-l-3 border-transparent hover:bg-rose-500/10 hover:border-l-3 hover:border-rose-500 hover:translate-x-1.5"
               >
                 <svg

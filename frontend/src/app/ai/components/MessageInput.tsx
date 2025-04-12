@@ -5,6 +5,7 @@ type MessageInputProps = {
   setInputText: (text: string) => void;
   sendMessage: (e: React.FormEvent) => Promise<void>;
   isSending: boolean;
+  inputRef: React.RefObject<HTMLInputElement | null>;
 };
 
 const MessageInput: React.FC<MessageInputProps> = ({
@@ -12,12 +13,14 @@ const MessageInput: React.FC<MessageInputProps> = ({
   setInputText,
   sendMessage,
   isSending,
+  inputRef,
 }) => {
   return (
     <div className="fixed bottom-20 left-0 right-0 z-10 px-4 transition-all duration-300 ease-in-out">
       <div className="max-w-2xl mx-auto bg-white/90 backdrop-blur-md rounded-xl p-3 border border-white/40 shadow-lg transform transition-transform duration-300">
         <form onSubmit={sendMessage} className="flex items-center">
           <input
+            ref={inputRef}
             type="text"
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
@@ -41,9 +44,6 @@ const MessageInput: React.FC<MessageInputProps> = ({
             </svg>
           </button>
         </form>
-        {/* <p className="text-xs text-gray-500 mt-2 text-center">
-          ※このAIは実験的な機能です。実際のAPIはPythonで実装される予定です。
-        </p> */}
       </div>
     </div>
   );

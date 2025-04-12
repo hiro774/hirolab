@@ -12,7 +12,8 @@ export const useChat = () => {
   const [isSending, setIsSending] = useState(false);
   // 履歴の管理
   const [history, setHistory] = useState<string[]>([]);
-
+  // 入力カーソルのref
+  const inputRef = useRef<HTMLInputElement>(null);
   // メッセージ表示領域のref
   const messagesEndRef = useRef<HTMLDivElement>(null);
   // メッセージコンテナのref
@@ -38,6 +39,10 @@ export const useChat = () => {
       }),
     };
     setMessages([welcomeMessage]);
+  }, []);
+
+  useEffect(() => {
+    inputRef.current?.focus();
   }, []);
 
   // タイピングアニメーション用のuseEffect
@@ -208,6 +213,11 @@ export const useChat = () => {
     setInputText("");
     setIsSending(true);
 
+    // UIの更新が完了するのを待ってからフォーカスを設定（機能していない可能性有）
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 10);
+
     try {
       // APIリクエスト（サンプル）
       // 実際のAPIエンドポイントに置き換える
@@ -221,18 +231,6 @@ export const useChat = () => {
 
       // サンプルレスポンス（実際のAPIが実装されるまでのモック）
       const data = await response.json();
-
-      // モックレスポンス（実際のAPIが実装されるまで）
-      // const mockResponses = [
-      //   "なるほど、興味深い質問ですね。もう少し詳しく教えていただけますか？",
-      //   "それについては、いくつかの観点から考えることができます。まず...",
-      //   "ご質問ありがとうございます。それについては次のように考えられます。",
-      //   "面白いトピックですね！私の見解をお伝えします。",
-      //   "その問題については、最新の研究によると...",
-      // ];
-
-      // const randomResponse =
-      //   mockResponses[Math.floor(Math.random() * mockResponses.length)];
 
       // AIの応答をUIに追加（タイピングアニメーション付き）
       setTimeout(() => {
@@ -250,6 +248,11 @@ export const useChat = () => {
         setTypingMessageId(messageId); // タイピングアニメーションを開始
         setHistory((prev) => [...prev, inputText, data.content]);
         setIsSending(false);
+
+        // AIの応答が表示された後に再度フォーカスを設定
+        setTimeout(() => {
+          inputRef.current?.focus();
+        }, 100);
       }, 1000); // 1秒の遅延を追加してAIが「考えている」ように見せる
     } catch (error) {
       console.error("Error sending message:", error);
@@ -269,6 +272,11 @@ export const useChat = () => {
       setMessages((prev) => [...prev, errorMessage]);
       setTypingMessageId(messageId);
       setIsSending(false);
+
+      // エラー表示後にも入力フィールドにフォーカスを戻す
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 100);
     }
   };
 
@@ -289,6 +297,7 @@ export const useChat = () => {
     setInputText,
     isSending,
     sendMessage,
+    inputRef,
     messagesEndRef,
     messagesContainerRef,
   };
