@@ -145,9 +145,10 @@ const Sidebar = () => {
                 <span className="font-medium">About</span>
               </Link>
             </li>
-            {/* <li className="menu-item mb-2">
+            <li className="menu-item mb-2">
               <Link
                 href="/articles"
+                onClick={closeDrawer}
                 className="flex items-center p-3 rounded-lg text-base transition-all duration-200 border-l-3 border-transparent hover:bg-indigo-500/10 hover:border-l-3 hover:border-indigo-500 hover:translate-x-1.5"
               >
                 <svg
@@ -162,7 +163,7 @@ const Sidebar = () => {
                 </svg>
                 <span className="font-medium">Articles</span>
               </Link>
-            </li> */}
+            </li>
             <li className="menu-item mb-2">
               <Link
                 href="/works"

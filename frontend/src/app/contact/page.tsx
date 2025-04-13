@@ -72,10 +72,10 @@ export default function Contact() {
             Contact
           </h1>
           <p className="text-base text-gray-600">
-            ご興味を持っていただきまして、誠にありがとうございます。
+            ご興味をお持ちいただき、誠にありがとうございます。
           </p>
           <p className="text-base text-gray-600">
-            ご不明点・ご質問がある方など、お気軽にお問い合わせください。
+            ご不明点・ご質問などございましたら、お気軽にお問い合わせください。
           </p>
         </div>
 

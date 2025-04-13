@@ -5,7 +5,7 @@ const Skills = () => {
   return (
     <div className="flex flex-col justify-center h-full">
       <div className="px-4 sm:px-6 md:px-8">
-        {/* タイトル画像とスキルアイコン - 横並びレイアウト */}
+        {/* タイトル画像とアイコン*/}
         <div className="flex flex-col sm:flex-row items-start gap-4 mb-6">
           {/* aboutme.png画像 */}
           <div className="w-full sm:w-36 md:w-44 h-auto">
@@ -28,8 +28,8 @@ const Skills = () => {
           </div>
         </div>
 
-        {/* テキストコンテンツ - デザイン改善 */}
-        <div className="space-y-5 mt-10">
+        {/* コアスキル*/}
+        <div className="space-y-5 mt-8">
           <div className="bg-white/80 backdrop-blur-sm rounded-lg p-5 shadow-md flex-grow">
             <h3 className="text-xl font-medium text-gray-700 mb-3 flex items-center ml-2">
               <svg
@@ -125,9 +125,8 @@ const Skills = () => {
               </div>
             </div>
           </div>
-
-          <div className="mt-10 p-5 shadow-md rounded-lg relative bg-white/80">
-            {/* シンプルなタイトル */}
+          {/* スキルセット */}
+          <div className="mt-8 p-5 shadow-md rounded-lg relative bg-white/80">
             <div className="mb-3">
               <h3 className="text-xl font-medium mb-3 flex items-center ml-2">
                 <svg
@@ -148,7 +147,6 @@ const Skills = () => {
               </h3>
             </div>
 
-            {/* スキルグリッド */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-6">
               {/* フロントエンド */}
               <div className="p-4 rounded-lg bg-white shadow border border-gray-200">
@@ -170,6 +168,10 @@ const Skills = () => {
                   <li className="flex items-center text-gray-700">
                     <span className="w-2 h-2 bg-cyan-500 rounded-full mr-2"></span>
                     HTML/CSS
+                  </li>
+                  <li className="flex items-center text-gray-700">
+                    <span className="w-2 h-2 bg-cyan-500 rounded-full mr-2"></span>
+                    JavaScript
                   </li>
                   <li className="flex items-center text-gray-700">
                     <span className="w-2 h-2 bg-cyan-500 rounded-full mr-2"></span>
@@ -212,16 +214,20 @@ const Skills = () => {
                   </li>
                   <li className="flex items-center text-gray-700">
                     <span className="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
-                    PostgreSQL
+                    PHP
                   </li>
                   <li className="flex items-center text-gray-700">
                     <span className="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
-                    NginX
+                    Laravel
+                  </li>
+                  <li className="flex items-center text-gray-700">
+                    <span className="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
+                    PostgreSQL
                   </li>
                 </ul>
               </div>
 
-              {/* デブオプス */}
+              {/* DevOps */}
               <div className="p-4 rounded-lg bg-white shadow-sm border border-gray-200">
                 <h3 className="font-semibold flex items-center text-blue-600 mb-4">
                   <svg
@@ -248,6 +254,10 @@ const Skills = () => {
                   <li className="flex items-center text-gray-700">
                     <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
                     AWS
+                  </li>
+                  <li className="flex items-center text-gray-700">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                    Vercel
                   </li>
                   <li className="flex items-center text-gray-700">
                     <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>

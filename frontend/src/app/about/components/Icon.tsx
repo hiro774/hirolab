@@ -8,12 +8,6 @@ const Icon = () => {
       <div className="flex flex-col items-center justify-center py-16">
         {/* 洗練された円形フレーム - アニメーションとグラデーションを追加 */}
         <div className="relative w-68 h-68 sm:w-76 sm:h-76 md:w-84 md:h-84">
-          {/* 外側の装飾円 */}
-          {/* <div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-100 via-white to-purple-100 shadow-lg"></div> */}
-
-          {/* 中間の円 - 回転アニメーション */}
-          {/* <div className="absolute inset-2 rounded-full border-2 border-dashed border-cyan-300/40 animate-pulse"></div> */}
-
           {/* 内側の円 */}
           <div className="absolute inset-3 rounded-full bg-gradient-to-br from-white to-gray-50 shadow-inner"></div>
 
@@ -28,11 +22,6 @@ const Icon = () => {
               className="w-full h-full object-cover"
             />
           </div>
-
-          {/* 装飾要素 - 小さな円 */}
-          {/* <div className="absolute -top-2 right-10 w-6 h-6 rounded-full bg-cyan-400/70 shadow-md"></div>
-          <div className="absolute bottom-5 -right-2 w-4 h-4 rounded-full bg-purple-400/70 shadow-md"></div>
-          <div className="absolute top-10 -left-1 w-3 h-3 rounded-full bg-blue-400/70 shadow-md"></div> */}
         </div>
 
         {/* 名前 - アイコンの下に追加 */}
