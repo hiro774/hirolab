@@ -9,11 +9,6 @@ type Post = {
   source: string; // "Zenn" or "Qiita"
 };
 
-export const metadata = {
-  title: "Articles | HiroLab",
-  description: "ZennとQiitaに投稿した技術記事をまとめています。",
-};
-
 export default async function ArticlesPage() {
   // エンドポイント取得
   const zenApiUrl = process.env.ZEN_API_URL;
@@ -27,7 +22,7 @@ export default async function ArticlesPage() {
   const zennData = await zennRes.json();
 
   // Qiita
-  const qiitaUser = "G-awa";
+  const qiitaUser = process.env.QIITA_USER;
   const qiitaRes = await fetch(
     `${qiitaApiUrl}`,
     { next: { revalidate: 3600 } } // 1時間ごとに再検証
