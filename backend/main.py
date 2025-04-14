@@ -4,29 +4,70 @@ from pydantic import BaseModel
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 from dotenv import load_dotenv
+import httpx
 import os
 
 from prompt import create_prompt as create_system_prompt
 
+# =====================
+# 初期設定
+# =====================
+load_dotenv()
 
-# --- 初期化関連 ---
-def get_api_key() -> str:
-    load_dotenv()
-    api_key = os.getenv("OPENAI_API_KEY")
-    if not api_key:
-        raise ValueError("OPENAI_API_KEY is not set in .env")
-    return api_key
+app = FastAPI()
 
+origins = os.getenv("ALLOWED_ORIGINS")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+SLACK_WEBHOOK_URL = os.getenv("SLACK_WEBHOOK_URL")
+
+
+# =====================
+# ユーティリティ関数
+# =====================
 
 def get_chat_model() -> ChatOpenAI:
-    return ChatOpenAI(model="gpt-4o-mini", api_key=get_api_key())
+    if not OPENAI_API_KEY:
+        raise ValueError("OPENAI_API_KEY is not set in .env")
+    return ChatOpenAI(model="gpt-4o-mini", api_key=OPENAI_API_KEY)
 
 
-def get_initial_messages() -> list:
-    return [SystemMessage(content=create_system_prompt())]
+def build_history_messages(history: list[str], current: str):
+    messages = [SystemMessage(content=create_system_prompt())]
+
+    for i, msg in enumerate(history):
+        role = HumanMessage if i % 2 == 0 else AIMessage
+        messages.append(role(content=msg))
+
+    messages.append(HumanMessage(content=current))
+    return messages
 
 
-# --- リクエストとレスポンスの型定義 ---
+async def send_to_slack(name: str, email: str, content: str) -> bool:
+    if not SLACK_WEBHOOK_URL:
+        raise ValueError("SLACK_WEBHOOK_URL is not set in .env")
+
+    message = {
+        "text": f"📩 *新しいお問い合わせ*\n\n*名前:* {name}\n*メール:* {email}\n*内容:*\n{content}"
+    }
+
+    async with httpx.AsyncClient() as client:
+        response = await client.post(SLACK_WEBHOOK_URL, json=message)
+        return response.status_code == 200
+
+
+# =====================
+# 型定義
+# =====================
+
 class Query(BaseModel):
     history: list[str]
     content: str
@@ -35,36 +76,28 @@ class Query(BaseModel):
 class Response(BaseModel):
     content: str
 
-# --- アプリ本体 ---
-app = FastAPI()
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://0.0.0.0:3000"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
+class ContactForm(BaseModel):
+    name: str
+    email: str
+    content: str
+
+
+# =====================
+# APIエンドポイント
+# =====================
 
 @app.post("/api/ai", response_model=Response)
 async def submit_query(
     query: Query,
     model: ChatOpenAI = Depends(get_chat_model),
 ):
-    # 履歴を構築
-    messages = [SystemMessage(content=create_system_prompt())]
-
-    for i, msg in enumerate(query.history):
-        # 偶数：user、奇数：ai として交互に追加（前提）
-        if i % 2 == 0:
-            messages.append(HumanMessage(content=msg))
-        else:
-            messages.append(AIMessage(content=msg))
-
-    # 今回のユーザー発言を追加
-    messages.append(HumanMessage(content=query.content))
-
-    # モデルから応答取得
+    messages = build_history_messages(query.history, query.content)
     result = model.invoke(messages)
-
     return {"content": result.content}
+
+
+@app.post("/api/contact")
+async def contact(form: ContactForm):
+    success = await send_to_slack(form.name, form.email, form.content)
+    return {"success": success}
