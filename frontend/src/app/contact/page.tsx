@@ -170,7 +170,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`px-8 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-medium rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300 ${
+                className={`text-base px-6 py-1.5 cursor-pointer bg-sky-600 text-white font-medium rounded-md shadow-lg hover:shadow-lg transform hover:opacity-80 transition-opacity duration-300 ${
                   isSubmitting ? "opacity-70 cursor-not-allowed" : ""
                 }`}
               >
@@ -199,7 +199,7 @@ export default function Contact() {
                     送信中...
                   </span>
                 ) : (
-                  "送信"
+                  "SEND"
                 )}
               </button>
             </div>
