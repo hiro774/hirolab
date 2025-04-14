@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { MessageType } from "./types";
 
 export const useChat = () => {
+  const messageApiUrl = process.env.NEXT_PUBLIC_MESSAGE_API_ENDPOINT;
   // メッセージの状態管理
   const [messages, setMessages] = useState<MessageType[]>([]);
   // タイピングアニメーション用の状態
@@ -107,10 +108,6 @@ export const useChat = () => {
         if (messagesContainerRef.current) {
           initialContentHeightRef.current =
             messagesContainerRef.current.scrollHeight;
-          // console.log(
-          //   "初期コンテンツの高さを記録:",
-          //   initialContentHeightRef.current
-          // );
         }
         isFirstRenderRef.current = false;
       }, 100);
@@ -123,14 +120,6 @@ export const useChat = () => {
     // 現在のコンテンツの高さが初期コンテンツの高さより大きいかチェック
     const hasExceededInitialHeight =
       currentContentHeight > initialContentHeightRef.current;
-    // console.log(
-    //   "現在のコンテンツの高さ:",
-    //   currentContentHeight,
-    //   "初期コンテンツの高さ:",
-    //   initialContentHeightRef.current,
-    //   "初期高さを超えた:",
-    //   hasExceededInitialHeight
-    // );
 
     // 初期コンテンツの高さを超えた場合のみスクロールを有効にする
     if (hasExceededInitialHeight) {
@@ -219,17 +208,15 @@ export const useChat = () => {
     }, 10);
 
     try {
-      // APIリクエスト（サンプル）
-      // 実際のAPIエンドポイントに置き換える
-      const response = await fetch("http://localhost:8000/api/ai", {
+      // APIリクエスト
+      const response = await fetch(`${messageApiUrl}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ content: inputText, history: history }),
       });
-
-      // サンプルレスポンス（実際のAPIが実装されるまでのモック）
+      // APIレスポンス
       const data = await response.json();
 
       // AIの応答をUIに追加（タイピングアニメーション付き）
@@ -279,17 +266,6 @@ export const useChat = () => {
       }, 100);
     }
   };
-
-  console
-    .log
-    // `message: ${messages}`
-    // `inputText: ${inputText}`,
-    // `setInputText: ${setInputText}`
-    // `isSending: ${isSending}`
-    // `sendMessage: ${sendMessage}`
-    // `messagesEndRef: ${messagesEndRef}`,
-    // `messagesContainerRef: ${messagesContainerRef}`
-    ();
 
   return {
     messages,

@@ -3,6 +3,8 @@
 import { useState, FormEvent } from "react";
 
 export default function Contact() {
+  const contactApiUrl = process.env.NEXT_PUBLIC_CONTACT_API_ENDPOINT;
+
   // フォームの状態管理
   const [formData, setFormData] = useState({
     name: "",
@@ -36,13 +38,22 @@ export default function Contact() {
     // ここに実際の送信処理を実装します
     // 今回はモックの成功レスポンスを返します
     try {
-      // 送信処理の代わりに遅延を追加
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      setSubmitStatus({
-        success: true,
-        message: "お問い合わせを受け付けました。ありがとうございます。",
+      const response = await fetch(`${contactApiUrl}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
+
+      // 送信処理の代わりに遅延を追加
+      // await new Promise((resolve) => setTimeout(resolve, 1000));
+      if (response.ok) {
+        setSubmitStatus({
+          success: true,
+          message: "お問い合わせを受け付けました。ありがとうございます。",
+        });
+      }
 
       // フォームをリセット
       setFormData({
@@ -65,7 +76,7 @@ export default function Contact() {
       {/* 背景装飾 */}
       <div className="absolute inset-0"></div>
 
-      <div className="container mt-5 mx-auto max-w-3xl relative z-10">
+      <div className="container mt-8 mx-auto max-w-3xl relative z-10">
         {/* ヘッダーセクション */}
         <div className="text-center mb-15">
           <h1 className="text-3xl font-medium tracking-wide mb-6 text-gray-700 border-b border-gray-300 pb-1 inline-block">
