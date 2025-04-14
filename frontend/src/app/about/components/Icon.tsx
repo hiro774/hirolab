@@ -42,7 +42,9 @@ const Icon = () => {
           <div className="flex justify-center space-x-5 mt-4">
             {/* GitHub */}
             <Link
-              href=""
+              href="https://github.com/hiro774"
+              target="_blank"
+              rel="noopener noreferrer"
               className="p-3 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 hover:from-gray-200 hover:to-gray-300 shadow-sm hover:shadow transition-all duration-300 transform hover:-translate-y-1"
             >
               <svg
@@ -59,7 +61,7 @@ const Icon = () => {
 
             {/* Email */}
             <Link
-              href=""
+              href="/contact"
               className="p-3 rounded-full bg-gradient-to-br from-cyan-50 to-cyan-100 hover:from-cyan-100 hover:to-cyan-200 shadow-sm hover:shadow transition-all duration-300 transform hover:-translate-y-1"
             >
               <svg
@@ -76,7 +78,9 @@ const Icon = () => {
 
             {/* Twitter */}
             <Link
-              href=""
+              href="https://x.com/hirolulu65379"
+              target="_blank"
+              rel="noopener noreferrer"
               className="p-3 rounded-full bg-gradient-to-br from-blue-50 to-blue-100 hover:from-blue-100 hover:to-blue-200 shadow-sm hover:shadow transition-all duration-300 transform hover:-translate-y-1"
             >
               <svg
