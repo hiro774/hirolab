@@ -33,7 +33,7 @@ export default function Works() {
   };
 
   return (
-    <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8 animate-fadeIn relative overflow-hidden">
+    <div className="min-h-screen py-8 px-6 sm:px-6 lg:px-20 animate-fadeIn relative overflow-hidden">
       {/* 背景装飾 */}
       {/* <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-gray-50 to-purple-50 z-0 opacity-80"></div>
       <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-cyan-100/30 blur-3xl z-0"></div>
@@ -43,7 +43,7 @@ export default function Works() {
         {/* ヘッダーセクション */}
         <Header />
         {/* 作品一覧 */}
-        <div className="m-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 relative z-10">
           {worksData.map((work) => (
             <WorkCard key={work.id} work={work} onClick={handleWorkClick} />
           ))}

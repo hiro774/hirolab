@@ -51,7 +51,7 @@ const Sidebar = () => {
 
       {/* サイドバー */}
       <div
-        className={`fixed top-0 left-0 h-full w-80 z-50 transition-transform duration-300 ease-out ${
+        className={`fixed top-0 left-0 h-full w-50 md:w-80 z-50 transition-transform duration-300 ease-out ${
           isOpen ? "transform-none" : "-translate-x-full"
         }`}
       >
@@ -79,7 +79,7 @@ const Sidebar = () => {
           </div>
           <div className="sidebar-header pt-6 flex flex-col items-center border-b border-gray-200/20">
             <div className="mt-4">
-              <div className="w-35 h-25">
+              <div className="w-25 h-18 md:w-35 md:h-25">
                 <Image
                   src="/images/icon/lulu_robot.png"
                   alt="アイコン画像"
@@ -88,7 +88,7 @@ const Sidebar = () => {
                   className="rounded-full"
                 />
               </div>
-              <div className="w-35 h-35">
+              <div className="w-25 h-20 md:w-35 md:h-35">
                 <Image
                   src="/images/text/hirolab.png"
                   alt="アイコン画像"

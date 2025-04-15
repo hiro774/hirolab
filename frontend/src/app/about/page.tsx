@@ -8,9 +8,9 @@ export default function About() {
       {/* 背景 - グラデーションとパターンを追加 */}
       <div className="absolute inset-0"></div>
 
-      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-16 xl:px-24 py-2 sm:py-4 md:py-9 relative z-10">
+      <div className="container mx-auto px-4 md:px-8 lg:px-16 xl:px-24 py-2 sm:py-4 md:py-9 relative z-10">
         {/* 上部セクション：アイコンとプロフィール - 影とアニメーションを追加 */}
-        <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] gap-8 mb-10 backdrop-blur-sm rounded-xl">
+        <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] gap-8 backdrop-blur-sm rounded-xl">
           {/* 左側：アイコン */}
           <div className="flex justify-center lg:justify-start">
             <Icon />
@@ -21,7 +21,7 @@ export default function About() {
         <div className="relative mt-8"></div>
 
         {/* 下部セクション：スキル - デザイン改善 */}
-        <div className="relative mt-10">
+        <div className="relative mt-12 md:mt-10">
           {/* 装飾ライン - より洗練されたデザイン */}
           <div className="absolute -left-4 top-0 bottom-0 w-[2px] bg-gradient-to-b from-cyan-400 via-purple-400 to-blue-400 hidden md:block rounded-full"></div>
 

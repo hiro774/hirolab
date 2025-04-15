@@ -4,11 +4,11 @@ import React from "react";
 const Skills = () => {
   return (
     <div className="flex flex-col justify-center h-full">
-      <div className="px-4 sm:px-6 md:px-8">
+      <div className="md:px-8">
         {/* タイトル画像とアイコン*/}
-        <div className="flex flex-col sm:flex-row items-start gap-4 mb-6">
+        <div className="flex sm:flex-row items-start gap-4 mb-6">
           {/* aboutme.png画像 */}
-          <div className="w-full sm:w-36 md:w-44 h-auto">
+          <div className="w-full w-20 md:w-44 h-auto">
             <Image
               src="/images/text/aboutme.png"
               alt="About Me"
@@ -18,7 +18,7 @@ const Skills = () => {
             />
           </div>
 
-          <div className="w-full sm:w-36 md:w-44 h-auto">
+          <div className="w-full w-20 md:w-44 h-auto">
             <Image
               src="/images/icon/lulu_walk.png"
               alt="About Me"
@@ -29,7 +29,7 @@ const Skills = () => {
         </div>
 
         {/* コアスキル*/}
-        <div className="space-y-5 mt-8">
+        <div className="space-y-5 mt-10 md:mt-8">
           <div className="bg-white/80 backdrop-blur-sm rounded-lg p-5 shadow-md flex-grow">
             <h3 className="text-xl font-medium text-gray-700 mb-3 flex items-center ml-2">
               <svg
@@ -126,7 +126,7 @@ const Skills = () => {
             </div>
           </div>
           {/* スキルセット */}
-          <div className="mt-8 p-5 shadow-md rounded-lg relative bg-white/80">
+          <div className="mt-10 md:mt-8 p-5 shadow-md rounded-lg relative bg-white/80">
             <div className="mb-3">
               <h3 className="text-xl font-medium mb-3 flex items-center ml-2">
                 <svg
