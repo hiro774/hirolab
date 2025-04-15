@@ -37,8 +37,8 @@ export default function ClientWrapper({ allPosts }: { allPosts: Post[] }) {
             <Image
               src="/images/text/articles.png"
               alt="アイコン画像"
-              width={1000}
-              height={1000}
+              width={200}
+              height={80}
             />
           </div>
           <p className="text-base text-gray-600 max-w-2xl mx-auto">

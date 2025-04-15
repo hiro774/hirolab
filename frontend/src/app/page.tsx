@@ -6,22 +6,30 @@ export default function Home() {
     <div className="min-h-screen flex flex-col items-center justify-center animate-fadeIn">
       <section className="text-center">
         <div className="avatar inline-block">
-          <div className="w-100 h-100 flex items-center justify-center">
+          <div className="w-[400px] h-[400px] flex items-center justify-center">
             <Image
               src="/images/icon/lulu_robot.png"
               alt="アイコン画像"
-              width={1000}
-              height={1000}
+              width={400}
+              height={400}
               className="rounded-full"
+              loading="lazy"
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFeAJ5jU2rNgAAAABJRU5ErkJggg=="
+              sizes="(max-width: 768px) 100vw, 400px"
             />
           </div>
-          <div className="w-100 h-35 flex items-center justify-center">
+          <div className="w-[400px] h-[140px] flex items-center justify-center">
             <Image
               src="/images/text/hirolab.png"
-              alt="アイコン画像"
-              width={1000}
-              height={1000}
+              alt="サイトロゴ"
+              width={400}
+              height={140}
               className="rounded-full"
+              loading="lazy"
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFeAJ5jU2rNgAAAABJRU5ErkJggg=="
+              sizes="(max-width: 768px) 100vw, 400px"
             />
           </div>
         </div>

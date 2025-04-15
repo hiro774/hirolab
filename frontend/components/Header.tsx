@@ -37,8 +37,8 @@ const Header = () => {
             <Image
               src="/images/icon/lulu_robot.png"
               alt="アイコン画像"
-              width={1000}
-              height={1000}
+              width={48}
+              height={48}
               className="rounded-full"
             />
           </div>
@@ -46,8 +46,8 @@ const Header = () => {
             <Image
               src="/images/text/hirolab.png"
               alt="アイコン画像"
-              width={1000}
-              height={1000}
+              width={192}
+              height={96}
               className="rounded-full"
             />
           </div>
