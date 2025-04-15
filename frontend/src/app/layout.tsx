@@ -31,11 +31,9 @@ export default function RootLayout({
             {/* ヘッダー */}
             <Header />
             {/* メインコンテンツ */}
-            <main className="w-full flex-grow animate-fadeIn">
-              {children}
-              {/* フッター */}
-              <Footer />
-            </main>
+            <main className="w-full flex-grow animate-fadeIn">{children}</main>
+            {/* フッター */}
+            <Footer />
           </div>
           {/* モバイルメニュー */}
           <Sidebar />

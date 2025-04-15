@@ -4,7 +4,7 @@ import Profile from "./components/Profile";
 
 export default function About() {
   return (
-    <div className="mt-15 sm:py-2 md:py-4 animate-fadeIn relative overflow-hidden">
+    <div className="mt-20 sm:py-2 md:py-4 animate-fadeIn relative overflow-hidden">
       {/* 背景 - グラデーションとパターンを追加 */}
       <div className="absolute inset-0"></div>
 
