@@ -18,7 +18,7 @@ const MessageList: React.FC<MessageListProps> = ({
   return (
     <div
       ref={messagesContainerRef}
-      className="flex-grow bg-white/60 backdrop-blur-sm p-4 pb-0 overflow-y-auto border-x border-b border-white/30 shadow-inner rounded-b-xl"
+      className="flex-grow bg-white/60 backdrop-blur-sm p-4 pb-4 border-x border-b border-white/30 shadow-inner rounded-b-xl"
     >
       <div className="space-y-4">
         {messages.map((message) => (

@@ -19,9 +19,9 @@ export default function Ai() {
   } = useChat();
 
   return (
-    <div className="min-h-[calc(100vh-130px)] md:min-h-[calc(100vh-70px)] flex flex-col animate-fadeIn pt-5 pb-15 md:pt-12 mt:pb-35 transition-all duration-300">
+    <div className="mt-15 min-h-[calc(100vh-110px)] md:min-h-[calc(100vh-20px)] flex flex-col animate-fadeIn pt-5 pb-10 md:pb-15 md:pt-12 transition-all duration-300">
       {/* チャットコンテナ */}
-      <div className="flex-grow flex flex-col max-w-5xl mx-auto w-full px-4 sm:px-6  md:pb-12 pb-18">
+      <div className="flex-grow flex flex-col max-w-5xl mx-auto w-full px-4 sm:px-6">
         {/* チャットヘッダー */}
         <AiHeader />
         {/* メッセージエリア */}
@@ -34,13 +34,15 @@ export default function Ai() {
       </div>
 
       {/* 固定された入力エリア */}
-      <MessageInput
-        inputRef={inputRef}
-        inputText={inputText}
-        setInputText={setInputText}
-        sendMessage={sendMessage}
-        isSending={isSending}
-      />
+      <div className="max-w-5xl mx-auto w-full mt-2 mb-6">
+        <MessageInput
+          inputRef={inputRef}
+          inputText={inputText}
+          setInputText={setInputText}
+          sendMessage={sendMessage}
+          isSending={isSending}
+        />
+      </div>
     </div>
   );
 }

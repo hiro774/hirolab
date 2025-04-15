@@ -24,7 +24,7 @@ export default function ClientWrapper({ allPosts }: { allPosts: Post[] }) {
   const qiitaPosts = filtered.filter((post) => post.source === "Qiita");
 
   return (
-    <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8 animate-fadeIn relative overflow-hidden">
+    <div className="mt-15 min-h-screen py-8 px-4 sm:px-6 lg:px-8 animate-fadeIn relative overflow-hidden">
       {/* 背景装飾 */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-blue-50/10 to-gray-100"></div>
       <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-indigo-100/30 rounded-full opacity-50 blur-3xl transform translate-x-1/4 -translate-y-1/4"></div>

@@ -72,7 +72,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen py-4 md:py-8 px-4 md:px-8 animate-fadeIn relative overflow-hidden">
+    <div className="mt-20 min-h-screen py-4 md:py-8 px-4 md:px-8 animate-fadeIn relative overflow-hidden">
       {/* 背景装飾 */}
       <div className="absolute inset-0"></div>
 

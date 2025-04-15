@@ -33,7 +33,7 @@ export default function Works() {
   };
 
   return (
-    <div className="min-h-screen py-8 px-6 sm:px-6 lg:px-20 animate-fadeIn relative overflow-hidden">
+    <div className="mt-15 min-h-screen py-8 px-6 sm:px-6 lg:px-20 animate-fadeIn relative overflow-hidden">
       {/* 背景装飾 */}
       {/* <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-gray-50 to-purple-50 z-0 opacity-80"></div>
       <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-cyan-100/30 blur-3xl z-0"></div>

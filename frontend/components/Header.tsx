@@ -6,7 +6,7 @@ const Header = () => {
   // const formUrl = process.env.FORM_URL;
 
   return (
-    <header className="navbar bg-white/70 backdrop-blur-md border border-white/20 shadow-md fixed top-0 z-50 px-6 animate-[fadeIn_0.5s_ease_forwards] relative">
+    <header className="navbar bg-white/70 backdrop-blur-md border border-white/20 shadow-md fixed top-0 z-50 px-6 animate-fadeIn">
       <div className="navbar-start">
         {/* タイトルセクション */}
         <div className="xl:hidden">
