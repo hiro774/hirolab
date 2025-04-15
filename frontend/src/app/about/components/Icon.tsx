@@ -5,7 +5,7 @@ import React from "react";
 const Icon = () => {
   return (
     <div className="w-full">
-      <div className="flex flex-col items-center justify-center pt-10 pb-5 md:py-16">
+      <div className="flex flex-col items-center justify-center pt-8 md:pt-10 pb-5 md:py-16">
         {/* 洗練された円形フレーム - アニメーションとグラデーションを追加 */}
         <div className="relative w-68 h-68 sm:w-76 sm:h-76 md:w-84 md:h-84">
           {/* 内側の円 */}
@@ -29,7 +29,7 @@ const Icon = () => {
         </div>
 
         {/* 名前 - アイコンの下に追加 */}
-        <div className="text-center mt-4 md:mt-7">
+        <div className="text-center mt-3 md:mt-7">
           <h1
             style={{ fontFamily: "'Orbitron', sans-serif" }}
             className="text-2xl md:text-3xl font-bold tracking-wider text-gray-700 drop-shadow-md"

@@ -10,7 +10,7 @@ export default function About() {
 
       <div className="container mx-auto px-4 md:px-8 lg:px-16 xl:px-24 py-2 sm:py-4 md:py-9 relative z-10">
         {/* 上部セクション：アイコンとプロフィール - 影とアニメーションを追加 */}
-        <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] gap-8 backdrop-blur-sm rounded-xl">
+        <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] gap-7 backdrop-blur-sm rounded-xl">
           {/* 左側：アイコン */}
           <div className="flex justify-center lg:justify-start">
             <Icon />
@@ -29,7 +29,7 @@ export default function About() {
           <div className="absolute -left-[10px] top-0 w-4 h-4 rounded-full bg-cyan-400 hidden md:block z-10"></div>
           <div className="absolute -left-[10px] bottom-0 w-4 h-4 rounded-full bg-blue-400 hidden md:block z-10"></div>
 
-          <div className="bg-white/60 backdrop-blur-sm rounded-xl p-5 shadow-lg transition-all duration-500 hover:shadow-xl mb-5">
+          <div className="bg-white/60 backdrop-blur-sm rounded-xl p-5 shadow-lg transition-all duration-500 hover:shadow-xl mb-8 md:mb-5">
             <Profile />
           </div>
         </div>

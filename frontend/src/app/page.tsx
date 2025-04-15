@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center animate-fadeIn">
-      <section className="text-center pt-10 md:pt-0">
+      <section className="text-center pt-8 md:pt-0">
         <div className="avatar inline-block">
           <div className="w-[250px] md:w-[400px] h-[250px] md:h-[400px] flex items-center justify-center">
             <Image
