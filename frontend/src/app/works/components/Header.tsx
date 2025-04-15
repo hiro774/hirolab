@@ -9,8 +9,8 @@ const Header = () => {
         <Image
           src="/images/text/works.png"
           alt="アイコン画像"
-          width={256}
-          height={128}
+          width={160}
+          height={80}
         />
       </div>
 

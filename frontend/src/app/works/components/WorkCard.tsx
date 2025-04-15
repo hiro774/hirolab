@@ -17,9 +17,13 @@ export default function WorkCard({ work, onClick }: Props) {
         <Image
           src={work.thumbnail}
           alt={work.title}
-          width={1000}
-          height={1000}
+          width={320}
+          height={240}
           className="object-cover w-full h-full"
+          loading="lazy"
+          placeholder="blur"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFeAJ5jU2rNgAAAABJRU5ErkJggg=="
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 320px"
         />
       </div>
       <div className="p-6">

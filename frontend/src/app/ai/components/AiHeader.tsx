@@ -9,8 +9,8 @@ const AiHeader = () => {
           <Image
             src="/images/icon/hiro_robot.png"
             alt="HIRO AI"
-            width={200}
-            height={200}
+            width={84}
+            height={84}
             className="object-cover"
           />
         </div>

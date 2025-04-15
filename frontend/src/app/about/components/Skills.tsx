@@ -12,8 +12,8 @@ const Skills = () => {
             <Image
               src="/images/text/aboutme.png"
               alt="About Me"
-              width={1000}
-              height={500}
+              width={176}
+              height={176}
               className="rounded-lg shadow-md"
             />
           </div>
@@ -22,8 +22,8 @@ const Skills = () => {
             <Image
               src="/images/icon/lulu_walk.png"
               alt="About Me"
-              width={1000}
-              height={500}
+              width={176}
+              height={176}
             />
           </div>
         </div>

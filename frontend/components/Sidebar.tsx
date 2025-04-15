@@ -83,8 +83,8 @@ const Sidebar = () => {
                 <Image
                   src="/images/icon/lulu_robot.png"
                   alt="アイコン画像"
-                  width={1000}
-                  height={1000}
+                  width={140}
+                  height={100}
                   className="rounded-full"
                 />
               </div>
@@ -92,8 +92,8 @@ const Sidebar = () => {
                 <Image
                   src="/images/text/hirolab.png"
                   alt="アイコン画像"
-                  width={1000}
-                  height={1000}
+                  width={140}
+                  height={140}
                   className="rounded-full"
                 />
               </div>

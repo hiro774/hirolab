@@ -17,9 +17,13 @@ const Icon = () => {
             <Image
               src="/images/icon/hiro_robot.png"
               alt="プロフィール画像"
-              width={300}
-              height={300}
+              width={284}
+              height={284}
               className="w-full h-full object-cover"
+              loading="lazy"
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFeAJ5jU2rNgAAAABJRU5ErkJggg=="
+              sizes="(max-width: 768px) 100vw, 284px"
             />
           </div>
         </div>
