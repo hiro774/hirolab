@@ -72,14 +72,14 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8 animate-fadeIn relative overflow-hidden">
+    <div className="min-h-screen py-4 md:py-8 px-4 md:px-8 animate-fadeIn relative overflow-hidden">
       {/* 背景装飾 */}
       <div className="absolute inset-0"></div>
 
       <div className="container mt-8 mx-auto max-w-3xl relative z-10">
         {/* ヘッダーセクション */}
-        <div className="text-center mb-15">
-          <h1 className="text-3xl font-medium tracking-wide mb-6 text-gray-700 border-b border-gray-300 pb-1 inline-block">
+        <div className="text-center mb-10 md:mb-15">
+          <h1 className="text-2xl md:text-3xl font-medium tracking-wide mb-6 text-gray-700 border-b border-gray-300 pb-1 inline-block">
             Contact
           </h1>
           <p className="text-base text-gray-600">
