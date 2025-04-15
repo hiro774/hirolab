@@ -56,7 +56,7 @@ export default function Home() {
             </svg>
           </Link>
         </div>
-        <div className="mt-10 mb-25 flex justify-center gap-5">
+        <div className="mt-5 md:mt-10 mb-25 flex justify-center gap-5">
           {/* GitHub */}
           <Link
             href="https://github.com/hiro774"
