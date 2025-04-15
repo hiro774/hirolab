@@ -2,3 +2,4 @@ fastapi[all]
 uvicorn
 langchain
 langchain-openai
+slowapi
