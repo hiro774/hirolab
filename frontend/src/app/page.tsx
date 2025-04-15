@@ -33,7 +33,7 @@ export default function Home() {
             />
           </div>
         </div>
-        <p className="text-base text-gray-600 max-w-2xl mx-auto mb-8">
+        <p className="text-base text-gray-600 max-w-2xl mx-auto mb-4 md:mb-8">
           Showcasing web creations & tech insights with passion.
         </p>
         <div>
@@ -56,7 +56,7 @@ export default function Home() {
             </svg>
           </Link>
         </div>
-        <div className="mt-5 md:mt-10 mb-25 flex justify-center gap-5">
+        <div className="md:mt-10 mb-25 flex justify-center gap-5">
           {/* GitHub */}
           <Link
             href="https://github.com/hiro774"
