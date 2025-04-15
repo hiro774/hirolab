@@ -8,6 +8,9 @@ import Footer from "../../components/Footer";
 export const metadata: Metadata = {
   title: "HiroLab",
   description: "Web開発・技術記事のポートフォリオサイト",
+  icons: {
+    icon: "/images/icon/lulu_robot.png",
+  },
 };
 
 export default function RootLayout({
@@ -28,9 +31,11 @@ export default function RootLayout({
             {/* ヘッダー */}
             <Header />
             {/* メインコンテンツ */}
-            <main className="w-full flex-grow animate-fadeIn">{children}</main>
-            {/* フッター */}
-            <Footer />
+            <main className="w-full flex-grow animate-fadeIn">
+              {children}
+              {/* フッター */}
+              <Footer />
+            </main>
           </div>
           {/* モバイルメニュー */}
           <Sidebar />
