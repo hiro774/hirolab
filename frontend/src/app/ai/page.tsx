@@ -21,7 +21,7 @@ export default function Ai() {
   return (
     <div className="min-h-[calc(100vh-130px)] md:min-h-[calc(100vh-70px)] flex flex-col animate-fadeIn pt-5 pb-15 md:pt-12 mt:pb-35 transition-all duration-300">
       {/* チャットコンテナ */}
-      <div className="flex-grow flex flex-col max-w-5xl mx-auto w-full px-4 sm:px-6">
+      <div className="flex-grow flex flex-col max-w-5xl mx-auto w-full px-4 sm:px-6  md:pb-12 pb-18">
         {/* チャットヘッダー */}
         <AiHeader />
         {/* メッセージエリア */}
