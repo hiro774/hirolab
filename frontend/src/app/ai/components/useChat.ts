@@ -143,6 +143,11 @@ export const useChat = () => {
       setTimeout(() => {
         scrollToBottom();
       }, 300);
+
+      // モバイル向けに追加の遅延でスクロール
+      setTimeout(() => {
+        scrollToBottom();
+      }, 500);
     }
   }, [messages]);
 

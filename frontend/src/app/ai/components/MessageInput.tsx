@@ -16,7 +16,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
   inputRef,
 }) => {
   return (
-    <div className="w-full px-4 transition-all duration-300 ease-in-out">
+    <div className="w-full px-4 transition-all duration-300 ease-in-out sticky bottom-0 pb-2 pt-2">
       <div className="max-w-2xl mx-auto bg-white/90 backdrop-blur-md rounded-xl p-3 border border-white/40 shadow-lg transform transition-transform duration-300">
         <form onSubmit={sendMessage} className="flex items-center">
           <input
