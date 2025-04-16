@@ -3,9 +3,9 @@ import React from "react";
 
 const AiHeader = () => {
   return (
-    <div className="bg-white/80 backdrop-blur-md rounded-t-xl p-2 md:p-4 border border-white/30 shadow-sm">
+    <div className="bg-white/80 backdrop-blur-md rounded-t-xl p-1 md:p-4 border border-white/30 shadow-sm">
       <div className="flex items-center">
-        <div className="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden mr-3">
+        <div className="w-[40px] h-[40px] md:w-16 md:h-16 rounded-full overflow-hidden mr-3">
           <Image
             src="/images/icon/hiro_robot.png"
             alt="HIRO AI"
@@ -16,7 +16,7 @@ const AiHeader = () => {
         </div>
         <div className="">
           <div className="h-6 md:h-10 overflow-hidden">
-            <p className="font-bold text-xl md:text-2xl text-gray-700">
+            <p className="font-bold text-lg md:text-2xl text-gray-700">
               HIRO AI
             </p>
           </div>

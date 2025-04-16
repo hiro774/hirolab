@@ -52,21 +52,21 @@ const Profile = () => {
             <span className="text-gray-700 text-2xl">Profile</span>
           </h3>
           <div>
-            <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
+            <p className="text-gray-700 text-base leading-relaxed">
               はじめまして、Webエンジニアへの転職を目指している「HIRO」と申します。
             </p>
-            <p className="text-gray-700 text-sm sm:text-base leading-relaxed pt-3">
+            <p className="text-gray-700 text-base leading-relaxed pt-3">
               未経験からエンジニアへの転職を目指し、日々技術を磨いています。
             </p>
-            <p className="text-gray-700 text-sm sm:text-base leading-relaxed pt-3">
+            <p className="text-gray-700 text-base leading-relaxed pt-3">
               前職では、Google
               AppsScriptやPythonを活用して業務効率化などを行なっておりました。
               特にGoogle Work spaceを活用した自動化システムの構築が得意です。
             </p>
-            <p className="text-gray-700 text-sm sm:text-base leading-relaxed pt-3">
+            <p className="text-gray-700 text-base leading-relaxed pt-3">
               常に最新の技術トレンドを追求し、ユーザー体験を最優先に考えたWeb開発を心がけています。
             </p>
-            <p className="text-gray-700 text-sm sm:text-base leading-relaxed pt-3">
+            <p className="text-gray-700 text-base leading-relaxed pt-3">
               技術だけでなく、デザイン思考やアクセシビリティにも配慮し、誰もが使いやすく美しいプロダクトを作ることを目標としています。問題解決のための創造的なアプローチと、継続的な学習への情熱が私の強みです。{" "}
             </p>
           </div>
