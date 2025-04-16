@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" data-theme="light" className="scroll-smooth">
-      <body className="h-[100svh]">
+      <body className="min-h-screen">
         <div>
           <input
             id="my-drawer-3"
