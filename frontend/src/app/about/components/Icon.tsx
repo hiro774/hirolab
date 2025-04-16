@@ -6,8 +6,7 @@ const Icon = () => {
   return (
     <div className="w-full">
       <div className="flex flex-col items-center justify-center pt-8 md:pt-10 pb-5 md:py-16">
-        {/* 洗練された円形フレーム - アニメーションとグラデーションを追加 */}
-        <div className="relative w-68 h-68 sm:w-76 sm:h-76 md:w-84 md:h-84">
+        <div className="relative w-56 h-56 md:w-64 md:h-64">
           {/* 内側の円 */}
           <div className="absolute inset-3 rounded-full bg-gradient-to-br from-white to-gray-50 shadow-inner"></div>
 
@@ -28,21 +27,21 @@ const Icon = () => {
           </div>
         </div>
 
-        {/* 名前 - アイコンの下に追加 */}
-        <div className="text-center mt-3 md:mt-7">
+        {/* 名前 */}
+        <div className="text-center md:mt-2">
           <h1
             style={{ fontFamily: "'Orbitron', sans-serif" }}
             className="text-2xl md:text-3xl font-bold tracking-wider text-gray-700 drop-shadow-md"
           >
             HIRO
           </h1>
-          <h2 className="text-sm md:text-base font-medium mt-5 text-black">
+          <h2 className="text-sm md:text-base font-medium mt-2 md:mt-5 text-black">
             Entry-level engineer
           </h2>
         </div>
 
-        {/* ソーシャルリンク - モダンなデザイン */}
-        <div className="text-center space-y-2 mt-8">
+        {/* ソーシャルリンク */}
+        <div className="text-center space-y-2 mt-4 md:mt-8">
           <div className="flex justify-center space-x-5 mt-2 md:mt-4">
             {/* GitHub */}
             <Link
