@@ -47,7 +47,7 @@ export default function WorkModal({ work, isClosing, onClose }: Props) {
 
   return (
     <div
-      className={`fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 ${
+      className={`fixed inset-0 bg-black/60 flex items-start justify-center z-50 p-4 pt-20 ${
         isClosing ? "animate-fadeOut" : "animate-fadeIn"
       }`}
       onClick={onClose}
