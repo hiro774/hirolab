@@ -7,7 +7,7 @@ const Footer = () => {
   const pathname = usePathname();
   const hiddenPaths = ["/ai"];
 
-  if (hiddenPaths.includes(pathname)) return null;
+  // if (hiddenPaths.includes(pathname)) return null;
 
   return (
     <footer className="footer footer-center p-4 text-base-content rounded-t-lg mt-auto bg-white/70 backdrop-blur border-t border-white/20">

@@ -33,12 +33,12 @@ export default function Works() {
   };
 
   return (
-    <div className="w-[90%] mx-auto flex justify-center mt-15 mb-15 md:mb-0 min-h-screen py-8 px-6 sm:px-6 lg:px-20 animate-fadeIn relative overflow-hidden">
+    <div className="w-[90%] mx-auto md:px-10 flex justify-center mt-15 mb-15 md:mb-0 min-h-screen py-8 animate-fadeIn relative overflow-hidden">
       <div className="relative z-10">
         {/* ヘッダーセクション */}
         <Header />
         {/* 作品一覧 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-15 md:gap-12 relative z-10">
           {worksData.map((work) => (
             <WorkCard key={work.id} work={work} onClick={handleWorkClick} />
           ))}

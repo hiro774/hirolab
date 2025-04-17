@@ -1,11 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const Profile = () => {
   return (
     <div>
       <div className="flex sm:flex-row items-start gap-4 md:mt-5 mb-6">
-        {/* aboutme.png画像 */}
         <div className="w-36 md:w-40 h-auto">
           <Image
             src="/images/text/aboutme.png"
@@ -25,7 +25,7 @@ const Profile = () => {
           />
         </div>
       </div>
-      <div className="flex justify-center items-center py-10 bg-white/60 backdrop-blur-sm rounded-xl p-6 shadow-lg transition-all duration-500 hover:shadow-xl mb-6">
+      <div className="flex justify-center items-center py-10 md:py-8 bg-white/60 backdrop-blur-sm rounded-xl p-6 shadow-lg transition-all duration-500 hover:shadow-xl mb-6">
         {/* 装飾ライン */}
         <div className="absolute -left-4 top-0 bottom-0 w-[2px] bg-gradient-to-b from-cyan-400 via-purple-400 to-blue-400 hidden md:block rounded-full"></div>
 
@@ -33,7 +33,7 @@ const Profile = () => {
         <div className="absolute -left-[10px] top-0 w-4 h-4 rounded-full bg-cyan-400 hidden md:block z-10"></div>
         <div className="absolute -left-[10px] bottom-0 w-4 h-4 rounded-full bg-blue-400 hidden md:block z-10"></div>
 
-        <div className="px-5 py-2">
+        <div className="px-5">
           <h3 className="text-xl font-medium mb-4 flex items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -53,73 +53,35 @@ const Profile = () => {
           </h3>
           <div>
             <p className="text-gray-700 text-base leading-relaxed">
-              はじめまして、Webエンジニアへの転職を目指している「HIRO」と申します。
+              はじめまして、HIRO です。
+              未経験からのwebエンジニア転職を目指し、日々奮闘中です。
             </p>
             <p className="text-gray-700 text-base leading-relaxed pt-3">
-              未経験からエンジニアへの転職を目指し、日々技術を磨いています。
+              前の職場では、Google Apps Script
+              を使った業務の自動化に取り組んでいました。 特に Google Workspace
+              を活用した仕組みづくりが得意分野です。
             </p>
             <p className="text-gray-700 text-base leading-relaxed pt-3">
-              前職では、Google
-              AppsScriptやPythonを活用して業務効率化などを行なっておりました。
-              特にGoogle Work spaceを活用した自動化システムの構築が得意です。
+              今は主に、Next.js や Djangoを使って
+              自学習のアウトプットとしてWebアプリを作っています。
             </p>
             <p className="text-gray-700 text-base leading-relaxed pt-3">
-              常に最新の技術トレンドを追求し、ユーザー体験を最優先に考えたWeb開発を心がけています。
+              学んだことはすぐに手を動かして試す派です。
+              このサイトも、勉強の中で得た知識のアウトプットとして作成しました。
             </p>
             <p className="text-gray-700 text-base leading-relaxed pt-3">
-              技術だけでなく、デザイン思考やアクセシビリティにも配慮し、誰もが使いやすく美しいプロダクトを作ることを目標としています。問題解決のための創造的なアプローチと、継続的な学習への情熱が私の強みです。{" "}
+              趣味は映画鑑賞。好きな食べ物は麺類すべて。詳しいプロフィールは、気軽に話しかけられる
+              <Link
+                href="/ai"
+                className="text-blue-500 underline hover:text-blue-700 font-medium"
+              >
+                AI Bot
+              </Link>
+              からどうぞ！
             </p>
           </div>
         </div>
       </div>
-
-      {/* <div className="px-5 py-4">
-        <h3 className="text-xl font-medium mb-4 flex items-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 mr-2 text-purple-700"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
-            />
-          </svg>
-          <span className="text-gray-700">Experience</span>
-        </h3>
-        <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-          前職では、Google Apps
-          ScriptやPythonを活用して業務効率化に貢献しました。特にGoogle
-          Workspaceを活用した自動化システムの構築により、チームの生産性を30%向上させた実績があります。この経験を活かし、実用的で効率的なWebアプリケーション開発を目指しています。
-        </p>
-      </div>
-
-      <div className="px-5 py-4">
-        <h3 className="text-xl font-medium mb-4 flex items-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 mr-2 text-blue-700"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-            />
-          </svg>
-          <span className="text-gray-700">Approach</span>
-        </h3>
-        <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-          常に最新の技術トレンドを追求し、ユーザー体験を最優先に考えたWeb開発を心がけています。技術だけでなく、デザイン思考やアクセシビリティにも配慮し、誰もが使いやすく美しいプロダクトを作ることを目標としています。問題解決のための創造的なアプローチと、継続的な学習への情熱が私の強みです。
-        </p>
-      </div> */}
     </div>
   );
 };

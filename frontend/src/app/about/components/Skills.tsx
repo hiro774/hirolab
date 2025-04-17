@@ -123,8 +123,8 @@ const Skills = () => {
               </h3>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-6">
-              {/* フロントエンド */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+              {/* Language */}
               <div className="p-4 rounded-lg bg-white shadow border border-gray-200">
                 <h3 className="font-semibold flex items-center text-cyan-600 mb-4">
                   <svg
@@ -135,10 +135,10 @@ const Skills = () => {
                     viewBox="0 0 16 16"
                     className="mr-2"
                   >
-                    <path d="M3.5 0A1.5 1.5 0 0 0 2 1.5V3h12V1.5A1.5 1.5 0 0 0 12.5 0h-9zM14 4H2v8.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V4z" />
-                    <path d="M5.854 6.146a.5.5 0 1 0-.708.708L6.293 8l-1.147 1.146a.5.5 0 0 0 .708.708L7.707 8 5.854 6.146zm4.292 0a.5.5 0 1 1 .708.708L9.707 8l1.147 1.146a.5.5 0 1 1-.708.708L8.293 8l1.853-1.854z" />
+                    <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                    <path d="M6.854 4.646a.5.5 0 0 1 0 .708L4.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0zm2.292 0a.5.5 0 0 0 0 .708L11.793 8l-2.647 2.646a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708 0z" />
                   </svg>
-                  Frontend
+                  Language
                 </h3>
                 <ul className="space-y-3">
                   <li className="flex items-center text-gray-700">
@@ -147,24 +147,20 @@ const Skills = () => {
                   </li>
                   <li className="flex items-center text-gray-700">
                     <span className="w-2 h-2 bg-cyan-500 rounded-full mr-2"></span>
-                    JavaScript
-                  </li>
-                  <li className="flex items-center text-gray-700">
-                    <span className="w-2 h-2 bg-cyan-500 rounded-full mr-2"></span>
                     TypeScript
                   </li>
                   <li className="flex items-center text-gray-700">
                     <span className="w-2 h-2 bg-cyan-500 rounded-full mr-2"></span>
-                    React
+                    Python
                   </li>
                   <li className="flex items-center text-gray-700">
                     <span className="w-2 h-2 bg-cyan-500 rounded-full mr-2"></span>
-                    Next.js
+                    GAS
                   </li>
                 </ul>
               </div>
 
-              {/* バックエンド */}
+              {/* Framework */}
               <div className="p-4 rounded-lg bg-white shadow-sm border border-gray-200">
                 <h3 className="font-semibold flex items-center text-purple-600 mb-4">
                   <svg
@@ -175,14 +171,19 @@ const Skills = () => {
                     viewBox="0 0 16 16"
                     className="mr-2"
                   >
-                    <path d="M1 2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2zm0 5a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V7zm1 5a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2H2z" />
+                    <path d="M5.5 2A3.5 3.5 0 0 0 2 5.5v5A3.5 3.5 0 0 0 5.5 14h5a3.5 3.5 0 0 0 3.5-3.5V8a.5.5 0 0 1 1 0v2.5a4.5 4.5 0 0 1-4.5 4.5h-5A4.5 4.5 0 0 1 1 10.5v-5A4.5 4.5 0 0 1 5.5 1H8a.5.5 0 0 1 0 1H5.5z" />
+                    <path d="M16 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                   </svg>
-                  Backend
+                  Framework
                 </h3>
                 <ul className="space-y-3">
                   <li className="flex items-center text-gray-700">
                     <span className="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
-                    Python
+                    React
+                  </li>
+                  <li className="flex items-center text-gray-700">
+                    <span className="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
+                    Next.js
                   </li>
                   <li className="flex items-center text-gray-700">
                     <span className="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
@@ -190,20 +191,12 @@ const Skills = () => {
                   </li>
                   <li className="flex items-center text-gray-700">
                     <span className="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
-                    PHP
-                  </li>
-                  <li className="flex items-center text-gray-700">
-                    <span className="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
-                    Laravel
-                  </li>
-                  <li className="flex items-center text-gray-700">
-                    <span className="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
-                    PostgreSQL
+                    Flask
                   </li>
                 </ul>
               </div>
 
-              {/* DevOps */}
+              {/* DataBase */}
               <div className="p-4 rounded-lg bg-white shadow-sm border border-gray-200">
                 <h3 className="font-semibold flex items-center text-blue-600 mb-4">
                   <svg
@@ -214,36 +207,32 @@ const Skills = () => {
                     viewBox="0 0 16 16"
                     className="mr-2"
                   >
-                    <path d="M6 3.5A1.5 1.5 0 0 1 7.5 2h1A1.5 1.5 0 0 1 10 3.5v1A1.5 1.5 0 0 1 8.5 6v1H14a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 2 7h5.5V6A1.5 1.5 0 0 1 6 4.5v-1zM8.5 5a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1zM0 11.5A1.5 1.5 0 0 1 1.5 10h1A1.5 1.5 0 0 1 4 11.5v1A1.5 1.5 0 0 1 2.5 14h-1A1.5 1.5 0 0 1 0 12.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm4.5.5A1.5 1.5 0 0 1 7.5 10h1a1.5 1.5 0 0 1 1.5 1.5v1A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm4.5.5a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z" />
+                    <path d="M1 2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2zm0 5a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V7zm1 5a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2H2z" />
                   </svg>
-                  Devops
+                  Database
                 </h3>
                 <ul className="space-y-3">
                   <li className="flex items-center text-gray-700">
                     <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                    Linux
+                    Postgres
                   </li>
                   <li className="flex items-center text-gray-700">
                     <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                    Docker
+                    MySql
                   </li>
                   <li className="flex items-center text-gray-700">
                     <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                    AWS
+                    AWS Rds
                   </li>
                   <li className="flex items-center text-gray-700">
                     <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                    Vercel
-                  </li>
-                  <li className="flex items-center text-gray-700">
-                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                    Git/GitHub
+                    Subabase
                   </li>
                 </ul>
               </div>
 
               {/* DevOps */}
-              {/* <div className="p-4 rounded-lg bg-white shadow-sm border border-gray-200">
+              <div className="p-4 rounded-lg bg-white shadow-sm border border-gray-200">
                 <h3 className="font-semibold flex items-center text-teal-600 mb-4">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -253,7 +242,7 @@ const Skills = () => {
                     viewBox="0 0 16 16"
                     className="mr-2"
                   >
-                    <path d="M6 3.5A1.5 1.5 0 0 1 7.5 2h1A1.5 1.5 0 0 1 10 3.5v1A1.5 1.5 0 0 1 8.5 6v1H14a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 2 7h5.5V6A1.5 1.5 0 0 1 6 4.5v-1zM8.5 5a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1zM0 11.5A1.5 1.5 0 0 1 1.5 10h1A1.5 1.5 0 0 1 4 11.5v1A1.5 1.5 0 0 1 2.5 14h-1A1.5 1.5 0 0 1 0 12.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm4.5.5A1.5 1.5 0 0 1 7.5 10h1a1.5 1.5 0 0 1 1.5 1.5v1A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm4.5.5a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z" />
+                    <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2l-2.218-.887zm3.564 1.426L5.596 5 8 5.961 14.154 3.5l-2.404-.961zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z" />
                   </svg>
                   DevOps
                 </h3>
@@ -264,14 +253,18 @@ const Skills = () => {
                   </li>
                   <li className="flex items-center text-gray-700">
                     <span className="w-2 h-2 bg-teal-500 rounded-full mr-2"></span>
-                    AWS/Vercel
+                    Vercel
                   </li>
                   <li className="flex items-center text-gray-700">
                     <span className="w-2 h-2 bg-teal-500 rounded-full mr-2"></span>
-                    CI/CD
+                    Render
+                  </li>
+                  <li className="flex items-center text-gray-700">
+                    <span className="w-2 h-2 bg-teal-500 rounded-full mr-2"></span>
+                    Railway
                   </li>
                 </ul>
-              </div> */}
+              </div>
 
               {/* デザイン */}
               {/* <div className="p-4 rounded-lg bg-white shadow-sm border border-gray-200">
