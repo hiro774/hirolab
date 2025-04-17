@@ -133,3 +133,8 @@ async def submit_query(
 async def contact(request: Request, form: ContactForm):
     success = await send_to_slack(form.name, form.email, form.content)
     return {"success": success}
+
+
+@app.get("/api/monitor")
+async def monitor():
+    return {"status": "ok"}
