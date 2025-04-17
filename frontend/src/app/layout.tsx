@@ -4,7 +4,7 @@ import "../../styles/custom.css";
 import Sidebar from "../../components/Sidebar";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import ScrollToTop from "./ScroollTop";
+// import ScrollToTop from "./ScroollTop";
 
 export const metadata: Metadata = {
   title: "HiroLab",
@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="ja" data-theme="light" className="scroll-smooth">
       <body className="min-h-screen">
-        <ScrollToTop />
+        {/* <ScrollToTop /> */}
         <div>
           <input
             id="my-drawer-3"

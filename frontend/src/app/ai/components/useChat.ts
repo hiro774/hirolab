@@ -3,6 +3,9 @@ import { MessageType } from "./types";
 
 export const useChat = () => {
   const messageApiUrl = process.env.NEXT_PUBLIC_MESSAGE_API_ENDPOINT;
+
+  // 初期状態かどうかを管理する状態
+  const [isInitialState, setIsInitialState] = useState(true);
   // メッセージの状態管理
   const [messages, setMessages] = useState<MessageType[]>([]);
   // タイピングアニメーション用の状態
@@ -28,19 +31,19 @@ export const useChat = () => {
   const isFirstRenderRef = useRef(true);
 
   // 初期メッセージを表示
-  useEffect(() => {
-    const welcomeMessage: MessageType = {
-      id: "welcome",
-      content:
-        "こんにちは！このサイトの管理人HIROです。何かお手伝いできることはありますか？",
-      sender: "ai",
-      timestamp: new Date().toLocaleTimeString("ja-JP", {
-        hour: "2-digit",
-        minute: "2-digit",
-      }),
-    };
-    setMessages([welcomeMessage]);
-  }, []);
+  // useEffect(() => {
+  //   const welcomeMessage: MessageType = {
+  //     id: "welcome",
+  //     content:
+  //       "こんにちは！このサイトの管理人HIROです。何かお手伝いできることはありますか？",
+  //     sender: "ai",
+  //     timestamp: new Date().toLocaleTimeString("ja-JP", {
+  //       hour: "2-digit",
+  //       minute: "2-digit",
+  //     }),
+  //   };
+  //   setMessages([welcomeMessage]);
+  // }, []);
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -101,6 +104,10 @@ export const useChat = () => {
     const container = messagesContainerRef.current;
     const currentContentHeight = container.scrollHeight;
 
+    console.log(`高さ：${currentContentHeight}`);
+    console.log(`isFirstRenderRef：${isFirstRenderRef.current}`);
+    console.log(`messages.length：${messages.length}`);
+
     // 初回レンダリング時（ウェルカムメッセージ表示時）に初期コンテンツの高さを記録
     if (isFirstRenderRef.current && messages.length === 1) {
       // 少し遅延して初期コンテンツの高さを確実に取得
@@ -115,7 +122,10 @@ export const useChat = () => {
     }
 
     // 初期コンテンツの高さが記録されていない場合はスキップ
-    if (initialContentHeightRef.current === 0) return;
+    if (initialContentHeightRef.current === 0) {
+      console.log("記録なし");
+      return;
+    }
 
     // 現在のコンテンツの高さが初期コンテンツの高さより大きいかチェック
     const hasExceededInitialHeight =
@@ -128,7 +138,7 @@ export const useChat = () => {
 
     // スクロールが必要な場合のみスクロールする
     if (needsScrollRef.current) {
-      // console.log("スクロール実行");
+      console.log("スクロール実行");
 
       // 複数のタイミングでスクロールを実行（より確実にするため）
       // 即時実行
@@ -150,7 +160,7 @@ export const useChat = () => {
   useEffect(() => {
     // タイピングが完了した場合（typingMessageIdがnullになった場合）
     if (typingMessageId === null && needsScrollRef.current) {
-      // console.log("タイピング完了 - スクロール実行");
+      console.log("タイピング完了 - スクロール実行");
 
       // 少し遅延してスクロール
       setTimeout(() => {
@@ -173,7 +183,7 @@ export const useChat = () => {
         messagesEndRef.current.scrollIntoView({ behavior: "auto" });
       }
 
-      // console.log("スクロール処理実行完了");
+      console.log("スクロール処理実行完了");
     } catch (error) {
       console.error("スクロール処理中にエラー:", error);
     }
@@ -184,6 +194,11 @@ export const useChat = () => {
     e.preventDefault();
 
     if (!inputText.trim()) return;
+
+    // 初期状態の場合は、通常状態に切り替える
+    if (isInitialState) {
+      setIsInitialState(false);
+    }
 
     const now = new Date().toLocaleTimeString("ja-JP", {
       hour: "2-digit",
@@ -268,6 +283,7 @@ export const useChat = () => {
   };
 
   return {
+    isInitialState,
     messages,
     inputText,
     setInputText,
