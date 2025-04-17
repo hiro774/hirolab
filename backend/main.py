@@ -135,6 +135,8 @@ async def contact(request: Request, form: ContactForm):
     return {"success": success}
 
 
-@app.get("/api/monitor")
-async def monitor():
+@app.api_route("/health", methods=["GET", "HEAD"])
+async def monitor(request: Request):
+    if request.method == "HEAD":
+        return JSONResponse(status_code=200)
     return {"status": "ok"}
