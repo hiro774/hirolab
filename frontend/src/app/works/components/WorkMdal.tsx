@@ -21,15 +21,6 @@ export default function WorkModal({ work, isClosing, onClose }: Props) {
   useEffect(() => {
     // 現在利用可能な画像を配列に格納
     const availableImages = work.previewImage;
-
-    // previewImageがあれば追加
-    // if (work.previewImage && work.previewImage !== "") {
-    //   availableImages.push(work.previewImage);
-    // }
-
-    // テスト用に同じ画像を追加（実際のプロジェクトでは削除）
-    // availableImages.push(work.thumbnail);
-
     setImages(availableImages);
   }, [work]);
 
@@ -157,16 +148,6 @@ export default function WorkModal({ work, isClosing, onClose }: Props) {
             </div>
           </div>
 
-          {/* 課題と解決策 */}
-          {/* <div className="mb-10 pb-8">
-            <h3 className="text-xl font-semibold mb-4 text-gray-800">
-              課題と解決策
-            </h3>
-            <p className="text-gray-700 leading-relaxed">
-              {work.details.challenges}
-            </p>
-          </div>
- */}
           {/* リンク */}
           <div className="flex flex-wrap gap-4 justify-center mt-12">
             <Link
