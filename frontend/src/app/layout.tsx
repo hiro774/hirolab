@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "HiroLab",
   description: "Web開発・技術記事のポートフォリオサイト",
   icons: {
-    icon: "/images/icon/lulu_robot.png",
+    icon: "/images/icon/lulu_robot.webp",
   },
 };
 
