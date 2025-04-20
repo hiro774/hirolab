@@ -38,11 +38,11 @@ export const worksData: WorkType[] = [
     description: "OPENAI-APIとRAGを活用した会話型Line Bot",
     thumbnail: "/images/thumbnail/mlbAi_thumbnail.png",
     previewImage: [
-      "/images/previewimage/mlbAi_previewimage1.png",
-      "/images/previewimage/mlbAi_previewimage2.png",
-      "/images/previewimage/mlbAi_previewimage3.png",
-      "/images/previewimage/mlbAi_previewimage4.png",
-      "/images/previewimage/mlbAi_previewimage5.png",
+      "/images/previewImage/mlbAi_previewimage1.png",
+      "/images/previewImage/mlbAi_previewimage2.png",
+      "/images/previewImage/mlbAi_previewimage3.png",
+      "/images/previewImage/mlbAi_previewimage4.png",
+      "/images/previewImage/mlbAi_previewimage5.png",
     ],
     tags: ["Python", "Django", "AWS Lambda", "Supabase"],
     details: {
@@ -75,10 +75,10 @@ export const worksData: WorkType[] = [
     description: "Youtube動画をBGMに設定できるポモドーロアプリ",
     thumbnail: "/images/thumbnail/pomo_thumbnail.png",
     previewImage: [
-      "/images/previewimage/pomo_previewimage1.png",
-      "/images/previewimage/pomo_previewimage2.png",
-      "/images/previewimage/pomo_previewimage3.png",
-      "/images/previewimage/pomo_previewimage4.png",
+      "/images/previewImage/pomo_previewimage1.png",
+      "/images/previewImage/pomo_previewimage2.png",
+      "/images/previewImage/pomo_previewimage3.png",
+      "/images/previewImage/pomo_previewimage4.png",
     ],
     tags: ["TypeScript", "Next.js", "Supabase"],
     details: {
@@ -103,10 +103,10 @@ export const worksData: WorkType[] = [
     description: "生成AIを組み込んだ自作ポートフォリオサイト",
     thumbnail: "/images/thumbnail/hirolab_thumbnail.png",
     previewImage: [
-      "/images/previewimage/hirolab_previewimage1.png",
-      "/images/previewimage/hirolab_previewimage2.png",
-      "/images/previewimage/hirolab_previewimage3.png",
-      "/images/previewimage/hirolab_previewimage4.png",
+      "/images/previewImage/hirolab_previewimage1.png",
+      "/images/previewImage/hirolab_previewimage2.png",
+      "/images/previewImage/hirolab_previewimage3.png",
+      "/images/previewImage/hirolab_previewimage4.png",
     ],
     tags: ["TypeScript", "Next.js", "Python", "FastAPI"],
     details: {

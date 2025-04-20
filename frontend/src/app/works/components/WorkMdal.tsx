@@ -22,13 +22,7 @@ export default function WorkModal({ work, isClosing, onClose }: Props) {
     // 現在利用可能な画像を配列に格納
     const availableImages = work.previewImage;
     setImages(availableImages);
-    console.log(`work.previewImage: ${work.previewImage}`);
   }, [work]);
-
-  // テスト
-  useEffect(() => {
-    console.log(`images: ${images}`);
-  }, [images]);
 
   // 次の画像に移動
   const goToNextImage = () => {
