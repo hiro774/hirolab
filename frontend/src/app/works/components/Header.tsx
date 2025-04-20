@@ -7,7 +7,7 @@ const Header = () => {
       {/* アイコン部分 */}
       <div className="w-40 h-20 mx-auto relative flex items-center justify-center mt-10">
         <Image
-          src="/images/text/works.png"
+          src="/images/text/works.webp"
           alt="アイコン画像"
           width={160}
           height={80}

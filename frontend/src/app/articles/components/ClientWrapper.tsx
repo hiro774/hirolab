@@ -35,7 +35,7 @@ export default function ClientWrapper({ allPosts }: { allPosts: Post[] }) {
         <div className="text-center mb-12">
           <div className="w-50 h-20 mx-auto relative flex items-center justify-center mt-10 mb-1">
             <Image
-              src="/images/text/articles.png"
+              src="/images/text/articles.webp"
               alt="アイコン画像"
               width={200}
               height={80}

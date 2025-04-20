@@ -35,7 +35,7 @@ const Header = () => {
         >
           <div className="w-12 h-12 rounded-full from-primary/80 to-accent/80 flex items-center justify-center">
             <Image
-              src="/images/icon/lulu_robot.png"
+              src="/images/icon/lulu_robot.webp"
               alt="アイコン画像"
               width={48}
               height={48}
@@ -44,7 +44,7 @@ const Header = () => {
           </div>
           <div className="mt-2 w-48 h-24 flex items-center justify-center">
             <Image
-              src="/images/text/hirolab.png"
+              src="/images/text/hirolab.webp"
               alt="アイコン画像"
               width={192}
               height={96}

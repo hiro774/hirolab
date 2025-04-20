@@ -8,7 +8,7 @@ const Profile = () => {
       <div className="flex sm:flex-row items-start gap-4 md:mt-5 mb-6">
         <div className="w-36 md:w-40 h-auto">
           <Image
-            src="/images/text/aboutme.png"
+            src="/images/text/aboutme.webp"
             alt="About Me"
             width={176}
             height={176}
@@ -18,7 +18,7 @@ const Profile = () => {
 
         <div className="w-36 md:w-40 h-auto md:ml-2">
           <Image
-            src="/images/icon/lulu_walk.png"
+            src="/images/icon/lulu_walk.webp"
             alt="lulu_walk"
             width={176}
             height={176}
