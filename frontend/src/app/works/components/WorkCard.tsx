@@ -1,4 +1,3 @@
-// src/app/works/components/WorkCard.tsx
 import Image from "next/image";
 import { WorkType } from "./types";
 
@@ -14,17 +13,21 @@ export default function WorkCard({ work, onClick }: Props) {
       onClick={() => onClick(work)}
     >
       <div className="h-60 bg-gradient-to-r from-blue-100 to-purple-100 flex items-center justify-center overflow-hidden">
-        <Image
-          src={work.thumbnail}
-          alt={work.title}
-          width={320}
-          height={240}
-          className="object-cover w-full h-full"
-          loading="lazy"
-          placeholder="blur"
-          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFeAJ5jU2rNgAAAABJRU5ErkJggg=="
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 320px"
-        />
+        {work.thumbnail ? (
+          <Image
+            src={work.thumbnail}
+            alt={work.title}
+            width={640}
+            height={320}
+            quality={100}
+            className="object-cover w-full h-full"
+            loading="lazy"
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFeAJ5jU2rNgAAAABJRU5ErkJggg=="
+          />
+        ) : (
+          <p>画像準備中</p>
+        )}
       </div>
       <div className="p-6">
         <h3 className="text-xl font-bold mb-2 text-gray-800">{work.title}</h3>
