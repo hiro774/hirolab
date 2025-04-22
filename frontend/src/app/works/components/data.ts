@@ -1,37 +1,6 @@
 import { WorkType } from "./types";
 
 export const worksData: WorkType[] = [
-  // {
-  //   id: 4,
-  //   title: "未定",
-  //   description: "",
-  //   thumbnail: "",
-  //   previewImage: [""],
-  //   tags: ["TypeScript", "Next.js", "Python", "Django"],
-  //   details: {
-  //     overview:
-  //       "OpenAI APIを活用した会話型AI Bot。ユーザーの質問に対して自然な応答を生成し、様々なトピックについて会話できます。",
-  //     features: [
-  //       "自然言語処理",
-  //       "会話履歴の保存",
-  //       "カスタマイズ可能なAIパーソナリティ",
-  //       "マルチモーダル対応（テキスト、画像）",
-  //     ],
-  //     technologies: [
-  //       "Python",
-  //       "Django",
-  //       "PostgreSQL",
-  //       "AWS Lambnda",
-  //       "OpenAI API",
-  //       "LINE API",
-  //       "Railway",
-  //     ],
-  //     challenges:
-  //       "APIレスポンスの遅延を最小限に抑えるために、ストリーミングレスポンスを実装し、ユーザー体験を向上させました。また、コスト効率を考慮したトークン使用量の最適化も行いました。",
-  //     github: "https://github.com/username/ai-chatbot",
-  //     website: "https://ai-chatbot.example.com",
-  //   },
-  // },
   {
     id: 3,
     title: "Mlb Report AI",
@@ -42,29 +11,28 @@ export const worksData: WorkType[] = [
       "/images/previewImage/mlbAi_previewimage2.webp",
       "/images/previewImage/mlbAi_previewimage3.webp",
       "/images/previewImage/mlbAi_previewimage4.webp",
-      "/images/previewImage/mlbAi_previewimage5.webp",
     ],
     tags: ["Python", "Django", "AWS Lambda", "Supabase"],
     details: {
-      overview:
-        "OpenAI APIを活用した会話型AI Bot。ユーザーの質問に対して自然な応答を生成し、様々なトピックについて会話できます。",
+      overviews: [
+        "大谷翔平選手のニュース・動画・成績を自動で収集・要約するLINE対応チャットボットです。",
+        "収集データはLLMで要約・保存し、RAG構成で質問に自然に回答します。ファンキャラ「ラグ子」として、大谷選手について楽しく会話できます。",
+      ],
       features: [
-        "自然言語処理",
-        "会話履歴の保存",
-        "カスタマイズ可能なAIパーソナリティ",
-        "マルチモーダル対応（テキスト、画像）",
+        "大谷翔平選手のニュース・動画・試合成績を毎日自動で収集・要約",
+        "要約結果は「意味検索」できる形式でデータベースに保存",
+        "検索結果をもとに、AIが自然な回答を生成",
+        "情報収集と質問応答の2つのシステムで構成されたRAGチャットボット",
       ],
       technologies: [
         "Python",
         "Django",
         "PostgreSQL",
-        "AWS Lambnda",
+        "AWS Lambda",
         "OpenAI API",
         "LINE API",
         "Railway",
       ],
-      challenges:
-        "APIレスポンスの遅延を最小限に抑えるために、ストリーミングレスポンスを実装し、ユーザー体験を向上させました。また、コスト効率を考慮したトークン使用量の最適化も行いました。",
       github: "https://github.com/hiro774/mlbai",
       website: "",
     },
@@ -82,17 +50,18 @@ export const worksData: WorkType[] = [
     ],
     tags: ["TypeScript", "Next.js", "Supabase"],
     details: {
-      overview:
-        "Youtube動画をBGMに設定できるポモドーロアプリです。様々な要素をカスタマイズしながらぽもードーロタイマーを作成できます。",
+      overviews: [
+        "ポモドーロテクニックを実践するための、シンプルで使いやすいタイマーアプリです。",
+        "作業・休憩時間の設定や、YouTubeを使ったBGM再生、ダークモードの切り替えなどに対応しています。Google認証によるログインや、ユーザーごとの設定保存機能も備えています。",
+      ],
       features: [
-        "ポモドーロタイマー",
-        "作業時間・休憩時間の設定",
-        "YoutubeBGMの設定",
-        "環境設定の保存",
+        "作業・休憩時間を自由に設定可能",
+        "タイマーの自動切り替えと進捗バー表示",
+        "YouTubeで作業・休憩時間のBGM設定",
+        "Google認証によるログイン対応",
+        "各ユーザーの設定内容はSupabaseに保存＆自動読み込み",
       ],
       technologies: ["TypeScript", "React", "Next.js", "Tailwind CSS"],
-      challenges:
-        "APIレスポンスの遅延を最小限に抑えるために、ストリーミングレスポンスを実装し、ユーザー体験を向上させました。また、コスト効率を考慮したトークン使用量の最適化も行いました。",
       github: "https://github.com/hiro774/pomo",
       website: "https://pomo-gamma-ashy.vercel.app/",
     },
@@ -110,13 +79,16 @@ export const worksData: WorkType[] = [
     ],
     tags: ["TypeScript", "Next.js", "Python", "FastAPI"],
     details: {
-      overview:
-        "エンジニアとしての経験やスキルを紹介するためのポートフォリオサイト。モダンなデザインと滑らかなアニメーションを取り入れ、レスポンシブ対応しています。",
+      overviews: [
+        "このアプリは、これまでの開発経験や技術的な取り組みをまとめたポートフォリオサイトです。",
+        "モダンなUIやアニメーションを取り入れ、記事・制作物・AIチャット・問い合わせ機能を備えています。スマホでもスムーズに閲覧できるよう、レスポンシブ設計にも対応しています。",
+      ],
       features: [
-        "レスポンシブデザイン",
-        "ダークモード対応",
-        "アニメーションエフェクト",
-        "SEO最適化",
+        "自己紹介ページ（About）",
+        "作成した技術記事の紹介（Articles）",
+        "制作したプロジェクトの紹介（Works）",
+        "OpenAI APIを活用した「HIRO AI」との会話機能（AI）",
+        "お問い合わせフォーム（Contact）",
       ],
       technologies: [
         "TypeScript",
@@ -127,8 +99,6 @@ export const worksData: WorkType[] = [
         "FastAPI",
         "OpenAI API",
       ],
-      challenges:
-        "パフォーマンス最適化とアニメーションの両立が課題でした。Lighthouse scoreで95以上を達成するために、画像の最適化やコンポーネントの遅延読み込みを実装しました。",
       github: "https://github.com/hiro774/hirolab",
       website: "https://hirolab.vercel.app/",
     },

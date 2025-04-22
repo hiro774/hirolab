@@ -1,4 +1,3 @@
-// src/app/works/components/WorkModal.tsx
 "use client";
 
 import Image from "next/image";
@@ -50,13 +49,13 @@ export default function WorkModal({ work, isClosing, onClose }: Props) {
         onClick={(e) => e.stopPropagation()}
       >
         {/* ヘッダー */}
-        <div className="sticky top-0 bg-gray-50 p-5 border-b border-gray-200 flex justify-between items-center rounded-t-xl">
+        <div className="sticky top-0 bg-gray-50 p-5 z-20 border-b border-gray-200 flex justify-between items-center rounded-t-xl">
           <h2 className="text-2xl font-bold text-gray-800 tracking-tight">
             {work.title}
           </h2>
           <button
             onClick={onClose}
-            className="w-8 h-8 flex items-center justify-center rounded-full bg-white text-gray-500 hover:bg-gray-100 hover:text-gray-700 transition-colors duration-200 border border-gray-200"
+            className="w-8 h-8 flex items-center justify-center rounded-full cursor-pointer bg-white text-gray-500 hover:bg-gray-100 hover:text-gray-700 transition-colors duration-200 border border-gray-200"
           >
             ✕
           </button>
@@ -112,9 +111,11 @@ export default function WorkModal({ work, isClosing, onClose }: Props) {
           {/* 概要 */}
           <div className="mb-10 pb-8 border-b border-gray-200">
             <h3 className="text-xl font-semibold mb-4 text-gray-800">概要</h3>
-            <p className="text-gray-700 leading-relaxed">
-              {work.details.overview}
-            </p>
+            {work.details.overviews.map((overview: string, index: number) => (
+              <p key={index} className="text-gray-700 leading-relaxed">
+                {overview}
+              </p>
+            ))}
           </div>
 
           {/* 機能 */}
@@ -159,15 +160,19 @@ export default function WorkModal({ work, isClosing, onClose }: Props) {
             >
               GitHub
             </Link>
-            <Link
-              href={work.details.website}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3 bg-gray-800 text-white rounded-lg shadow-sm hover:bg-gray-700 transition-colors duration-200 flex items-center font-medium"
-              onClick={(e) => e.stopPropagation()}
-            >
-              サイトを見る
-            </Link>
+            {work.details.website ? (
+              <Link
+                href={work.details.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 bg-gray-800 text-white rounded-lg shadow-sm hover:bg-gray-700 transition-colors duration-200 flex items-center font-medium"
+                onClick={(e) => e.stopPropagation()}
+              >
+                サイトを見る
+              </Link>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>

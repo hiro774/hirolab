@@ -1,10 +1,9 @@
 // src/app/works/components/types.ts
 
 export interface WorkDetail {
-  overview: string;
+  overviews: string[];
   features: string[];
   technologies: string[];
-  challenges: string;
   github: string;
   website: string;
 }
