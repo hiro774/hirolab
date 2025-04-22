@@ -14,9 +14,9 @@
 本アプリは、エンジニアとしての経験やスキルを紹介するためのポートフォリオサイトです。  
 実装している主な機能は以下のとおりです。
 - モダンなデザインと滑らかなアニメーションを取り入れたレスポンシブ対応のポートフォリオサイト
-- OpenAI APIを活用した「HIRO AI」との会話機能
-- 制作したプロジェクトの紹介（Works）
 - 自己紹介ページ（About）
+- 制作したプロジェクトの紹介（Works）
+- OpenAI APIを活用した「HIRO AI」との会話機能
 - お問い合わせフォーム（Contact）
 <br><br>
 
@@ -49,10 +49,10 @@ FastAPIを使用したRESTful APIサーバーです。
 
 ## 3. デモ
 
-![HIRO LAB サイトイメージ](/frontend/public/images/previewImage/hirolab_previewimage1.webp)
-![HIRO LAB AIチャット](/frontend/public/images/previewImage/hirolab_previewimage2.webp)
-![HIRO LAB Worksページ](/frontend/public/images/previewImage/hirolab_previewimage3.webp)
-![HIRO LAB Aboutページ](/frontend/public/images/previewImage/hirolab_previewimage4.webp)
+![HIRO LAB Aboutページ](/frontend/public/images/previewImage/hirolab_previewimage1.webp)
+![HIRO LAB workページ](/frontend/public/images/previewImage/hirolab_previewimage2.webp)
+![HIRO LAB AIHomeページ](/frontend/public/images/previewImage/hirolab_previewimage3.webp)
+![HIRO LAB AIChatページ](/frontend/public/images/previewImage/hirolab_previewimage4.webp)
 <br>
 
 ## 4. 使用技術
@@ -71,7 +71,7 @@ FastAPIを使用したRESTful APIサーバーです。
 
 ### インフラ
 - **コンテナ化**: Docker, Docker Compose
-- **デプロイ**: Vercel (フロントエンド), 未定 (バックエンド)
+- **デプロイ**: Vercel (フロントエンド), Render (バックエンド)
 <br><br>
 
 ## 5. ローカルでの動かし方
