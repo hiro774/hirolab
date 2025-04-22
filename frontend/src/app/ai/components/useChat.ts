@@ -30,21 +30,6 @@ export const useChat = () => {
   // 初回レンダリングかどうかを判断するためのref
   const isFirstRenderRef = useRef(true);
 
-  // 初期メッセージを表示
-  // useEffect(() => {
-  //   const welcomeMessage: MessageType = {
-  //     id: "welcome",
-  //     content:
-  //       "こんにちは！このサイトの管理人HIROです。何かお手伝いできることはありますか？",
-  //     sender: "ai",
-  //     timestamp: new Date().toLocaleTimeString("ja-JP", {
-  //       hour: "2-digit",
-  //       minute: "2-digit",
-  //     }),
-  //   };
-  //   setMessages([welcomeMessage]);
-  // }, []);
-
   useEffect(() => {
     inputRef.current?.focus();
   }, []);

@@ -68,7 +68,7 @@ const MessageList: React.FC<MessageListProps> = ({
               <div className="flex items-center mb-1">
                 <div className="w-6 h-6 rounded-full overflow-hidden mr-2">
                   <Image
-                    src="/images/icon/hiro_robot.png"
+                    src="/images/icon/hiro_robot.webp"
                     alt="HIRO AI"
                     width={24}
                     height={24}
