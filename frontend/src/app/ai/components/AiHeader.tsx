@@ -7,7 +7,7 @@ const AiHeader = () => {
       <div className="flex items-center">
         <div className="w-[40px] h-[40px] md:w-16 md:h-16 rounded-full overflow-hidden mr-3">
           <Image
-            src="/images/icon/hiro_robot.png"
+            src="/images/icon/hiro_robot.webp"
             alt="HIRO AI"
             width={84}
             height={84}
