@@ -26,13 +26,6 @@ const Profile = () => {
         </div>
       </div>
       <div className="flex justify-center items-center py-10 md:py-8 bg-white/60 backdrop-blur-sm rounded-xl p-6 shadow-lg transition-all duration-500 hover:shadow-xl mb-6">
-        {/* 装飾ライン */}
-        <div className="absolute -left-4 top-0 bottom-0 w-[2px] bg-gradient-to-b from-cyan-400 via-purple-400 to-blue-400 hidden md:block rounded-full"></div>
-
-        {/* 装飾要素 */}
-        <div className="absolute -left-[10px] top-0 w-4 h-4 rounded-full bg-cyan-400 hidden md:block z-10"></div>
-        <div className="absolute -left-[10px] bottom-0 w-4 h-4 rounded-full bg-blue-400 hidden md:block z-10"></div>
-
         <div className="px-5">
           <h3 className="text-xl font-medium mb-4 flex items-center">
             <svg
