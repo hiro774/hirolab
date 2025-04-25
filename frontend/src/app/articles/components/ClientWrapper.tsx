@@ -3,15 +3,7 @@
 import { useState } from "react";
 import ArticleList from "./ArticleList";
 import Image from "next/image";
-
-type Post = {
-  id: string | number;
-  title: string;
-  emoji: string;
-  path: string;
-  published_at: string;
-  source: string;
-};
+import { Post } from "./types";
 
 export default function ClientWrapper({ allPosts }: { allPosts: Post[] }) {
   const [keyword, setKeyword] = useState("");
@@ -25,11 +17,6 @@ export default function ClientWrapper({ allPosts }: { allPosts: Post[] }) {
 
   return (
     <div className="mt-15 pb-20 min-h-screen py-8 px-4 sm:px-6 lg:px-8 animate-fadeIn relative overflow-hidden">
-      {/* 背景装飾 */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-blue-50/10 to-gray-100"></div>
-      <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-indigo-100/30 rounded-full opacity-50 blur-3xl transform translate-x-1/4 -translate-y-1/4"></div>
-      <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-purple-100/20 rounded-full opacity-30 blur-3xl transform -translate-x-1/4 translate-y-1/4"></div>
-
       <div className="container mx-auto max-w-6xl relative z-10">
         {/* ヘッダーセクション */}
         <div className="text-center mb-12">

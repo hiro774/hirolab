@@ -6,7 +6,6 @@
     "bradlc.vscode-tailwindcss",
     "usernamehw.errorlens",
     "wix.vscode-import-cost",
-    "natqe.reload",
-    "Prisma.prisma"
+    "natqe.reload"
   ]
 }

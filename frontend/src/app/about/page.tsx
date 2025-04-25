@@ -7,7 +7,7 @@ export default function About() {
     <div className="mx-auto mt-15 md:m-3 sm:py-2 md:py-4 animate-fadeIn relative overflow-hidden">
       <div className="absolute inset-0"></div>
 
-      <div className="w-[90%] mx-auto container mx-auto px-4 md:px-8 lg:px-16 xl:px-24 md:py-8 relative z-10">
+      <div className="w-[90%] container mx-auto px-4 md:px-8 lg:px-16 xl:px-24 md:py-8 relative z-10">
         {/* 上部セクション */}
         <div className="mx-auto items-center grid grid-cols-1 lg:grid-cols-[30%_70%] backdrop-blur-sm rounded-xl px-2">
           {/* 左側：アイコン */}
