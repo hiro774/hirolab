@@ -5,7 +5,7 @@ import Header from "./components/Header";
 import { worksData } from "./components/data";
 import { WorkType } from "./components/types";
 import WorkCard from "./components/WorkCard";
-import WorkModal from "./components/WorkMdal";
+import WorkModal from "./components/WorkModal";
 
 export default function Works() {
   // 選択された作品の状態管理
