@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { MessageType } from "./types";
+import { MessageType } from "../hooks/types";
 
 type MessageListProps = {
   messages: MessageType[];

@@ -5,20 +5,30 @@ import AiHeader from "./components/AiHeader";
 import MessageList from "./components/MessageList";
 import MessageInput from "./components/MessageInput";
 import InitialMessageInput from "./components/InitialMessageInput";
-import { useChat } from "./components/useChat";
+import { useChat } from "./hooks/useChat";
+import { useScroll } from "./hooks/useScroll";
+import { useTyping } from "./hooks/useTyping";
 
 export default function Ai() {
   const {
     isInitialState,
     messages,
+    setMessages,
     inputText,
     setInputText,
     isSending,
     sendMessage,
     inputRef,
-    messagesEndRef,
-    messagesContainerRef,
+    typingMessageId,
+    setTypingMessageId,
   } = useChat();
+
+  const { messagesEndRef, messagesContainerRef } = useScroll({
+    messages,
+    typingMessageId,
+  });
+
+  useTyping({ messages, setMessages, typingMessageId, setTypingMessageId });
 
   // 初期状態の場合は中央配置された入力フォームを表示
   if (isInitialState) {
