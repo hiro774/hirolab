@@ -1,15 +1,7 @@
 "use client";
 
 import Link from "next/link";
-
-type Post = {
-  id: string | number;
-  title: string;
-  emoji: string;
-  path: string;
-  published_at: string;
-  source: string;
-};
+import { Post } from "./types";
 
 type Props = {
   posts: Post[];

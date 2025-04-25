@@ -1,13 +1,5 @@
 import ClientWrapper from "./components/ClientWrapper";
-
-type Post = {
-  id: string | number;
-  title: string;
-  emoji: string;
-  path: string;
-  published_at: string;
-  source: string; // "Zenn" or "Qiita"
-};
+import { Post } from "./components/types";
 
 export default async function ArticlesPage() {
   // エンドポイント取得
@@ -40,7 +32,7 @@ export default async function ArticlesPage() {
     }) => ({
       id: item.id,
       title: item.title,
-      emoji: "", // 空の絵文字
+      emoji: "",
       path: `zenn.dev/${item.path}`,
       published_at: item.published_at,
       source: "Zenn",
@@ -51,7 +43,7 @@ export default async function ArticlesPage() {
     (item: { id: string; title: string; created_at: string }) => ({
       id: item.id,
       title: item.title,
-      emoji: "", // 空の絵文字
+      emoji: "",
       path: `qiita.com/${qiitaUser}/items/${item.id}`,
       published_at: item.created_at,
       source: "Qiita",
