@@ -9,7 +9,7 @@ export default function About() {
 
       <div className="w-[90%] mx-auto container mx-auto px-4 md:px-8 lg:px-16 xl:px-24 md:py-8 relative z-10">
         {/* 上部セクション */}
-        <div className="flex mx-auto items-center w-[95%] md:w-[90%] grid grid-cols-1 lg:grid-cols-[30%_70%] gap-4 md:gap-15 backdrop-blur-sm rounded-xl">
+        <div className="mx-auto items-center grid grid-cols-1 lg:grid-cols-[30%_70%] backdrop-blur-sm rounded-xl px-2">
           {/* 左側：アイコン */}
           <div className="flex items-center justify-center lg:justify-start">
             <Icon />

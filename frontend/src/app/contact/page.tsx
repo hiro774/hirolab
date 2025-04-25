@@ -35,8 +35,6 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // ここに実際の送信処理を実装します
-    // 今回はモックの成功レスポンスを返します
     try {
       const response = await fetch(`${contactApiUrl}`, {
         method: "POST",
@@ -46,8 +44,6 @@ export default function Contact() {
         body: JSON.stringify(formData),
       });
 
-      // 送信処理の代わりに遅延を追加
-      // await new Promise((resolve) => setTimeout(resolve, 1000));
       if (response.ok) {
         setSubmitStatus({
           success: true,
@@ -73,9 +69,6 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen mt-20 mb-10 md:mb-0 pt-4 md:pt-8 px-4 md:px-8 animate-fadeIn relative overflow-hidden">
-      {/* 背景装飾 */}
-      {/* <div className="absolute inset-0"></div> */}
-
       <div className="container mt-8 md:mt-15 mx-auto max-w-3xl relative z-10">
         {/* ヘッダーセクション */}
         <div className="text-center mb-10 md:mb-15">
