@@ -23,7 +23,7 @@ export default function Ai() {
   // 初期状態の場合は中央配置された入力フォームを表示
   if (isInitialState) {
     return (
-      <div className="min-h-[calc(100svh-40px)] md:min-h-[calc(100vh-50px)] flex flex-col animate-fadeIn pt-5 pb-0 md:pb-0 md:pt-12 transition-all duration-300">
+      <div className="min-h-[calc(100svh-40px)] md:min-h-[calc(100vh-10px)] flex flex-col animate-fadeIn pt-5 pb-0 md:pb-0 md:pt-12 transition-all duration-300">
         <InitialMessageInput
           inputRef={inputRef}
           inputText={inputText}
