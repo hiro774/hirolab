@@ -88,9 +88,10 @@ const Form = ({
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`text-base px-6 py-1.5 cursor-pointer bg-sky-600 text-white font-medium rounded-md shadow-lg hover:shadow-lg transform hover:opacity-80 transition-opacity duration-300 ${
-              isSubmitting ? "opacity-70 cursor-not-allowed" : ""
-            }`}
+            className={`text-base px-6 py-1.5 cursor-pointer bg-sky-600 text-white font-medium rounded-md shadow-lg hover:-translate-y-0.5 hover:shadow-md
+ transform hover:opacity-80 transition-all duration-300 ${
+   isSubmitting ? "opacity-70 cursor-not-allowed" : ""
+ }`}
           >
             {isSubmitting ? (
               <span className="flex items-center">

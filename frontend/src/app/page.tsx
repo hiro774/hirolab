@@ -13,9 +13,6 @@ export default function Home() {
               width={400}
               height={400}
               className="rounded-full"
-              loading="lazy"
-              placeholder="blur"
-              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFeAJ5jU2rNgAAAABJRU5ErkJggg=="
               sizes="(max-width: 768px) 100vw, 400px"
             />
           </div>
@@ -26,9 +23,6 @@ export default function Home() {
               width={400}
               height={140}
               className="rounded-full"
-              loading="lazy"
-              placeholder="blur"
-              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFeAJ5jU2rNgAAAABJRU5ErkJggg=="
               sizes="(max-width: 768px) 100vw, 400px"
             />
           </div>

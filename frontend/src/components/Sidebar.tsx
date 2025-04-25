@@ -51,7 +51,7 @@ const Sidebar = () => {
 
       {/* サイドバー */}
       <div
-        className={`fixed top-0 left-0 h-full w-50 md:w-80 z-50 transition-transform duration-300 ease-out ${
+        className={`fixed top-0 left-0 h-full w-60 md:w-80 z-50 transition-transform duration-300 ease-out ${
           isOpen ? "transform-none" : "-translate-x-full"
         }`}
       >
