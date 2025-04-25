@@ -5,25 +5,35 @@ import AiHeader from "./components/AiHeader";
 import MessageList from "./components/MessageList";
 import MessageInput from "./components/MessageInput";
 import InitialMessageInput from "./components/InitialMessageInput";
-import { useChat } from "./components/useChat";
+import { useChat } from "./hooks/useChat";
+import { useScroll } from "./hooks/useScroll";
+import { useTyping } from "./hooks/useTyping";
 
 export default function Ai() {
   const {
     isInitialState,
     messages,
+    setMessages,
     inputText,
     setInputText,
     isSending,
     sendMessage,
     inputRef,
-    messagesEndRef,
-    messagesContainerRef,
+    typingMessageId,
+    setTypingMessageId,
   } = useChat();
+
+  const { messagesEndRef, messagesContainerRef } = useScroll({
+    messages,
+    typingMessageId,
+  });
+
+  useTyping({ messages, setMessages, typingMessageId, setTypingMessageId });
 
   // 初期状態の場合は中央配置された入力フォームを表示
   if (isInitialState) {
     return (
-      <div className="min-h-[calc(100svh-40px)] md:min-h-[calc(100vh-50px)] flex flex-col animate-fadeIn pt-5 pb-0 md:pb-0 md:pt-12 transition-all duration-300">
+      <div className="min-h-[calc(100svh-40px)] md:min-h-[calc(100vh-10px)] flex flex-col animate-fadeIn pt-5 pb-0 md:pb-0 md:pt-12 transition-all duration-300">
         <InitialMessageInput
           inputRef={inputRef}
           inputText={inputText}
