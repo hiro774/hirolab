@@ -1,2 +1,8 @@
+# 環境変数
 .env
+
+# pycache
 __pycache__
+
+# 不要ファイル
+.DS_Store
