@@ -58,5 +58,7 @@ export const useTyping = ({
 
       return () => clearTimeout(timer);
     }
+    // setMessages, setTypingMessageIdは依存配列に含めない
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [messages, typingMessageId]);
 };

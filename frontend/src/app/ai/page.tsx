@@ -25,7 +25,6 @@ export default function Ai() {
 
   const { messagesEndRef, messagesContainerRef } = useScroll({
     messages,
-    typingMessageId,
   });
 
   useTyping({ messages, setMessages, typingMessageId, setTypingMessageId });

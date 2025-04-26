@@ -3,10 +3,9 @@ import { MessageType } from "./types";
 
 type Props = {
   messages: MessageType[];
-  typingMessageId: string | null;
 };
 
-export const useScroll = ({ messages, typingMessageId }: Props) => {
+export const useScroll = ({ messages }: Props) => {
   // 初回メッセージの高さを保存するref
   const initialContentHeightRef = useRef(0);
   // スクロールが必要かどうかを判断するためのref
@@ -79,29 +78,12 @@ export const useScroll = ({ messages, typingMessageId }: Props) => {
     }
   }, [messages]);
 
-  // タイピングアニメーション完了時にもスクロール
-  useEffect(() => {
-    // タイピングが完了した場合（typingMessageIdがnullになった場合）
-    if (typingMessageId === null && needsScrollRef.current) {
-      console.log("タイピング完了 - スクロール実行");
-
-      // 少し遅延してスクロール
-      setTimeout(() => {
-        scrollToBottom();
-      }, 50);
-    }
-  }, [typingMessageId]);
-
   // 一番下にスクロールする関数
   const scrollToBottom = () => {
     try {
       if (!messagesContainerRef.current) return;
 
-      // 直接スクロール位置を設定（スムーズなアニメーションなし）
-      messagesContainerRef.current.scrollTop =
-        messagesContainerRef.current.scrollHeight;
-
-      // messagesEndRefも使用
+      // スクロール用のdivを起点にスクロール
       if (messagesEndRef.current) {
         messagesEndRef.current.scrollIntoView({ behavior: "auto" });
       }
