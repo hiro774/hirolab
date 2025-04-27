@@ -21,9 +21,6 @@ export default function WorkCard({ work, onClick }: Props) {
             height={320}
             quality={100}
             className="object-cover w-full h-full"
-            loading="lazy"
-            placeholder="blur"
-            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFeAJ5jU2rNgAAAABJRU5ErkJggg=="
           />
         ) : (
           <p>画像準備中</p>
