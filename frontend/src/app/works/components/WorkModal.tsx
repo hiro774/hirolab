@@ -71,9 +71,6 @@ export default function WorkModal({ work, isClosing, onClose }: Props) {
                   alt={work.title}
                   fill
                   className="object-contain"
-                  loading="lazy"
-                  placeholder="blur"
-                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFeAJ5jU2rNgAAAABJRU5ErkJggg=="
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                   quality={80}
                 />
