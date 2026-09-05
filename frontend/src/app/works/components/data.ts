@@ -2,6 +2,46 @@ import { WorkType } from "./types";
 
 export const worksData: WorkType[] = [
   {
+    id: 5,
+    title: "Stockscope",
+    description: "日本株・米国株のチャートと銘柄比較・リスク分析を行う株価分析アプリ",
+    thumbnail: "/images/previewImage/stockscope_chart.webp",
+    previewImage: [
+      "/images/previewImage/stockscope_chart.webp",
+      "/images/previewImage/stockscope_comparison.webp",
+      "/images/previewImage/stockscope_risk.webp",
+    ],
+    tags: ["Python", "pandas", "NumPy", "Plotly"],
+    details: {
+      overviews: [
+        "日本株・米国株の値動きを、チャートと複数銘柄の比較で調べる株価分析アプリです。",
+        "pandas・NumPyで価格データを整形・集計し、リターンやリスク指標を計算します。分析に使った期間・観測数と計算方法を表示し、保存したデータから結果を確かめられる構成にしています。",
+      ],
+      features: [
+        "銘柄の検索・証券コード入力と、日足・週足・月足・年足のチャート表示",
+        "移動平均線・ボリンジャーバンド・RSI・出来高の表示切り替え",
+        "2〜3銘柄の開始価格を100に揃えた値動きと、高値からの下落率の比較",
+        "期間リターン・年率ボラティリティ・最大ドローダウンの算出",
+        "休場日の価格を補完せず、観測区間を揃えて計算する日次リターンの相関表",
+        "計算に使った期間・観測数の表示と、比較結果のCSV・再計算用データのJSON保存",
+      ],
+      technologies: [
+        "Python",
+        "FastAPI",
+        "pandas",
+        "NumPy",
+        "Plotly",
+        "yfinance",
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "Vercel",
+      ],
+      github: "",
+      website: "https://stockscope-orpin.vercel.app/",
+    },
+  },
+  {
     id: 4,
     title: "CareDesk",
     description: "社内問い合わせの対応状況と履歴を一元管理するヘルプデスクアプリ",
