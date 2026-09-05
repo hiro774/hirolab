@@ -2,6 +2,46 @@ import { WorkType } from "./types";
 
 export const worksData: WorkType[] = [
   {
+    id: 4,
+    title: "CareDesk",
+    description: "社内問い合わせの対応状況と履歴を一元管理するヘルプデスクアプリ",
+    thumbnail: "/images/previewImage/caredesk_dashboard.png",
+    previewImage: [
+      "/images/previewImage/caredesk_dashboard.png",
+      "/images/previewImage/caredesk_ticket-detail.png",
+      "/images/previewImage/caredesk_input-assist.png",
+      "/images/previewImage/caredesk_employee-view.png",
+    ],
+    tags: ["Python", "FastAPI", "JavaScript", "SQLite"],
+    details: {
+      overviews: [
+        "社内の問い合わせを、担当者・対応状況・期限・履歴とあわせて一元管理するヘルプデスクアプリです。",
+        "登録から解決までの業務フローを整理し、期限超過や停滞案件、初回回答・解決時間をダッシュボードで可視化します。",
+        "デモは登録不要で操作できます。初回アクセス時は、起動に時間がかかる場合があります。",
+      ],
+      features: [
+        "問い合わせの登録・検索と、担当者・ステータス・緊急度・対応期限の管理",
+        "未解決・期限超過・停滞の件数と、初回回答・解決時間の可視化",
+        "公開コメント・社内メモ・変更履歴と、更新を知らせる画面内通知",
+        "デモユーザーの切り替えによる、一般社員・ヘルプデスク・管理者の閲覧・操作範囲の出し分け",
+        "キーワードと文字列の類似度による、カテゴリ・緊急度・解決済み事例の入力アシスト",
+      ],
+      technologies: [
+        "Python",
+        "FastAPI",
+        "Pydantic",
+        "SQLite",
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "GitHub Actions",
+        "Render",
+      ],
+      github: "https://github.com/hiro774/caredesk",
+      website: "https://caredesk-sbae.onrender.com/",
+    },
+  },
+  {
     id: 3,
     title: "Mlb Report AI",
     description: "OPENAI-APIとRAGを活用した会話型Line Bot",

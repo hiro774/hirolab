@@ -131,7 +131,7 @@ export default function Home() {
           </Link>
         </div>
         <div className="home-work-grid">
-          {worksData.map((work, index) => (
+          {worksData.slice(0, 3).map((work, index) => (
             <Link
               href="/works"
               key={work.id}

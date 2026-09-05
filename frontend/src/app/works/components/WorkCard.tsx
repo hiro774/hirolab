@@ -16,7 +16,7 @@ export default function WorkCard({ work, index, onClick }: Props) {
             src={work.thumbnail}
             alt={work.title}
             fill
-            sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 380px"
+            sizes="(max-width: 640px) 100vw, (max-width: 1200px) 50vw, 580px"
             quality={85}
           />
         ) : (
