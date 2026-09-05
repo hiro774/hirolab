@@ -1,30 +1,23 @@
 import Icon from "./components/Icon";
 import Skills from "./components/Skills";
 import Profile from "./components/Profile";
+import "./about.css";
 
 export default function About() {
   return (
-    <div className="mx-auto mt-15 md:m-3 sm:py-2 md:py-4 animate-fadeIn relative overflow-hidden">
-      <div className="absolute inset-0"></div>
-
-      <div className="w-[90%] container mx-auto px-4 md:px-8 lg:px-16 xl:px-24 md:py-8 relative z-10">
-        {/* 上部セクション */}
-        <div className="mx-auto items-center grid grid-cols-1 lg:grid-cols-[30%_70%] backdrop-blur-sm rounded-xl px-2">
-          {/* 左側：アイコン */}
-          <div className="flex items-center justify-center lg:justify-start">
-            <Icon />
-          </div>
-          {/* 右側：プロフィール */}
-          <div className="flex justify-center items-center md:mt-10">
-            <Profile />
-          </div>
-        </div>
-
-        {/* 下部セクション */}
-        <div className="relative mb-10">
-          <Skills />
-        </div>
+    <div className="page-shell about-page">
+      <header className="page-heading">
+        <p className="eyebrow">ABOUT ME</p>
+        <h1 className="page-title">つくる人のこと。</h1>
+        <p className="page-description">
+          プロフィールと、日々の制作に使っている技術をご紹介します。
+        </p>
+      </header>
+      <div className="about-profile-grid">
+        <Icon />
+        <Profile />
       </div>
+      <Skills />
     </div>
   );
 }

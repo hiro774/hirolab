@@ -1,95 +1,150 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 import ArticleList from "./ArticleList";
-import Image from "next/image";
-import { Post } from "./types";
+import { Post, ArticleSource, SourceStatus } from "./types";
 
-export default function ClientWrapper({ allPosts }: { allPosts: Post[] }) {
+type Props = {
+  allPosts: Post[];
+  sourceStatus: Record<ArticleSource, SourceStatus>;
+};
+
+export default function ClientWrapper({ allPosts, sourceStatus }: Props) {
   const [keyword, setKeyword] = useState("");
-
-  const filtered = allPosts.filter((post) =>
-    post.title.toLowerCase().includes(keyword.toLowerCase())
+  const [selectedSource, setSelectedSource] = useState<"all" | ArticleSource>(
+    "all",
   );
-
-  const zennPosts = filtered.filter((post) => post.source === "Zenn");
-  const qiitaPosts = filtered.filter((post) => post.source === "Qiita");
+  const [isRefreshing, startTransition] = useTransition();
+  const router = useRouter();
+  const query = keyword.trim().toLowerCase();
+  const filtered = allPosts.filter((post) =>
+    post.title.toLowerCase().includes(query),
+  );
+  const sources: ArticleSource[] =
+    selectedSource === "all" ? ["Qiita", "Zenn"] : [selectedSource];
+  const count = filtered.filter(
+    (post) => selectedSource === "all" || post.source === selectedSource,
+  ).length;
 
   return (
-    <div className="mt-15 pb-20 min-h-screen py-8 px-4 sm:px-6 lg:px-8 animate-fadeIn relative overflow-hidden">
-      <div className="container mx-auto max-w-6xl relative z-10">
-        {/* ヘッダーセクション */}
-        <div className="text-center mb-12">
-          <div className="w-50 h-20 mx-auto relative flex items-center justify-center mt-10 mb-1">
-            <Image
-              src="/images/text/articles.webp"
-              alt="アイコン画像"
-              width={200}
-              height={80}
-            />
-          </div>
-          <p className="text-base text-gray-600 max-w-2xl mx-auto">
-            A collection of my technical articles published on Zenn and Qiita.
+    <div className="page-shell articles-page">
+      <header className="page-heading articles-heading">
+        <div>
+          <p className="eyebrow">ARTICLES</p>
+          <h1 className="page-title">学びの記録。</h1>
+          <p className="page-description">
+            Zenn・Qiitaで公開している技術記事をまとめています。
           </p>
         </div>
+        <div className="articles-heading-art" aria-hidden="true">
+          <span className="articles-note-back" />
+          <span className="articles-note-front">
+            <span />
+            <span />
+            <span />
+          </span>
+          <span className="articles-note-spark">✳</span>
+        </div>
+      </header>
 
-        {/* 検索セクション */}
-        <div className="mb-12">
-          <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-md transition-all duration-500 hover:shadow-lg border border-gray-100">
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-gray-400"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
+      <div className="articles-toolbar">
+        <div
+          className="articles-filters"
+          role="group"
+          aria-label="記事の掲載先で絞り込む"
+        >
+          {(["all", "Qiita", "Zenn"] as const).map((source) => (
+            <button
+              type="button"
+              key={source}
+              aria-pressed={selectedSource === source}
+              onClick={() => setSelectedSource(source)}
+            >
+              {source === "all" ? "すべて" : source}
+              <span>
+                {source === "all"
+                  ? allPosts.length
+                  : allPosts.filter((post) => post.source === source).length}
+              </span>
+            </button>
+          ))}
+        </div>
+        <div className="articles-search" role="search">
+          <svg
+            width="19"
+            height="19"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.7"
+            aria-hidden="true"
+          >
+            <circle cx="10.5" cy="10.5" r="6.5" />
+            <path d="m16 16 4.5 4.5" />
+          </svg>
+          <input
+            type="search"
+            aria-label="記事をキーワードで検索"
+            placeholder="キーワードで検索"
+            value={keyword}
+            onChange={(event) => setKeyword(event.target.value)}
+          />
+          {keyword && (
+            <button
+              type="button"
+              onClick={() => setKeyword("")}
+              aria-label="検索キーワードを消す"
+            >
+              ×
+            </button>
+          )}
+        </div>
+      </div>
+      <div className="articles-result-line">
+        <p role="status" aria-live="polite">
+          {query ? `「${keyword.trim()}」の検索結果` : "公開記事"}
+          <span>{count}件</span>
+        </p>
+        <span>新しい順</span>
+      </div>
+
+      <div className="articles-collections">
+        {sources.map((source) => {
+          const posts = filtered.filter((post) => post.source === source);
+          return (
+            <section
+              className="articles-collection"
+              key={source}
+              aria-labelledby={`articles-${source}`}
+            >
+              <div className="articles-collection-heading">
+                <div>
+                  <span
+                    className={`articles-source-mark articles-source-${source.toLowerCase()}`}
+                    aria-hidden="true"
+                  >
+                    {source === "Qiita" ? "Q" : "/"}
+                  </span>
+                  <h2 id={`articles-${source}`}>{source}</h2>
+                  <span className="articles-source-count">{posts.length}</span>
+                </div>
+                <span className="articles-collection-caption">
+                  TECHNICAL NOTES
+                </span>
               </div>
-              <input
-                type="text"
-                placeholder="キーワードで検索（例：python）"
-                className="w-full pl-10 p-4 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-300 transition duration-300 bg-white/90"
-                value={keyword}
-                onChange={(e) => setKeyword(e.target.value)}
+              <ArticleList
+                posts={posts}
+                source={source}
+                status={sourceStatus[source]}
+                hasQuery={query.length > 0}
+                onClear={() => setKeyword("")}
+                onRetry={() => startTransition(() => router.refresh())}
+                isRefreshing={isRefreshing}
               />
-            </div>
-          </div>
-        </div>
-
-        {/* 記事セクション */}
-        <div className="space-y-16">
-          {/* Qiita記事 */}
-          <section className="bg-white/80 backdrop-blur-sm rounded-xl p-8 shadow-md transition-all duration-500 hover:shadow-lg border border-gray-100">
-            <div className="flex items-center mb-6">
-              <h2 className="text-2xl font-medium text-gray-800 tracking-wide border-l-4 border-emerald-200/70 pl-3">
-                Qiita Articles
-              </h2>
-            </div>
-            <div className="border-t border-gray-200 pt-6">
-              <ArticleList posts={qiitaPosts} source="qiita" />
-            </div>
-          </section>
-
-          {/* Zenn記事 */}
-          <section className="bg-white/80 backdrop-blur-sm rounded-xl p-8 shadow-md transition-all duration-500 hover:shadow-lg border border-gray-100">
-            <div className="flex items-center mb-6">
-              <h2 className="text-2xl font-medium text-gray-800 tracking-wide border-l-4 border-indigo-200/70 pl-3">
-                Zenn Articles
-              </h2>
-            </div>
-            <div className="border-t border-gray-200 pt-6">
-              <ArticleList posts={zennPosts} source="zenn" />
-            </div>
-          </section>
-        </div>
+            </section>
+          );
+        })}
       </div>
     </div>
   );
