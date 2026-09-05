@@ -43,16 +43,16 @@ FastAPIを使用したRESTful APIサーバーです。
 
 ## 3. デモ
 
-![HIRO LAB Aboutページ](/frontend/public/images/previewImage/hirolab_previewimage1.webp)
-![HIRO LAB workページ](/frontend/public/images/previewImage/hirolab_previewimage2.webp)
-![HIRO LAB AIHomeページ](/frontend/public/images/previewImage/hirolab_previewimage3.webp)
-![HIRO LAB AIChatページ](/frontend/public/images/previewImage/hirolab_previewimage4.webp)
+![HIRO LAB トップページ](/frontend/public/images/previewImage/hirolab_home_2026.webp)
+![HIRO LAB プロフィールページ](/frontend/public/images/previewImage/hirolab_about_2026.webp)
+![HIRO LAB 記事一覧（Zennで絞り込み）](/frontend/public/images/previewImage/hirolab_articles_2026.webp)
+![HIRO LAB AIチャットの開始画面](/frontend/public/images/previewImage/hirolab_ai_2026.webp)
 <br>
 
 ## 4. 使用技術
 
 ### フロントエンド
-- **フレームワーク**: Next.js 15.2.5 (React 19.0.0)
+- **フレームワーク**: Next.js 15.5.25 (React 19)
 - **スタイリング**: Tailwind CSS 4, DaisyUI
 - **言語**: TypeScript 5
 - **画像最適化**: Sharp
