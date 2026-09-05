@@ -43,8 +43,8 @@ FastAPIを使用したRESTful APIサーバーです。
 
 ## 3. デモ
 
-![HIRO LAB トップページ](/frontend/public/images/previewImage/hirolab_home_2026.webp)
-![HIRO LAB プロフィールページ](/frontend/public/images/previewImage/hirolab_about_2026.webp)
+![HIRO LAB トップページ](/frontend/public/images/previewImage/hirolab_home_2026_09.webp)
+![HIRO LAB プロフィールページ](/frontend/public/images/previewImage/hirolab_about_2026_09.webp)
 ![HIRO LAB 記事一覧（Zennで絞り込み）](/frontend/public/images/previewImage/hirolab_articles_2026.webp)
 ![HIRO LAB AIチャットの開始画面](/frontend/public/images/previewImage/hirolab_ai_2026.webp)
 <br>

@@ -269,7 +269,7 @@ img {
 }
 .nav-link {
   position: relative;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: #707b8e;
   padding: 11px 16px;
@@ -295,7 +295,7 @@ img {
 }
 .header-contact {
   min-height: 40px;
-  font-size: 12px;
+  font-size: 14px;
   padding: 9px 15px;
   background: var(--ink);
   color: white;
@@ -340,7 +340,7 @@ img {
   justify-content: space-between;
   padding: 14px 16px;
   border-radius: 10px;
-  font-size: 18px;
+  font-size: 20px;
 }
 .mobile-nav a[aria-current="page"] {
   color: var(--color-primary);

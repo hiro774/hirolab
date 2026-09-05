@@ -116,10 +116,10 @@ export const worksData: WorkType[] = [
     id: 1,
     title: "HIRO LAB",
     description: "制作実績・技術記事・AIチャットをまとめたポートフォリオサイト",
-    thumbnail: "/images/previewImage/hirolab_home_2026.webp",
+    thumbnail: "/images/previewImage/hirolab_home_2026_09.webp",
     previewImage: [
-      "/images/previewImage/hirolab_home_2026.webp",
-      "/images/previewImage/hirolab_about_2026.webp",
+      "/images/previewImage/hirolab_home_2026_09.webp",
+      "/images/previewImage/hirolab_about_2026_09.webp",
       "/images/previewImage/hirolab_articles_2026.webp",
       "/images/previewImage/hirolab_ai_2026.webp",
     ],
