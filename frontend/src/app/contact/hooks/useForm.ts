@@ -1,69 +1,90 @@
-import { useState, FormEvent } from "react";
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
+
+class ContactError extends Error {}
 
 export const useForm = () => {
-  const contactApiUrl = process.env.NEXT_PUBLIC_CONTACT_API_ENDPOINT;
-
-  // フォームの状態管理
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     content: "",
   });
-
-  // 送信状態の管理
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     success: boolean;
     message: string;
   } | null>(null);
+  const requestRef = useRef<AbortController | null>(null);
+  const mountedRef = useRef(true);
 
-  // 入力変更ハンドラー
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+      requestRef.current?.abort();
+    };
+  }, []);
+
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    const { name, value } = event.target;
+    setFormData((previous) => ({ ...previous, [name]: value }));
+    setSubmitStatus(null);
   };
 
-  // フォーム送信ハンドラー
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+    if (requestRef.current) return;
+    const request = new AbortController();
+    requestRef.current = request;
     setIsSubmitting(true);
-
+    setSubmitStatus(null);
+    const timeout = setTimeout(() => request.abort(), 30000);
     try {
-      const response = await fetch(`${contactApiUrl}`, {
+      const endpoint = process.env.NEXT_PUBLIC_CONTACT_API_ENDPOINT;
+      if (!endpoint)
+        throw new ContactError(
+          "現在、お問い合わせを送信できません。入力内容はそのまま残しています。時間をおいて、もう一度お試しください。",
+        );
+      const response = await fetch(endpoint, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
+        signal: request.signal,
       });
-
-      if (response.ok) {
-        setSubmitStatus({
-          success: true,
-          message: "お問い合わせを受け付けました。ありがとうございます。",
-        });
-      }
-
-      // フォームをリセット
-      setFormData({
-        name: "",
-        email: "",
-        content: "",
+      if (response.status === 429)
+        throw new ContactError(
+          "送信が集中しています。入力内容はそのまま残しています。少し時間をおいて、もう一度お試しください。",
+        );
+      if (!response.ok)
+        throw new ContactError(
+          "お問い合わせを送信できませんでした。入力内容はそのまま残しています。時間をおいて、もう一度お試しください。",
+        );
+      const data = await response.json();
+      if (data.success !== true)
+        throw new ContactError(
+          "お問い合わせを届けられませんでした。入力内容はそのまま残しています。時間をおいて、もう一度お試しください。",
+        );
+      if (!mountedRef.current) return;
+      setSubmitStatus({
+        success: true,
+        message: "お問い合わせを受け付けました。ありがとうございます。",
       });
-    } catch {
+      setFormData({ name: "", email: "", content: "" });
+    } catch (cause) {
+      if (!mountedRef.current) return;
       setSubmitStatus({
         success: false,
-        message: "送信に失敗しました。後ほど再度お試しください。",
+        message:
+          cause instanceof ContactError
+            ? cause.message
+            : "接続を確認して、もう一度お試しください。入力内容はそのまま残しています。",
       });
     } finally {
-      setIsSubmitting(false);
+      clearTimeout(timeout);
+      requestRef.current = null;
+      if (mountedRef.current) setIsSubmitting(false);
     }
   };
-
   return { formData, submitStatus, isSubmitting, handleChange, handleSubmit };
 };

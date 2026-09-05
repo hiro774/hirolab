@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "../styles/globals.css";
 import "../styles/custom.css";
-import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
@@ -20,23 +19,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" data-theme="light" className="scroll-smooth">
-      <body className="min-h-screen">
-        <div>
-          <input
-            id="my-drawer-3"
-            type="checkbox"
-            className="drawer-toggle hidden"
-          />
-          <div className="flex flex-col min-h-screen">
-            {/* ヘッダー */}
-            <Header />
-            {/* メインコンテンツ */}
-            <main className="w-full flex-grow animate-fadeIn">{children}</main>
-            {/* フッター */}
-            <Footer />
-          </div>
-          {/* モバイルメニュー */}
-          <Sidebar />
+      <body id="top">
+        <a href="#main-content" className="skip-link">
+          本文へスキップ
+        </a>
+        <div className="site-frame">
+          <Header />
+          <main id="main-content" className="site-main" tabIndex={-1}>
+            {children}
+          </main>
+          <Footer />
         </div>
       </body>
     </html>

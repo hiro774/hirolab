@@ -1,178 +1,227 @@
 "use client";
 
 import Image from "next/image";
-import { WorkType } from "./types";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
+import { WorkType } from "./types";
 
 interface Props {
   work: WorkType;
-  isClosing: boolean;
   onClose: () => void;
 }
 
-export default function WorkModal({ work, isClosing, onClose }: Props) {
-  // 画像スライダー用の状態
-  const [images, setImages] = useState<string[]>([]);
+export default function WorkModal({ work, onClose }: Props) {
+  const dialogRef = useRef<HTMLDialogElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const images = work.previewImage.length
+    ? work.previewImage
+    : work.thumbnail
+      ? [work.thumbnail]
+      : [];
 
-  // 初期化時に利用可能な画像を設定
   useEffect(() => {
-    // 現在利用可能な画像を配列に格納
-    const availableImages = work.previewImage;
-    setImages(availableImages);
-  }, [work]);
+    const dialog = dialogRef.current;
+    const previousOverflow = document.body.style.overflow;
+    if (dialog && !dialog.open) dialog.showModal();
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      dialog?.close();
+    };
+  }, []);
 
-  // 次の画像に移動
-  const goToNextImage = () => {
-    if (images.length <= 1) return;
-    setCurrentIndex((prev) => (prev + 1) % images.length);
-  };
+  function closeModal() {
+    dialogRef.current?.close();
+  }
 
-  // 前の画像に移動
-  const goToPrevImage = () => {
-    if (images.length <= 1) return;
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
+  function changeImage(direction: number) {
+    setCurrentIndex(
+      (index) => (index + direction + images.length) % images.length,
+    );
+  }
 
   return (
-    <div
-      className={`fixed inset-0 bg-black/60 flex items-start justify-center z-50 p-4 pt-20 ${
-        isClosing ? "animate-fadeOut" : "animate-fadeIn"
-      }`}
-      onClick={onClose}
+    <dialog
+      ref={dialogRef}
+      className="work-dialog"
+      aria-labelledby="work-dialog-title"
+      onClose={() => {
+        // A development effect replay can close and reopen the same dialog.
+        if (!dialogRef.current?.open) onClose();
+      }}
+      onClick={(event) => {
+        if (event.target === event.currentTarget) {
+          const rect = event.currentTarget.getBoundingClientRect();
+          if (
+            event.clientX < rect.left ||
+            event.clientX > rect.right ||
+            event.clientY < rect.top ||
+            event.clientY > rect.bottom
+          )
+            closeModal();
+        }
+      }}
     >
-      <div
-        className={`bg-white rounded-xl max-w-5xl w-full max-h-[90vh] overflow-y-auto shadow-xl ${
-          isClosing ? "animate-scaleOut" : "animate-scaleIn"
-        }`}
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* ヘッダー */}
-        <div className="sticky top-0 bg-gray-50 p-5 z-20 border-b border-gray-200 flex justify-between items-center rounded-t-xl">
-          <h2 className="text-2xl font-bold text-gray-800 tracking-tight">
-            {work.title}
-          </h2>
-          <button
-            onClick={onClose}
-            className="w-8 h-8 flex items-center justify-center rounded-full cursor-pointer bg-white text-gray-500 hover:bg-gray-100 hover:text-gray-700 transition-colors duration-200 border border-gray-200"
-          >
-            ✕
-          </button>
+      <div className="work-dialog-header">
+        <div>
+          <p className="section-label">PROJECT DETAILS</p>
+          <h2 id="work-dialog-title">{work.title}</h2>
         </div>
-
-        <div className="py-10 px-8 md:px-16 lg:px-20">
-          {/* 画像スライダー */}
-          <div className="mb-10 relative">
-            <div className="relative w-full h-[300px] md:h-[400px] overflow-hidden rounded-lg shadow-md">
-              {images.length > 0 && (
-                <Image
-                  src={images[currentIndex]}
-                  alt={work.title}
-                  fill
-                  className="object-contain"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-                  quality={80}
-                />
+        <button
+          type="button"
+          className="icon-button work-dialog-close"
+          onClick={closeModal}
+          aria-label="作品の詳細を閉じる"
+          autoFocus
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.7"
+            aria-hidden="true"
+          >
+            <path d="m6 6 12 12M18 6 6 18" />
+          </svg>
+        </button>
+      </div>
+      <div className="work-dialog-content">
+        {images.length > 0 && (
+          <section className="work-gallery" aria-label="作品の画像">
+            <div className="work-gallery-image">
+              <Image
+                src={images[currentIndex]}
+                alt={`${work.title}の画面 ${currentIndex + 1}`}
+                fill
+                className="work-preview"
+                sizes="(max-width: 640px) 100vw, 900px"
+                quality={85}
+              />
+            </div>
+            <div className="work-gallery-controls">
+              <p
+                className="work-gallery-counter"
+                aria-live="polite"
+                aria-atomic="true"
+              >
+                <strong>{String(currentIndex + 1).padStart(2, "0")}</strong>
+                <span>/ {String(images.length).padStart(2, "0")}</span>
+              </p>
+              {images.length > 1 && (
+                <>
+                  <div
+                    className="work-gallery-dots"
+                    aria-label="表示する画像を選択"
+                  >
+                    {images.map((src, index) => (
+                      <button
+                        key={src}
+                        type="button"
+                        className={`work-gallery-dot ${index === currentIndex ? "is-active" : ""}`}
+                        onClick={() => setCurrentIndex(index)}
+                        aria-label={`画像${index + 1}を表示`}
+                        aria-current={
+                          index === currentIndex ? "true" : undefined
+                        }
+                      >
+                        <span />
+                      </button>
+                    ))}
+                  </div>
+                  <div className="work-gallery-arrows">
+                    <button
+                      type="button"
+                      className="icon-button"
+                      onClick={() => changeImage(-1)}
+                      aria-label="前の画像"
+                    >
+                      <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.7"
+                        aria-hidden="true"
+                      >
+                        <path d="M19 12H5m6-6-6 6 6 6" />
+                      </svg>
+                    </button>
+                    <button
+                      type="button"
+                      className="icon-button"
+                      onClick={() => changeImage(1)}
+                      aria-label="次の画像"
+                    >
+                      <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.7"
+                        aria-hidden="true"
+                      >
+                        <path d="M5 12h14m-6-6 6 6-6 6" />
+                      </svg>
+                    </button>
+                  </div>
+                </>
               )}
             </div>
-
-            {/* 矢印ボタン */}
-            {images.length > 1 && (
-              <>
-                <button
-                  onClick={goToPrevImage}
-                  className="absolute left-2 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 shadow-md flex items-center justify-center text-gray-700 hover:bg-white transition-colors z-10 cursor-pointer"
-                  aria-label="前の画像"
-                >
-                  ←
-                </button>
-                <button
-                  onClick={goToNextImage}
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 shadow-md flex items-center justify-center text-gray-700 hover:bg-white transition-colors z-10 cursor-pointer"
-                  aria-label="次の画像"
-                >
-                  →
-                </button>
-              </>
-            )}
-
-            {/* 画像カウンター */}
-            {images.length > 1 && (
-              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
-                {currentIndex + 1} / {images.length}
-              </div>
-            )}
-          </div>
-
-          {/* 概要 */}
-          <div className="mb-10 pb-8 border-b border-gray-200">
-            <h3 className="text-xl font-semibold mb-4 text-gray-800">概要</h3>
-            {work.details.overviews.map((overview: string, index: number) => (
-              <p key={index} className="text-gray-700 leading-relaxed">
-                {overview}
-              </p>
+          </section>
+        )}
+        <section className="work-detail-section">
+          <h3>概要</h3>
+          <div className="work-detail-text">
+            {work.details.overviews.map((overview, index) => (
+              <p key={index}>{overview}</p>
             ))}
           </div>
-
-          {/* 機能 */}
-          <div className="mb-10 pb-8 border-b border-gray-200">
-            <h3 className="text-xl font-semibold mb-4 text-gray-800">
-              主な機能
-            </h3>
-            <ul className="list-disc pl-5 text-gray-700 space-y-1">
-              {work.details.features.map((feature: string, index: number) => (
-                <li key={index} className="leading-relaxed">
-                  {feature}
-                </li>
-              ))}
-            </ul>
+        </section>
+        <section className="work-detail-section">
+          <h3>主な機能</h3>
+          <ul className="work-feature-list">
+            {work.details.features.map((feature, index) => (
+              <li key={index}>{feature}</li>
+            ))}
+          </ul>
+        </section>
+        <section className="work-detail-section">
+          <h3>使用技術</h3>
+          <div className="work-tags">
+            {work.details.technologies.map((tech) => (
+              <span key={tech} className="tag">
+                {tech}
+              </span>
+            ))}
           </div>
-
-          {/* 使用技術 */}
-          <div className="mb-10 pb-8 border-b border-gray-200">
-            <h3 className="text-xl font-semibold mb-4 text-gray-800">
-              使用技術
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {work.details.technologies.map((tech: string, index: number) => (
-                <span
-                  key={index}
-                  className="px-4 py-1.5 bg-gray-100 text-gray-700 border border-gray-200 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors duration-200"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* リンク */}
-          <div className="flex flex-wrap gap-4 justify-center mt-12">
+        </section>
+        <div className="work-dialog-links">
+          {work.details.website && (
             <Link
-              href={work.details.github}
+              href={work.details.website}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 bg-white border border-gray-300 text-gray-700 rounded-lg shadow-sm hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 flex items-center font-medium"
-              onClick={(e) => e.stopPropagation()}
+              className="lab-button lab-button-primary"
             >
-              GitHub
+              サイトを見る<span aria-hidden="true">↗</span>
+              <span className="works-sr-only">（新しいタブで開きます）</span>
             </Link>
-            {work.details.website ? (
-              <Link
-                href={work.details.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3 bg-gray-800 text-white rounded-lg shadow-sm hover:bg-gray-700 transition-colors duration-200 flex items-center font-medium"
-                onClick={(e) => e.stopPropagation()}
-              >
-                サイトを見る
-              </Link>
-            ) : (
-              <></>
-            )}
-          </div>
+          )}
+          <Link
+            href={work.details.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="lab-button lab-button-secondary"
+          >
+            GitHub<span aria-hidden="true">↗</span>
+            <span className="works-sr-only">（新しいタブで開きます）</span>
+          </Link>
         </div>
       </div>
-    </div>
+    </dialog>
   );
 }

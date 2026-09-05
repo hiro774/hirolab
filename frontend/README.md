@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# HiroLab — フロントエンド
 
-## Getting Started
+Next.js / React / TypeScriptで作成したポートフォリオです。
 
-First, run the development server:
+## 外観をローカルで確認する
 
-```bash
+```sh
+cd /Users/matsubarahirokazu/portfolio/hirolab/frontend
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+http://localhost:3000 を開きます。外観だけの確認にはAPIキーやバックエンドの起動は不要です。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+ファイル監視の上限エラー（EMFILE）が出る環境では `WATCHPACK_POLLING=1000 npm run dev` を使ってください。
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 外部機能も接続する場合
 
-## Learn More
+`.env.example` を `.env.local` にコピーし、現在の環境で利用している接続先を設定してから開発サーバーを再起動してください。
 
-To learn more about Next.js, take a look at the following resources:
+| 変数                               | 用途                                    |
+| ---------------------------------- | --------------------------------------- |
+| `NEXT_PUBLIC_MESSAGE_API_ENDPOINT` | AIチャットのバックエンドURL             |
+| `NEXT_PUBLIC_CONTACT_API_ENDPOINT` | 問い合わせのバックエンドURL             |
+| `ZEN_API_URL`                      | Zennの記事取得URL（既存の変数名を継続） |
+| `QIITA_API_URL`                    | Qiitaの記事取得URL                      |
+| `QIITA_USER`                       | Qiitaの記事リンクに使用するユーザー名   |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+バックエンドを接続する場合は、そのCORS設定で `http://localhost:3000`（プレビューが127.0.0.1なら `http://127.0.0.1:3000`）を許可します。OpenAIキーなど、バックエンド用の設定はルートのREADMEを参照してください。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+接続先が未設定の場合、記事一覧は取得できない旨を表示し、AI・問い合わせは送信を試みたときにエラーを表示します。実際の応答や送信成功を模した表示はしません。
 
-## Deploy on Vercel
+## デザインと内容の編集場所
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- 共通の配色・余白・ボタン・メニュー: `src/styles/custom.css`
+- トップ画面: `src/app/page.tsx` と `src/app/home.css`
+- 各ページ: `src/app/about`、`works`、`articles`、`ai`、`contact`
+- 作品の情報・画像パス: `src/app/works/components/data.ts`
+- 画像: `public/images`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 検証
+
+```sh
+npm run lint
+npx tsc --noEmit
+npm run build
+```
+
+ビルドした画面は `npm start` で確認できます。これらのコマンドでGitHubへの反映やVercelへのデプロイは行われません。

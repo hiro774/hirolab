@@ -1,107 +1,59 @@
-import React from "react";
+import { RefObject } from "react";
 import Image from "next/image";
 import { MessageType } from "../hooks/types";
-
 type MessageListProps = {
   messages: MessageType[];
   isSending: boolean;
-  messagesEndRef: React.RefObject<HTMLDivElement | null>;
-  messagesContainerRef: React.RefObject<HTMLDivElement | null>;
+  messagesEndRef: RefObject<HTMLDivElement | null>;
+  messagesContainerRef: RefObject<HTMLDivElement | null>;
 };
-
-const MessageList: React.FC<MessageListProps> = ({
+export default function MessageList({
   messages,
   isSending,
   messagesEndRef,
   messagesContainerRef,
-}) => {
+}: MessageListProps) {
   return (
     <div
       ref={messagesContainerRef}
-      className="flex-grow bg-white/60 backdrop-blur-sm p-4 pb-4 border-x border-b border-white/30 shadow-inner rounded-b-xl overflow-y-auto"
+      className="ai-messages"
+      role="log"
+      aria-label="会話履歴"
+      aria-live="polite"
+      aria-relevant="additions"
+      tabIndex={0}
     >
-      <div className="space-y-4">
-        {messages.map((message) => (
-          <div
-            key={message.id}
-            className={`flex ${
-              message.sender === "user" ? "justify-end" : "justify-start"
-            }`}
-          >
-            <div
-              className={`max-w-[80%] sm:max-w-[70%] rounded-2xl p-3 ${
-                message.sender === "user"
-                  ? "bg-primary/10 text-gray-800"
-                  : "bg-white shadow-md border border-gray-100"
-              }`}
-            >
-              {message.sender === "ai" && (
-                <div className="flex items-center mb-1">
-                  <span className="text-sm font-medium text-primary ml-1">
-                    HIRO AI
-                  </span>
-                </div>
-              )}
-              <p className="text-sm sm:text-base whitespace-pre-wrap">
-                {message.content}
-                {message.isTyping && (
-                  <span className="inline-block w-1 h-4 ml-1 bg-primary animate-pulse"></span>
-                )}
-              </p>
-              <div
-                className={`text-xs mt-1 ${
-                  message.sender === "user"
-                    ? "text-right text-gray-500"
-                    : "text-gray-400"
-                }`}
-              >
-                {message.timestamp}
-              </div>
-            </div>
+      <p className="ai-conversation-start">HIRO AIとの会話</p>
+      {messages.map((message) => (
+        <div
+          key={message.id}
+          className={`ai-message-row ai-message-row-${message.sender}`}
+        >
+          {message.sender === "ai" && (
+            <Image
+              className="ai-message-avatar"
+              src="/images/icon/hiro_robot.webp"
+              alt=""
+              width={36}
+              height={36}
+            />
+          )}
+          <div className="ai-message-body">
+            <span className="ai-message-author">
+              {message.sender === "user" ? "あなた" : "HIRO AI"}
+            </span>
+            <p className="ai-message-bubble">{message.content}</p>
+            <time className="ai-message-time">{message.timestamp}</time>
           </div>
-        ))}
-
-        {/* 送信中インジケーター */}
-        {isSending && (
-          <div className="flex justify-start">
-            <div className="max-w-[80%] sm:max-w-[70%] rounded-2xl p-3 bg-white shadow-md border border-gray-100">
-              <div className="flex items-center mb-1">
-                <div className="w-6 h-6 rounded-full overflow-hidden mr-2">
-                  <Image
-                    src="/images/icon/hiro_robot.webp"
-                    alt="HIRO AI"
-                    width={24}
-                    height={24}
-                    className="object-cover"
-                  />
-                </div>
-                <span className="text-xs font-medium text-primary">
-                  HIRO AI
-                </span>
-              </div>
-              <div className="flex space-x-1">
-                <div
-                  className="w-2 h-2 rounded-full bg-gray-300 animate-bounce"
-                  style={{ animationDelay: "0ms" }}
-                ></div>
-                <div
-                  className="w-2 h-2 rounded-full bg-gray-300 animate-bounce"
-                  style={{ animationDelay: "150ms" }}
-                ></div>
-                <div
-                  className="w-2 h-2 rounded-full bg-gray-300 animate-bounce"
-                  style={{ animationDelay: "300ms" }}
-                ></div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* 自動スクロール用の空のdiv */}
-        <div ref={messagesEndRef} />
-      </div>
+        </div>
+      ))}
+      {isSending && (
+        <div className="ai-waiting" role="status">
+          <span className="ai-loading-ring" aria-hidden="true" />
+          返信を待っています…
+        </div>
+      )}
+      <div ref={messagesEndRef} />
     </div>
   );
-};
-
-export default MessageList;
+}

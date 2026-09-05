@@ -6,11 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
     "daisyui": "^5.0.17",
-    "next": "15.2.5",
+    "next": "15.5.25",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
@@ -21,7 +21,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "15.2.5",
+    "eslint-config-next": "15.5.25",
     "sharp": "^0.34.1",
     "tailwindcss": "^4",
     "typescript": "^5"

@@ -1,15 +1,32 @@
-"use client";
-
-import React from "react";
-
-const Footer = () => {
+import Link from "next/link";
+export default function Footer() {
   return (
-    <footer className="footer footer-center p-4 text-base-content mt-auto">
-      <aside>
-        <p>Copyright © 2025 - All right reserved by HiroLab</p>
-      </aside>
+    <footer className="site-footer">
+      <div className="footer-inner">
+        <div className="footer-brand">
+          <Link
+            href="/"
+            className="brand-type"
+            aria-label="HIRO LAB トップページ"
+          >
+            HIRO<span> LAB.</span>
+          </Link>
+          <p className="footer-copy">© {new Date().getFullYear()} HiroLab</p>
+        </div>
+        <nav className="footer-links" aria-label="フッターメニュー">
+          <a
+            href="https://github.com/hiro774"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub ↗
+          </a>
+          <Link href="/contact">Contact ↗</Link>
+          <a href="#top" className="footer-top">
+            ページ上部へ ↑
+          </a>
+        </nav>
+      </div>
     </footer>
   );
-};
-
-export default Footer;
+}

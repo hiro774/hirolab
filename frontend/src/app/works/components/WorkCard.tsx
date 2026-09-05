@@ -3,45 +3,64 @@ import { WorkType } from "./types";
 
 interface Props {
   work: WorkType;
+  index: number;
   onClick: (work: WorkType) => void;
 }
 
-export default function WorkCard({ work, onClick }: Props) {
+export default function WorkCard({ work, index, onClick }: Props) {
   return (
-    <div
-      className="bg-white/70 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 cursor-pointer"
-      onClick={() => onClick(work)}
-    >
-      <div className="h-60 bg-gradient-to-r from-blue-100 to-purple-100 flex items-center justify-center overflow-hidden">
+    <article className="work-card">
+      <div className="work-card-image">
         {work.thumbnail ? (
           <Image
             src={work.thumbnail}
             alt={work.title}
-            width={640}
-            height={320}
-            quality={100}
-            className="object-cover w-full h-full"
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 380px"
+            quality={85}
           />
         ) : (
-          <p>画像準備中</p>
+          <span className="work-image-placeholder">画像準備中</span>
         )}
+        <span className="work-card-number" aria-hidden="true">
+          {String(index + 1).padStart(2, "0")}
+        </span>
       </div>
-      <div className="p-6">
-        <h3 className="text-xl font-bold mb-2 text-gray-800">{work.title}</h3>
-        <p className="text-gray-600 mb-4 h-12 line-clamp-2">
-          {work.description}
-        </p>
-        <div className="flex flex-wrap gap-2">
-          {work.tags.map((tag, index) => (
-            <span
-              key={index}
-              className="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm"
-            >
+      <div className="work-card-body">
+        <h2 className="work-card-title">
+          <button
+            className="work-card-trigger"
+            onClick={() => onClick(work)}
+            aria-label={`${work.title}の詳細を見る`}
+            aria-haspopup="dialog"
+          >
+            {work.title}
+          </button>
+        </h2>
+        <p className="work-card-description">{work.description}</p>
+        <div className="work-tags">
+          {work.tags.map((tag) => (
+            <span key={tag} className="tag">
               {tag}
             </span>
           ))}
         </div>
+        <div className="work-card-footer" aria-hidden="true">
+          <span>詳しく見る</span>
+          <span className="work-card-arrow">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.7"
+            >
+              <path d="M5 12h14m-6-6 6 6-6 6" />
+            </svg>
+          </span>
+        </div>
       </div>
-    </div>
+    </article>
   );
 }

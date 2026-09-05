@@ -1,131 +1,106 @@
-import { useState, useRef, useEffect } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { MessageType } from "./types";
-
+class ChatError extends Error {}
 export const useChat = () => {
-  const messageApiUrl = process.env.NEXT_PUBLIC_MESSAGE_API_ENDPOINT;
-
-  // 初期状態かどうかを管理する状態
-  const [isInitialState, setIsInitialState] = useState(true);
-  // メッセージの状態管理
   const [messages, setMessages] = useState<MessageType[]>([]);
-  // 入力テキストの状態管理
   const [inputText, setInputText] = useState("");
-  // 送信中の状態管理
   const [isSending, setIsSending] = useState(false);
-  // 履歴の管理
   const [history, setHistory] = useState<string[]>([]);
-  // 入力カーソルのref
+  const [error, setError] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  // タイピングアニメーション用の状態
-  const [typingMessageId, setTypingMessageId] = useState<string | null>(null);
+  const requestRef = useRef<AbortController | null>(null);
+  const mountedRef = useRef(true);
 
   useEffect(() => {
-    inputRef.current?.focus();
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+      requestRef.current?.abort();
+    };
   }, []);
 
-  // メッセージを送信する関数
-  const sendMessage = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!inputText.trim()) return;
-
-    // 初期状態の場合は、通常状態に切り替える
-    if (isInitialState) {
-      setIsInitialState(false);
-    }
-
-    const now = new Date().toLocaleTimeString("ja-JP", {
+  const sendMessage = async (event: FormEvent) => {
+    event.preventDefault();
+    const content = inputText.trim();
+    if (!content || requestRef.current) return;
+    const request = new AbortController();
+    requestRef.current = request;
+    const timestamp = new Date().toLocaleTimeString("ja-JP", {
       hour: "2-digit",
       minute: "2-digit",
     });
-
-    // ユーザーメッセージをUIに追加
-    const userMessage: MessageType = {
-      id: Date.now().toString(),
-      content: inputText,
-      sender: "user",
-      timestamp: now,
-    };
-
-    setMessages((prev) => [...prev, userMessage]);
+    setMessages((previous) => [
+      ...previous,
+      { id: `${Date.now()}-user`, content, sender: "user", timestamp },
+    ]);
     setInputText("");
     setIsSending(true);
-
-    // UIの更新が完了するのを待ってからフォーカスを設定（機能していない可能性有）
-    setTimeout(() => {
-      inputRef.current?.focus();
-    }, 10);
-
+    setError(null);
+    const timeout = setTimeout(() => request.abort(), 30000);
     try {
-      // APIリクエスト
-      const response = await fetch(`${messageApiUrl}`, {
+      const endpoint = process.env.NEXT_PUBLIC_MESSAGE_API_ENDPOINT;
+      if (!endpoint)
+        throw new ChatError(
+          "現在、AIに接続できません。時間をおいて、もう一度お試しください。",
+        );
+      const response = await fetch(endpoint, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ content: inputText, history: history }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content, history }),
+        signal: request.signal,
       });
-      // APIレスポンス
+      if (response.status === 429)
+        throw new ChatError(
+          "質問が集中しています。少し時間をおいて、もう一度お試しください。",
+        );
+      if (!response.ok)
+        throw new ChatError(
+          "現在、AIに接続できません。時間をおいて、もう一度お試しください。",
+        );
       const data = await response.json();
-
-      // AIの応答をUIに追加（タイピングアニメーション付き）
-      setTimeout(() => {
-        const messageId = (Date.now() + 1).toString();
-        const aiMessage: MessageType = {
-          id: messageId,
-          content: "", // 最初は空
-          fullContent: data.content, // 完全なテキスト
+      if (typeof data.content !== "string" || !data.content.trim())
+        throw new ChatError(
+          "回答を受け取れませんでした。もう一度お試しください。",
+        );
+      if (!mountedRef.current) return;
+      setMessages((previous) => [
+        ...previous,
+        {
+          id: `${Date.now()}-ai`,
+          content: data.content,
           sender: "ai",
-          timestamp: now,
-          isTyping: true, // タイピング中フラグ
-        };
-
-        setMessages((prev) => [...prev, aiMessage]);
-        setTypingMessageId(messageId); // タイピングアニメーションを開始
-        setHistory((prev) => [...prev, inputText, data.content]);
+          timestamp: new Date().toLocaleTimeString("ja-JP", {
+            hour: "2-digit",
+            minute: "2-digit",
+          }),
+        },
+      ]);
+      setHistory((previous) => [...previous, content, data.content]);
+    } catch (cause) {
+      if (!mountedRef.current) return;
+      setError(
+        cause instanceof ChatError
+          ? cause.message
+          : "AIへの接続に時間がかかっています。時間をおいて、もう一度お試しください。",
+      );
+      setInputText(content);
+    } finally {
+      clearTimeout(timeout);
+      requestRef.current = null;
+      if (mountedRef.current) {
         setIsSending(false);
-
-        // AIの応答が表示された後に再度フォーカスを設定
-        setTimeout(() => {
-          inputRef.current?.focus();
-        }, 100);
-      }, 1000); // 1秒の遅延を追加してAIが「考えている」ように見せる
-    } catch (error) {
-      console.error("Error sending message:", error);
-
-      // エラーメッセージをUIに追加（タイピングアニメーション付き）
-      const messageId = (Date.now() + 1).toString();
-      const errorMessage: MessageType = {
-        id: messageId,
-        content: "",
-        fullContent:
-          "申し訳ありません、メッセージの送信中にエラーが発生しました。もう一度お試しください。",
-        sender: "ai",
-        timestamp: now,
-        isTyping: true,
-      };
-
-      setMessages((prev) => [...prev, errorMessage]);
-      setTypingMessageId(messageId);
-      setIsSending(false);
-
-      // エラー表示後にも入力フィールドにフォーカスを戻す
-      setTimeout(() => {
-        inputRef.current?.focus();
-      }, 100);
+        requestAnimationFrame(() => inputRef.current?.focus());
+      }
     }
   };
-
   return {
-    isInitialState,
+    isInitialState: messages.length === 0,
     messages,
-    setMessages,
     inputText,
     setInputText,
     isSending,
     sendMessage,
     inputRef,
-    typingMessageId,
-    setTypingMessageId,
+    error,
   };
 };

@@ -1,60 +1,97 @@
 import ClientWrapper from "./components/ClientWrapper";
-import { Post } from "./components/types";
+import { Post, ArticleSource, SourceStatus } from "./components/types";
+import "./articles.css";
+
+type SourceResult = { posts: Post[]; status: SourceStatus };
+
+async function loadArticles(
+  source: ArticleSource,
+  apiUrl?: string,
+): Promise<SourceResult> {
+  if (!apiUrl) return { posts: [], status: "unavailable" };
+
+  try {
+    const response = await fetch(apiUrl, {
+      next: { revalidate: 3600 },
+      signal: AbortSignal.timeout(8000),
+    });
+    if (!response.ok) return { posts: [], status: "unavailable" };
+
+    const data: unknown = await response.json();
+    const items =
+      source === "Zenn" &&
+      data &&
+      typeof data === "object" &&
+      "articles" in data
+        ? data.articles
+        : data;
+    if (!Array.isArray(items)) return { posts: [], status: "unavailable" };
+
+    const posts: Post[] = items.flatMap((item: unknown) => {
+      if (
+        !item ||
+        typeof item !== "object" ||
+        !("id" in item) ||
+        !("title" in item)
+      )
+        return [];
+      if (
+        (typeof item.id !== "string" && typeof item.id !== "number") ||
+        typeof item.title !== "string"
+      )
+        return [];
+
+      const published =
+        source === "Zenn" && "published_at" in item
+          ? item.published_at
+          : "created_at" in item
+            ? item.created_at
+            : undefined;
+      if (typeof published !== "string" || Number.isNaN(Date.parse(published)))
+        return [];
+
+      let path: string;
+      if (source === "Zenn") {
+        if (!("path" in item) || typeof item.path !== "string") return [];
+        path = `zenn.dev/${item.path.replace(/^\/+/, "")}`;
+      } else {
+        if (!process.env.QIITA_USER) return [];
+        path = `qiita.com/${process.env.QIITA_USER}/items/${item.id}`;
+      }
+      return [
+        {
+          id: item.id,
+          title: item.title,
+          emoji: "",
+          path,
+          published_at: published,
+          source,
+        },
+      ];
+    });
+
+    if (items.length > 0 && posts.length === 0)
+      return { posts: [], status: "unavailable" };
+    return { posts, status: "ready" };
+  } catch {
+    return { posts: [], status: "unavailable" };
+  }
+}
 
 export default async function ArticlesPage() {
-  // エンドポイント取得
-  const zenApiUrl = process.env.ZEN_API_URL;
-  const qiitaApiUrl = process.env.QIITA_API_URL;
-
-  // Zenn
-  const zennRes = await fetch(
-    `${zenApiUrl}`,
-    { next: { revalidate: 3600 } } // 1時間ごとに再検証
-  );
-  const zennData = await zennRes.json();
-
-  // Qiita
-  const qiitaUser = process.env.QIITA_USER;
-  const qiitaRes = await fetch(
-    `${qiitaApiUrl}`,
-    { next: { revalidate: 3600 } } // 1時間ごとに再検証
-  );
-  const qiitaData = await qiitaRes.json();
-
-  // 共通形式に変換
-  const zennPosts: Post[] = zennData.articles.map(
-    (item: {
-      id: string | number;
-      title: string;
-      emoji: string;
-      path: string;
-      published_at: string;
-    }) => ({
-      id: item.id,
-      title: item.title,
-      emoji: "",
-      path: `zenn.dev/${item.path}`,
-      published_at: item.published_at,
-      source: "Zenn",
-    })
-  );
-
-  const qiitaPosts: Post[] = qiitaData.map(
-    (item: { id: string; title: string; created_at: string }) => ({
-      id: item.id,
-      title: item.title,
-      emoji: "",
-      path: `qiita.com/${qiitaUser}/items/${item.id}`,
-      published_at: item.created_at,
-      source: "Qiita",
-    })
-  );
-
-  // 日付順にソート（新しい順）
-  const allPosts = [...zennPosts, ...qiitaPosts].sort(
+  const [zenn, qiita] = await Promise.all([
+    loadArticles("Zenn", process.env.ZEN_API_URL),
+    loadArticles("Qiita", process.env.QIITA_API_URL),
+  ]);
+  const allPosts = [...zenn.posts, ...qiita.posts].sort(
     (a, b) =>
-      new Date(b.published_at).getTime() - new Date(a.published_at).getTime()
+      new Date(b.published_at).getTime() - new Date(a.published_at).getTime(),
   );
 
-  return <ClientWrapper allPosts={allPosts} />;
+  return (
+    <ClientWrapper
+      allPosts={allPosts}
+      sourceStatus={{ Zenn: zenn.status, Qiita: qiita.status }}
+    />
+  );
 }
