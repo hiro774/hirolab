@@ -37,7 +37,7 @@ export const worksData: WorkType[] = [
         "CSS",
         "Vercel",
       ],
-      github: "",
+      github: "https://github.com/hiro774/stockscope",
       website: "https://stockscope-orpin.vercel.app/",
     },
   },
