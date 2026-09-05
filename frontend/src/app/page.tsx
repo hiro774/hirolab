@@ -53,13 +53,6 @@ export default function Home() {
             >
               GitHub <Arrow diagonal />
             </a>
-            <a
-              href="https://x.com/hirolulu65379"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              X <Arrow diagonal />
-            </a>
           </div>
         </div>
         <div className="hero-art" aria-label="HIRO LABのロボットキャラクター">

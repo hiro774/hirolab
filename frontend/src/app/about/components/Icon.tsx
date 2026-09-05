@@ -60,25 +60,6 @@ export default function Icon() {
             <path d="m4 7 8 6 8-6" />
           </svg>
         </Link>
-        <Link
-          href="https://x.com/hirolulu65379"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="icon-button"
-          aria-label="Xを開く（新しいタブ）"
-        >
-          <svg
-            width="17"
-            height="17"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.6"
-            aria-hidden="true"
-          >
-            <path d="M4 3h4l12 18h-4L4 3Zm16 0L4 21" />
-          </svg>
-        </Link>
       </div>
       <span className="about-identity-footnote">
         HIRO LAB / PERSONAL PROFILE
