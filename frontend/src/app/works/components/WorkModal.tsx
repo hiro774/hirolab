@@ -211,15 +211,17 @@ export default function WorkModal({ work, onClose }: Props) {
               <span className="works-sr-only">（新しいタブで開きます）</span>
             </Link>
           )}
-          <Link
-            href={work.details.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="lab-button lab-button-secondary"
-          >
-            GitHub<span aria-hidden="true">↗</span>
-            <span className="works-sr-only">（新しいタブで開きます）</span>
-          </Link>
+          {work.details.github && (
+            <Link
+              href={work.details.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="lab-button lab-button-secondary"
+            >
+              GitHub<span aria-hidden="true">↗</span>
+              <span className="works-sr-only">（新しいタブで開きます）</span>
+            </Link>
+          )}
         </div>
       </div>
     </dialog>
