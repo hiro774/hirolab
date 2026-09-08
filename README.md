@@ -19,6 +19,10 @@
 - 制作したプロジェクトの紹介（Works）
 - OpenAI APIを活用した「HIRO AI」との会話機能（AI）
 - お問い合わせフォーム（Contact）
+
+Articlesへの導線は一時的に非表示です。`frontend/src/config/site.ts` の
+`SHOW_ARTICLES_LINKS` を `true` に戻すと、PC・スマートフォンのメニューとトップページに再表示されます。
+記事ページ本体は残しているため、`/articles` への直接アクセスは引き続き可能です。
 <br><br>
 
 ## 2. システム概要

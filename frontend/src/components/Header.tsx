@@ -4,12 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { SHOW_ARTICLES_LINKS } from "@/config/site";
 
 const links = [
   { href: "/", label: "Top" },
   { href: "/about", label: "About" },
   { href: "/works", label: "Works" },
-  { href: "/articles", label: "Articles" },
+  ...(SHOW_ARTICLES_LINKS ? [{ href: "/articles", label: "Articles" }] : []),
   { href: "/ai", label: "AI" },
 ];
 function Arrow() {
