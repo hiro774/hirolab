@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { SHOW_ARTICLES_LINKS } from "@/config/site";
 import { worksData } from "./works/components/data";
 import "./home.css";
 
@@ -167,16 +168,20 @@ export default function Home() {
           </div>
           <p>プロフィールと、使っている技術。</p>
         </Link>
-        <Link href="/articles" className="explore-tile">
-          <span className="section-label">03 / ARTICLES</span>
-          <div>
-            <h2>Notes & insights.</h2>
-            <Arrow diagonal />
-          </div>
-          <p>日々の学びをまとめた技術記事。</p>
-        </Link>
+        {SHOW_ARTICLES_LINKS && (
+          <Link href="/articles" className="explore-tile">
+            <span className="section-label">03 / ARTICLES</span>
+            <div>
+              <h2>Notes & insights.</h2>
+              <Arrow diagonal />
+            </div>
+            <p>日々の学びをまとめた技術記事。</p>
+          </Link>
+        )}
         <Link href="/ai" className="explore-tile explore-ai">
-          <span className="section-label">04 / HIRO AI</span>
+          <span className="section-label">
+            {SHOW_ARTICLES_LINKS ? "04" : "03"} / HIRO AI
+          </span>
           <div>
             <h2>Say hello.</h2>
             <Arrow diagonal />
